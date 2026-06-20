@@ -256,8 +256,8 @@ proxy-groups:
   - name: 🌏 其他节点
     type: select
     proxies:
-      - 🇮🇩印尼_专线|峰-01
-      - 🇮🇩印尼_专线|峰-02
+      - 🇮🇩印尼专线|峰-01
+      - 🇮🇩印尼专线|峰-02
 
 rules:
   - GEOIP,CN,DIRECT
