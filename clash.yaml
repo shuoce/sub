@@ -5,7 +5,145 @@ log-level: info
 
 proxies:
 
-# 美国
+# ========== TROJAN ==========
+- name: "🇸🇬 新加坡01|峰|专线"
+  type: trojan
+  server: pokemon-01.yunjnet.com
+  port: 55016
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: www.lamer.com.sg
+  skip-cert-verify: true
+
+
+# ========== HY2 香港 ==========
+- name: "🇭🇰 香港01|峰|直连"
+  type: hysteria2
+  server: hkt03ddns.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: www.bing.com
+  insecure: true
+
+- name: "🇭🇰 香港02|峰|直连"
+  type: hysteria2
+  server: hkt03ddns.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: www.bing.com
+  insecure: true
+
+- name: "🇭🇰 香港03|峰|直连"
+  type: hysteria2
+  server: hk01.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: www.bing.com
+  insecure: true
+
+- name: "🇭🇰 香港04|峰|直连"
+  type: hysteria2
+  server: hk01.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: www.bing.com
+  insecure: true
+
+
+# ========== HY2 美国 ==========
+- name: "🇺🇸 美国01|峰|直连"
+  type: hysteria2
+  server: us01zl.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: bing.com
+  insecure: true
+
+- name: "🇺🇸 美国02|峰|直连"
+  type: hysteria2
+  server: us01zl.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: bing.com
+  insecure: true
+
+- name: "🇺🇸 美国03|峰|直连"
+  type: hysteria2
+  server: us02zl.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: bing.com
+  insecure: true
+
+- name: "🇺🇸 美国04|峰|直连"
+  type: hysteria2
+  server: us02zl.poke-mon.xyz
+  port: 443
+  password: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  sni: bing.com
+  insecure: true
+
+
+# ========== 新加坡（VLESS） ==========
+- name: "🇸🇬 新加坡01|峰|专线"
+  type: vless
+  server: vless-sg01.yunjnet.com
+  port: 50131
+  uuid: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  network: tcp
+  tls: true
+  servername: d1.awsstatic.com
+  flow: xtls-rprx-vision
+  packetEncoding: xudp
+
+- name: "🇸🇬 新加坡02|峰|专线"
+  type: vless
+  server: vless-sg02.yunjnet.com
+  port: 50131
+  uuid: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  network: tcp
+  tls: true
+  servername: d1.awsstatic.com
+  flow: xtls-rprx-vision
+  packetEncoding: xudp
+
+
+# ========== 日本（VLESS） ==========
+- name: "🇯🇵 日本01|峰|专线"
+  type: vless
+  server: vless-jp01.waimaosass.icu
+  port: 50131
+  uuid: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  network: tcp
+  tls: true
+  servername: d1.awsstatic.com
+  flow: xtls-rprx-vision
+  packetEncoding: xudp
+
+- name: "🇯🇵 日本02|峰|专线"
+  type: vless
+  server: vless-jp02.waimaosass.icu
+  port: 50131
+  uuid: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  network: tcp
+  tls: true
+  servername: d1.awsstatic.com
+  flow: xtls-rprx-vision
+  packetEncoding: xudp
+
+- name: "🇯🇵 日本03|峰|专线"
+  type: vless
+  server: vless-jp03.waimaosass.icu
+  port: 50131
+  uuid: 2cf367ba-2c2c-4284-a6d7-58b770bc4cee
+  network: tcp
+  tls: true
+  servername: d1.awsstatic.com
+  flow: xtls-rprx-vision
+  packetEncoding: xudp
+
+
+# ========== 旧节点（整合区） ==========
+
 - name: "🇺🇸 美国-峰01"
   type: vless
   server: 206.82.3.131
@@ -28,7 +166,6 @@ proxies:
   client-fingerprint: edge
   flow: xtls-rprx-vision
 
-# 香港
 - name: "🇭🇰 香港-峰01"
   type: vless
   server: hk4-r.link-t7.com
@@ -44,7 +181,6 @@ proxies:
     short-id: 686c0ef0
   client-fingerprint: chrome
 
-# 台湾
 - name: "🇹🇼 台湾-峰01"
   type: vless
   server: hktw.xiaomaimai01.de5.net
@@ -59,7 +195,6 @@ proxies:
   client-fingerprint: edge
   flow: xtls-rprx-vision
 
-# 日本
 - name: "🇯🇵 日本-峰01"
   type: vless
   server: 14.137.238.157
@@ -67,6 +202,7 @@ proxies:
   uuid: d26598cf-2cdf-4219-80d0-94646dff160d
   network: tcp
   tls: false
+
 - name: "🇯🇵 日本高速专线-峰"
   type: vmess
   server: hj5ZQEJlxVQwlS9D.v.3dns.vip
@@ -82,7 +218,6 @@ proxies:
     headers:
       Host: hj5ZQEJlxVQwlS9D.v.3dns.vip  
 
-# 新加坡
 - name: "🇸🇬 新加坡-峰01"
   type: vless
   server: sg3-r.link-t7.com
@@ -98,7 +233,6 @@ proxies:
     short-id: 686c0ef0
   client-fingerprint: chrome
 
-# 韩国
 - name: "🇰🇷 韩国-峰01"
   type: vless
   server: kr2-r.link-t7.com
@@ -114,7 +248,6 @@ proxies:
     short-id: 686c0ef0
   client-fingerprint: chrome
 
-# 德国
 - name: "🇩🇪 德国-峰01"
   type: vless
   server: hkt-2.ddns-go.de
@@ -129,7 +262,6 @@ proxies:
   client-fingerprint: edge
   flow: xtls-rprx-vision
 
-# 印尼
 - name: "🇮🇩 印尼-峰01"
   type: vless
   server: edge-hk.gdsxrk.com
@@ -144,7 +276,6 @@ proxies:
   client-fingerprint: chrome
   flow: xtls-rprx-vision
 
-# 乌克兰
 - name: "🇺🇦 乌克兰-峰01"
   type: vless
   server: ukraine.xiaomaimai.dpdns.org
@@ -159,21 +290,36 @@ proxies:
   client-fingerprint: edge
   flow: xtls-rprx-vision
 
+
 proxy-groups:
 - name: "🚀 节点选择"
   type: select
   proxies:
+    - "🇸🇬 新加坡01|峰|专线"
+    - "🇭🇰 香港01|峰|直连"
+    - "🇭🇰 香港02|峰|直连"
+    - "🇭🇰 香港03|峰|直连"
+    - "🇭🇰 香港04|峰|直连"
+    - "🇺🇸 美国01|峰|直连"
+    - "🇺🇸 美国02|峰|直连"
+    - "🇺🇸 美国03|峰|直连"
+    - "🇺🇸 美国04|峰|直连"
+    - "🇸🇬 新加坡01|峰|专线"
+    - "🇸🇬 新加坡02|峰|专线"
+    - "🇯🇵 日本01|峰|专线"
+    - "🇯🇵 日本02|峰|专线"
+    - "🇯🇵 日本03|峰|专线"
     - "🇺🇸 美国-峰01"
     - "🇺🇸 美国-峰02"
     - "🇭🇰 香港-峰01"
     - "🇹🇼 台湾-峰01"
     - "🇯🇵 日本-峰01"
+    - "🇯🇵 日本高速专线-峰"
     - "🇸🇬 新加坡-峰01"
     - "🇰🇷 韩国-峰01"
     - "🇩🇪 德国-峰01"
     - "🇮🇩 印尼-峰01"
     - "🇺🇦 乌克兰-峰01"
-    - "🇯🇵 日本高速专线-峰"
 
 rules:
 - MATCH,🚀 节点选择
