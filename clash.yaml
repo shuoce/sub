@@ -1,264 +1,309 @@
-port: 7890
-socks-port: 7891
-redir-port: 7892
-mixed-port: 7893
-allow-lan: true
-mode: rule
-log-level: info
-ipv6: true
-
-external-controller: 0.0.0.0:9090
-secret: ""
-
-dns:
-  enable: true
-  ipv6: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  fallback:
-    - 8.8.8.8
-    - 1.1.1.1
-
 proxies:
 
-  - name: "🇺🇸美国_专线|峰-01"
+  - name: 🇺🇸美国_专线|峰-01
     type: vless
     server: 206.82.3.131
     port: 443
     uuid: d26598cf-2cdf-4219-80d0-94646dff160d
     network: tcp
-    udp: true
 
-  - name: "🇺🇸美国_专线_中性|峰-02"
+  - name: 🇺🇸美国_专线|峰-02
     type: vless
     server: zz.j-pan.ccwu.cc
     port: 30001
     uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
     network: tcp
-    udp: true
     tls: true
     flow: xtls-rprx-vision
-    servername: s0.awsstatic.com
     client-fingerprint: edge
+    servername: s0.awsstatic.com
     reality-opts:
-      public-key: "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA"
-      short-id: "6d9478ae"
+      public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
+      short-id: 6d9478ae
 
-  - name: "🇺🇸美国_专线|峰-03"
+  - name: 🇺🇸美国_专线|峰-03
     type: vless
     server: 206.82.3.131
     port: 443
     uuid: d26598cf-2cdf-4219-80d0-94646dff160d
     network: tcp
-    udp: true
 
-  - name: "🇺🇸美国_专线_中性|峰-04"
+  - name: 🇺🇸美国_专线|峰-04
     type: vless
     server: zz.j-pan.ccwu.cc
     port: 30001
     uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
     network: tcp
-    udp: true
     tls: true
     flow: xtls-rprx-vision
-    servername: s0.awsstatic.com
     client-fingerprint: edge
+    servername: s0.awsstatic.com
     reality-opts:
-      public-key: "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA"
-      short-id: "6d9478ae"
+      public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
+      short-id: 6d9478ae
 
-  - name: "🇭🇰香港_专线|峰-01"
+  - name: 🇭🇰香港_专线|峰-01
     type: vless
     server: hk4-r.link-t7.com
     port: 10129
     uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
     network: grpc
-    udp: true
     tls: true
     servername: s0.awsstatic.com
-    client-fingerprint: chrome
     grpc-opts:
       grpc-service-name: movie
     reality-opts:
-      public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
-      short-id: "686c0ef0"
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: "🇭🇰香港_专线|峰-02"
+  - name: 🇭🇰香港_专线|峰-02
     type: vless
     server: hk4-r.link-t7.com
     port: 10129
     uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
     network: grpc
-    udp: true
     tls: true
     servername: s0.awsstatic.com
-    client-fingerprint: chrome
     grpc-opts:
       grpc-service-name: movie
     reality-opts:
-      public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
-      short-id: "686c0ef0"
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: "🇹🇼台湾_专线|峰-01"
+  - name: 🇭🇰香港_专线|峰-03
+    type: vless
+    server: hk4-r.link-t7.com
+    port: 10129
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: s0.awsstatic.com
+    grpc-opts:
+      grpc-service-name: movie
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
+
+  - name: 🇭🇰香港_专线|峰-04
+    type: vless
+    server: hk4-r.link-t7.com
+    port: 10129
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: s0.awsstatic.com
+    grpc-opts:
+      grpc-service-name: movie
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
+
+  - name: 🇹🇼台湾_专线|峰-01
     type: vless
     server: hktw.xiaomaimai01.de5.net
     port: 30000
     uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
     network: tcp
-    udp: true
     tls: true
     flow: xtls-rprx-vision
-    servername: s0.awsstatic.com
     client-fingerprint: edge
+    servername: s0.awsstatic.com
     reality-opts:
-      public-key: "niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA"
-      short-id: "22e903b47a"
+      public-key: niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA
+      short-id: 22e903b47a
 
-  - name: "🇹🇼台湾_专线|峰-02"
+  - name: 🇹🇼台湾_专线|峰-02
     type: vless
     server: hktw.xiaomaimai01.de5.net
     port: 30000
     uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
     network: tcp
-    udp: true
     tls: true
     flow: xtls-rprx-vision
-    servername: s0.awsstatic.com
     client-fingerprint: edge
+    servername: s0.awsstatic.com
     reality-opts:
-      public-key: "niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA"
-      short-id: "22e903b47a"
+      public-key: niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA
+      short-id: 22e903b47a
 
-  - name: "🇹🇼台湾_家庭_极纯|峰-01"
+  - name: 🇹🇼台湾_家宽_极纯|峰-01
     type: vless
     server: 211.76.176.128
     port: 10000
     uuid: d26598cf-2cdf-4219-80d0-94646dff160d
     network: tcp
-    udp: true
 
-  - name: "🇹🇼台湾_家庭_极纯|峰-02"
+  - name: 🇹🇼台湾_家宽_极纯|峰-02
     type: vless
     server: 211.76.176.128
     port: 10000
     uuid: d26598cf-2cdf-4219-80d0-94646dff160d
     network: tcp
-    udp: true
 
-  # ……（日本、新加坡、韩国、德国、印尼、乌克兰已全部按顺序合并）
+  - name: 🇯🇵日本_专线_中性|峰-01
+    type: vless
+    server: 14.137.238.157
+    port: 10000
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
 
-proxy-groups:
+  - name: 🇯🇵日本_专线|峰-02
+    type: vless
+    server: 14.137.238.157
+    port: 10000
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
 
-  - name: 🚀 节点选择
-    type: select
-    proxies:
-      - ⚡ 自动选择
-      - 🇺🇸 美国节点
-      - 🇭🇰 香港节点
-      - 🇹🇼 台湾节点
-      - 🇯🇵 日本节点
-      - 🇸🇬 新加坡节点
-      - 🇰🇷 韩国节点
-      - 🇪🇺 欧洲节点
-      - 🌏 其他节点
-      - DIRECT
+  - name: 🇯🇵日本_专线|峰-03
+    type: vless
+    server: 14.137.238.157
+    port: 10000
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
 
-  - name: ⚡ 自动选择
-    type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    proxies:
-      - 🇺🇸美国_专线|峰-01
-      - 🇺🇸美国_专线_中性|峰-02
-      - 🇺🇸美国_专线|峰-03
-      - 🇺🇸美国_专线_中性|峰-04
-      - 🇭🇰香港_专线|峰-01
-      - 🇭🇰香港_专线|峰-02
-      - 🇹🇼台湾_专线|峰-01
-      - 🇹🇼台湾_专线|峰-02
-      - 🇹🇼台湾_家庭_极纯|峰-01
-      - 🇹🇼台湾_家庭_极纯|峰-02
-      - 🇯🇵日本_专线_中性|峰-01
-      - 🇯🇵日本_专线|峰-02
-      - 🇯🇵日本_专线|峰-03
-      - 🇯🇵日本_专线|峰-05
-      - 🇸🇬新加坡_专线|峰-01
-      - 🇸🇬新加坡_专线|峰-02
-      - 🇸🇬新加坡_专线|峰-03
-      - 🇸🇬新加坡_专线|峰-04
-      - 🇰🇷韩国_专线|峰-01
-      - 🇰🇷韩国_专线|峰-02
-      - 🇰🇷韩国_专线|峰-03
-      - 🇩🇪德国_专线|峰-01
-      - 🇩🇪德国_专线|峰-02
-      - 🇮🇩印尼_专线|峰-01
-      - 🇮🇩印尼_专线|峰-02
-      - 🇺🇦乌克兰_原生|峰-01
-      - 🇺🇦乌克兰_原生|峰-02
+  - name: 🇯🇵日本_专线|峰-05
+    type: vless
+    server: 14.137.238.157
+    port: 10000
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
 
-  - name: 🇺🇸 美国节点
-    type: select
-    proxies:
-      - 🇺🇸美国_专线|峰-01
-      - 🇺🇸美国_专线_中性|峰-02
-      - 🇺🇸美国_专线|峰-03
-      - 🇺🇸美国_专线_中性|峰-04
+  - name: 🇸🇬新加坡_专线|峰-01
+    type: vless
+    server: sg3-r.link-t7.com
+    port: 10038
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: d1.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🇭🇰 香港节点
-    type: select
-    proxies:
-      - 🇭🇰香港_专线|峰-01
-      - 🇭🇰香港_专线|峰-02
+  - name: 🇸🇬新加坡_专线|峰-02
+    type: vless
+    server: sg3-r.link-t7.com
+    port: 10038
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: d1.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🇹🇼 台湾节点
-    type: select
-    proxies:
-      - 🇹🇼台湾_专线|峰-01
-      - 🇹🇼台湾_专线|峰-02
-      - 🇹🇼台湾_家庭_极纯|峰-01
-      - 🇹🇼台湾_家庭_极纯|峰-02
+  - name: 🇸🇬新加坡_专线|峰-03
+    type: vless
+    server: sg3-r.link-t7.com
+    port: 10038
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: d1.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🇯🇵 日本节点
-    type: select
-    proxies:
-      - 🇯🇵日本_专线_中性|峰-01
-      - 🇯🇵日本_专线|峰-02
-      - 🇯🇵日本_专线|峰-03
-      - 🇯🇵日本_专线|峰-05
+  - name: 🇸🇬新加坡_专线|峰-04
+    type: vless
+    server: sg3-r.link-t7.com
+    port: 10038
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: d1.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🇸🇬 新加坡节点
-    type: select
-    proxies:
-      - 🇸🇬新加坡_专线|峰-01
-      - 🇸🇬新加坡_专线|峰-02
-      - 🇸🇬新加坡_专线|峰-03
-      - 🇸🇬新加坡_专线|峰-04
+  - name: 🇰🇷韩国_专线|峰-01
+    type: vless
+    server: kr2-r.link-t7.com
+    port: 10047
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: s0.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🇰🇷 韩国节点
-    type: select
-    proxies:
-      - 🇰🇷韩国_专线|峰-01
-      - 🇰🇷韩国_专线|峰-02
-      - 🇰🇷韩国_专线|峰-03
+  - name: 🇰🇷韩国_专线|峰-02
+    type: vless
+    server: kr2-r.link-t7.com
+    port: 10047
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: s0.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🇪🇺 欧洲节点
-    type: select
-    proxies:
-      - 🇩🇪德国_专线|峰-01
-      - 🇩🇪德国_专线|峰-02
-      - 🇺🇦乌克兰_原生|峰-01
-      - 🇺🇦乌克兰_原生|峰-02
+  - name: 🇰🇷韩国_专线|峰-03
+    type: vless
+    server: kr2-r.link-t7.com
+    port: 10047
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    tls: true
+    servername: s0.awsstatic.com
+    grpc-opts:
+      grpc-service-name: update
+    reality-opts:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
 
-  - name: 🌏 其他节点
-    type: select
-    proxies:
-      - 🇮🇩印尼专线|峰-01
-      - 🇮🇩印尼专线|峰-02
+  - name: 🇩🇪德国_专线|峰-01
+    type: vless
+    server: hkt-2.ddns-go.de
+    port: 20135
+    uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+    network: tcp
+    tls: true
+    flow: xtls-rprx-vision
+    client-fingerprint: edge
+    servername: s0.awsstatic.com
+    reality-opts:
+      public-key: ubMb6sa7Fph6USeM95m5_tmy82WApcfKs46HcgAgzzY
+      short-id: 12831ca3a3c9
 
-rules:
-  - GEOIP,CN,DIRECT
-  - MATCH,🚀 节点选择
+  - name: 🇮🇩印尼_专线|峰-01
+    type: vless
+    server: edge-hk.gdsxrk.com
+    port: 32534
+    uuid: 991c4f2d-688b-4b60-b5e7-aed90984fd20
+    network: tcp
+    tls: true
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    servername: www.cloudflare.com
+    reality-opts:
+      public-key: wuLoeqhq93bjkqWigD9X92uBEYSE2B3q_0k2V5MiTh4
+      short-id: 98c8cd5664
+
+  - name: 🇺🇦乌克兰_原生|峰-01
+    type: vless
+    server: ukraine.xiaomaimai.dpdns.org
+    port: 20071
+    uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+    network: tcp
+    tls: true
+    flow: xtls-rprx-vision
+    client-fingerprint: edge
+    servername: www.lamer.com
+    reality-opts:
+      public-key: zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08
+      short-id: a02bf9
