@@ -136,6 +136,7 @@ proxies:
       public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
       short-id: 686c0ef0
     client-fingerprint: chrome
+    proxies:
 - name: "🇩🇪德国_专线_峰-01"
     type: vless
     server: hkt-2.ddns-go.de
