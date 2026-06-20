@@ -6,7 +6,7 @@ ipv6: false
 
 proxies:
 
-  - name: "🇺🇸美国_专线_峰-01"
+  - name: "🇺🇸美国-01"
     type: vless
     server: 206.82.3.131
     port: 443
@@ -14,7 +14,7 @@ proxies:
     network: tcp
     udp: true
 
-  - name: "🇺🇸美国_专线_峰-02"
+  - name: "🇺🇸美国-Reality"
     type: vless
     server: zz.j-pan.ccwu.cc
     port: 30001
@@ -24,36 +24,13 @@ proxies:
     tls: true
     flow: xtls-rprx-vision
     servername: s0.awsstatic.com
+    client-fingerprint: edge
     reality-opts:
       public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
       short-id: 6d9478ae
-    client-fingerprint: edge
-
-  - name: "🇺🇸美国_专线_峰-03"
-    type: vless
-    server: 206.82.3.131
-    port: 443
-    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
-    network: tcp
-    udp: true
-
-  - name: "🇺🇸美国_专线_峰-04"
-    type: vless
-    server: zz.j-pan.ccwu.cc
-    port: 30001
-    uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: s0.awsstatic.com
-    reality-opts:
-      public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
-      short-id: 6d9478ae
-    client-fingerprint: edge
 
 
-  - name: "🇭🇰香港_专线_峰-01"
+  - name: "🇭🇰香港"
     type: vless
     server: hk4-r.link-t7.com
     port: 10129
@@ -62,15 +39,15 @@ proxies:
     udp: true
     tls: true
     servername: s0.awsstatic.com
+    client-fingerprint: chrome
     grpc-opts:
       grpc-service-name: movie
     reality-opts:
       public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
       short-id: 686c0ef0
-    client-fingerprint: chrome
 
 
-  - name: "🇹🇼台湾_专线_峰-01"
+  - name: "🇹🇼台湾"
     type: vless
     server: hktw.xiaomaimai01.de5.net
     port: 30000
@@ -80,22 +57,13 @@ proxies:
     tls: true
     flow: xtls-rprx-vision
     servername: s0.awsstatic.com
+    client-fingerprint: edge
     reality-opts:
       public-key: niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA
       short-id: 22e903b47a
-    client-fingerprint: edge
 
 
-  - name: "🇹🇼台湾_家宽_峰-01"
-    type: vless
-    server: 211.76.176.128
-    port: 10000
-    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
-    network: tcp
-    udp: true
-
-
-  - name: "🇯🇵日本_专线_峰-01"
+  - name: "🇯🇵日本"
     type: vless
     server: 14.137.238.157
     port: 10000
@@ -104,7 +72,7 @@ proxies:
     udp: true
 
 
-  - name: "🇸🇬新加坡_专线_峰-01"
+  - name: "🇸🇬新加坡"
     type: vless
     server: sg3-r.link-t7.com
     port: 10038
@@ -113,15 +81,13 @@ proxies:
     udp: true
     tls: true
     servername: d1.awsstatic.com
+    client-fingerprint: chrome
     grpc-opts:
       grpc-service-name: update
     reality-opts:
       public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
       short-id: 686c0ef0
-    client-fingerprint: chrome
-
-
-  - name: "🇰🇷韩国_专线_峰-01"
+- name: "🇰🇷韩国"
     type: vless
     server: kr2-r.link-t7.com
     port: 10047
@@ -130,14 +96,15 @@ proxies:
     udp: true
     tls: true
     servername: s0.awsstatic.com
+    client-fingerprint: chrome
     grpc-opts:
       grpc-service-name: update
     reality-opts:
       public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
       short-id: 686c0ef0
-    client-fingerprint: chrome
-    proxies:
-- name: "🇩🇪德国_专线_峰-01"
+
+
+  - name: "🇩🇪德国"
     type: vless
     server: hkt-2.ddns-go.de
     port: 20135
@@ -147,13 +114,13 @@ proxies:
     tls: true
     flow: xtls-rprx-vision
     servername: s0.awsstatic.com
+    client-fingerprint: edge
     reality-opts:
       public-key: ubMb6sa7Fph6USeM95m5_tmy82WApcfKs46HcgAgzzY
       short-id: 12831ca3a3c9
-    client-fingerprint: edge
 
 
-  - name: "🇮🇩印尼_专线_峰-01"
+  - name: "🇮🇩印尼"
     type: vless
     server: edge-hk.gdsxrk.com
     port: 32534
@@ -163,13 +130,13 @@ proxies:
     tls: true
     flow: xtls-rprx-vision
     servername: www.cloudflare.com
+    client-fingerprint: chrome
     reality-opts:
       public-key: wuLoeqhq93bjkqWigD9X92uBEYSE2B3q_0k2V5MiTh4
       short-id: 98c8cd5664
-    client-fingerprint: chrome
 
 
-  - name: "🇺🇦乌克兰_原生_峰-01"
+  - name: "🇺🇦乌克兰"
     type: vless
     server: ukraine.xiaomaimai.dpdns.org
     port: 20071
@@ -179,10 +146,10 @@ proxies:
     tls: true
     flow: xtls-rprx-vision
     servername: www.lamer.com
+    client-fingerprint: edge
     reality-opts:
       public-key: zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08
       short-id: a02bf9
-    client-fingerprint: edge
 
 
 proxy-groups:
@@ -192,14 +159,16 @@ proxy-groups:
     proxies:
       - "♻️ 自动选择"
       - "⚡ 故障转移"
-      - "🇺🇸美国_专线_峰-01"
-      - "🇺🇸美国_专线_峰-02"
-      - "🇭🇰香港_专线_峰-01"
-      - "🇹🇼台湾_专线_峰-01"
-      - "🇯🇵日本_专线_峰-01"
-      - "🇸🇬新加坡_专线_峰-01"
-      - "🇰🇷韩国_专线_峰-01"
-      - "🇩🇪德国_专线_峰-01"
+      - "🇭🇰香港"
+      - "🇯🇵日本"
+      - "🇸🇬新加坡"
+      - "🇹🇼台湾"
+      - "🇺🇸美国-Reality"
+      - "🇺🇸美国-01"
+      - "🇰🇷韩国"
+      - "🇩🇪德国"
+      - "🇮🇩印尼"
+      - "🇺🇦乌克兰"
 
 
   - name: "♻️ 自动选择"
@@ -208,14 +177,11 @@ proxy-groups:
     interval: 300
     tolerance: 50
     proxies:
-      - "🇺🇸美国_专线_峰-01"
-      - "🇺🇸美国_专线_峰-02"
-      - "🇭🇰香港_专线_峰-01"
-      - "🇹🇼台湾_专线_峰-01"
-      - "🇯🇵日本_专线_峰-01"
-      - "🇸🇬新加坡_专线_峰-01"
-      - "🇰🇷韩国_专线_峰-01"
-      - "🇩🇪德国_专线_峰-01"
+      - "🇭🇰香港"
+      - "🇯🇵日本"
+      - "🇸🇬新加坡"
+      - "🇹🇼台湾"
+      - "🇺🇸美国-Reality"
 
 
   - name: "⚡ 故障转移"
@@ -223,16 +189,15 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - "🇭🇰香港_专线_峰-01"
-      - "🇯🇵日本_专线_峰-01"
-      - "🇸🇬新加坡_专线_峰-01"
-      - "🇺🇸美国_专线_峰-02"
-
-
-rules:
+      - "🇯🇵日本"
+      - "🇭🇰香港"
+      - "🇸🇬新加坡"
+      - "🇺🇸美国-Reality"
+      rules:
 
   - DOMAIN-SUFFIX,google.com,🚀 节点选择
   - DOMAIN-SUFFIX,youtube.com,🚀 节点选择
+  - DOMAIN-SUFFIX,ytimg.com,🚀 节点选择
   - DOMAIN-SUFFIX,openai.com,🚀 节点选择
   - DOMAIN-SUFFIX,chatgpt.com,🚀 节点选择
   - DOMAIN-SUFFIX,telegram.org,🚀 节点选择
