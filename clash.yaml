@@ -1,1 +1,72 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
 
+proxies:
+
+  - name: US-01
+    type: vless
+    server: 206.82.3.131
+    port: 443
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
+    udp: true
+
+  - name: US-02
+    type: vless
+    server: zz.j-pan.ccwu.cc
+    port: 30001
+    uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+    network: tcp
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: s0.awsstatic.com
+    client-fingerprint: edge
+    reality-opts:
+      public-key: "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA"
+      short-id: "6d9478ae"
+
+
+  - name: HK-01
+    type: vless
+    server: hk4-r.link-t7.com
+    port: 10129
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    udp: true
+    tls: true
+    servername: s0.awsstatic.com
+    client-fingerprint: chrome
+    grpc-opts:
+      grpc-service-name: movie
+    reality-opts:
+      public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
+      short-id: "686c0ef0"
+
+
+proxy-groups:
+
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - US-01
+      - US-02
+      - HK-01
+
+
+  - name: 自动选择
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    proxies:
+      - US-01
+      - US-02
+      - HK-01
+
+
+rules:
+
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀 节点选择
