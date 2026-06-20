@@ -1,0 +1,173 @@
+# -------------------------------------------------
+# 项目说明
+# -------------------------------------------------
+# 该文件可直接放在 GitHub 仓库根目录，
+# 通过 raw 链接（https://raw.githubusercontent.com/<user>/<repo>/main/config.yaml）
+# 供 V2Ray/Clash‑Meta 客户端订阅使用。
+# -------------------------------------------------
+
+mixed-port: 7890                     # 本地 HTTP/ SOCKS5 代理端口
+allow-lan: false                     # 是否允许局域网设备访问
+mode: rule                           # 代理模式：direct / rule / global
+log-level: info                      # 日志级别：silent / error / warning / info / debug
+external-controller: 127.0.0.1:9090  # API 控制端口（可选）
+
+# -------------------------------------------------
+# DNS 配置（推荐使用 DoH / DoT，避免 DNS 泄漏）
+# -------------------------------------------------
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:5353
+  default-nameserver:
+    - 114.114.114.114
+    - 8.8.8.8
+  enhanced-mode: redir
+  nameserver:
+    - https://dns.google/dns-query      # Google DoH
+    - https://doh.pub/dns-query         # 阿里 DoH
+    - tls://dns.alidns.com:853          # 阿里 DoT
+
+# -------------------------------------------------
+# 代理节点（这里放置你的 VLESS 链接）
+# -------------------------------------------------
+proxies:
+  # 示例节点 1（请把 <VLESS-URL-1> 替换为真实链接）
+  - name: "🇺🇸 US_专线|峰-01"
+    type: vless
+    server: 206.82.3.131
+    port: 443
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
+    encryption: none
+    flow: ""
+    tls: true
+    skip-cert-verify: false
+    udp: true
+    client-fingerprint: chrome
+    # 如果使用 reality（reality/xtls）需补全以下字段
+    # reality:
+    #   public-key: <pbk>
+    #   short-id: <sid>
+
+  # 示例节点 2（xtls‑rprx‑vision + reality）
+  - name: "🇺🇸 US_专线|峰-02"
+    type: vless
+    server: zz.j-pan.ccwu.cc
+    port: 30001
+    uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+    network: tcp
+    encryption: none
+    flow: xtls-rprx-vision
+    tls: true
+    skip-cert-verify: false
+    udp: true
+    sni: s0.awsstatic.com
+    client-fingerprint: edge
+    reality:
+      public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
+      short-id: 6d9478ae
+
+  # 示例节点 3（grpc + reality）
+  - name: "🇭🇰 HK_专线|峰-01"
+    type: vless
+    server: hk4-r.link-t7.com
+    port: 10129
+    uuid: 6693451D-3A24-4160-8FBD-2C69C8E9C87C
+    network: grpc
+    encryption: none
+    flow: ""
+    grpc-opts:
+      grpc-service-name: movie
+    tls: true
+    skip-cert-verify: false
+    sni: s0.awsstatic.com
+    client-fingerprint: chrome
+    reality:
+      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
+      short-id: 686c0ef0
+
+  # ------------------------ 继续添加其余节点 ------------------------
+  # 只需要复制上面的结构，替换对应的 server、port、uuid、sni、pbk、sid 等字段即可。
+  # 为了方便管理，建议按「国家」「线路」分组，节点名统一使用类似
+  #   "<国旗> <国家>_<专线>_<地区>-<序号>"
+  # 这样在客户端里一眼就能看出来源和用途。
+
+# -------------------------------------------------
+# 代理分组（Rule Provider 方式也可以）
+# -------------------------------------------------
+proxy-groups:
+  - name: "🚀 自动选择"
+    type: url-test
+    proxies:
+      - "🇺🇸 US_专线|峰-01"
+      - "🇺🇸 US_专线|峰-02"
+      - "🇭🇰 HK_专线|峰-01"
+      # … 其它节点名称
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+
+  - name: "🌏 全球直连"
+    type: select
+    proxies:
+      - DIRECT
+
+  - name: "🐟 漏网之鱼"
+    type: fallback
+    proxies:
+      - "🚀 自动选择"
+      - "🌏 全球直连"
+    url: https://www.google.com/gen_204
+    interval: 600
+
+# -------------------------------------------------
+# 策略规则（使用 Clash‑Meta 的规则集，可自行在 GitHub 上引用）
+# -------------------------------------------------
+rule-providers:
+  Google:
+    type: http
+    url: https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/releases/release/google.txt
+    interval: 86400
+    path: ./ruleset/google.yaml
+    behavior: domain
+
+  Netflix:
+    type: http
+    url: https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/releases/release/netflix.txt
+    interval: 86400
+    path: ./ruleset/netflix.yaml
+    behavior: domain
+
+rules:
+  - DOMAIN-SUFFIX,google.com,🚀 自动选择
+  - DOMAIN-KEYWORD,google,🚀 自动选择
+  - RULE-SET,Google,🚀 自动选择
+  - RULE-SET,Netflix,🚀 自动选择
+  - GEOIP,CN,🌏 全球直连
+  - MATCH,🐟 漏网之鱼
+
+# -------------------------------------------------
+# 其它可选配置（可根据需要自行开启）
+# -------------------------------------------------
+profile:
+  store-selected: true               # 记住手动选择的节点
+  store-fake-ip: true                # 启用 fake-ip（仅 Clash‑Meta 支持）
+
+sniffer:
+  enable: true
+  sniff:
+    - tls
+    - http
+  skip-port:
+    - "80"
+    - "443"
+    - "8080"
+  force-dns:
+    - "+.cn"
+    - "+.gov.cn"
+
+# -------------------------------------------------
+# END
+# -------------------------------------------------
+
