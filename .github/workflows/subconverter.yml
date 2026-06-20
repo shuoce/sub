@@ -1,0 +1,37 @@
+name: Generate Clash
+
+on:
+  push:
+    paths:
+      - "sub.txt"
+  workflow_dispatch:
+
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download subconverter
+        run: |
+          wget https://github.com/tindy2013/subconverter/releases/latest/download/subconverter_linux64.tar.gz
+          tar -zxvf subconverter_linux64.tar.gz
+
+      - name: Generate Clash
+        run: |
+          ./subconverter/subconverter \
+          -g \
+          --artifact clash.yaml \
+          --url "$(cat sub.txt | tr '\n' '|')"
+
+      - name: Commit
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+
+          git add clash.yaml
+
+          git commit -m "update clash" || exit 0
+
+          git push
