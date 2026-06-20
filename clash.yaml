@@ -169,7 +169,8 @@ proxy-groups:
       - "🇰🇷韩国_专线|峰-01"
       - "🇩🇪德国_专线|峰-01"
       - "🇮🇩印尼_专线|峰-01"
-      - "🇺🇦乌克兰_原生|峰-01"- name: "♻️ 自动选择"
+      - "🇺🇦乌克兰_原生|峰-01"
+  - name: "♻️ 自动选择"
     type: url-test
     url: https://www.gstatic.com/generate_204
     interval: 300
