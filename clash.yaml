@@ -67,6 +67,20 @@ proxies:
   uuid: d26598cf-2cdf-4219-80d0-94646dff160d
   network: tcp
   tls: false
+- name: "🇯🇵 日本高速专线-峰"
+  type: vmess
+  server: hj5ZQEJlxVQwlS9D.v.3dns.vip
+  port: 443
+  uuid: 17bff962-f9b6-48f5-9e36-dcac6f37244f
+  alterId: 0
+  cipher: auto
+  tls: true
+  servername: hj5ZQEJlxVQwlS9D.v.3dns.vip
+  network: ws
+  ws-opts:
+    path: /ws-vmess
+    headers:
+      Host: hj5ZQEJlxVQwlS9D.v.3dns.vip  
 
 # 新加坡
 - name: "🇸🇬 新加坡-峰01"
@@ -159,6 +173,7 @@ proxy-groups:
     - "🇩🇪 德国-峰01"
     - "🇮🇩 印尼-峰01"
     - "🇺🇦 乌克兰-峰01"
+    -1"🇯🇵 日本高速专线-峰"
 
 rules:
 - MATCH,🚀 节点选择
