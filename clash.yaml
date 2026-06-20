@@ -6,7 +6,7 @@ ipv6: false
 
 proxies:
 
-  - name: "🇺🇸美国-01"
+  - name: "US-01"
     type: vless
     server: 206.82.3.131
     port: 443
@@ -14,7 +14,7 @@ proxies:
     network: tcp
     udp: true
 
-  - name: "🇺🇸美国-Reality"
+  - name: "US-02-Reality"
     type: vless
     server: zz.j-pan.ccwu.cc
     port: 30001
@@ -26,11 +26,10 @@ proxies:
     servername: s0.awsstatic.com
     client-fingerprint: edge
     reality-opts:
-      public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
-      short-id: 6d9478ae
+      public-key: "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA"
+      short-id: "6d9478ae"
 
-
-  - name: "🇭🇰香港"
+  - name: "HK-01"
     type: vless
     server: hk4-r.link-t7.com
     port: 10129
@@ -43,11 +42,17 @@ proxies:
     grpc-opts:
       grpc-service-name: movie
     reality-opts:
-      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
-      short-id: 686c0ef0
+      public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
+      short-id: "686c0ef0"
 
-
-  - name: "🇹🇼台湾"
+  - name: "JP-01"
+    type: vless
+    server: 14.137.238.157
+    port: 10000
+    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
+    network: tcp
+    udp: true
+- name: "TW-01"
     type: vless
     server: hktw.xiaomaimai01.de5.net
     port: 30000
@@ -59,20 +64,11 @@ proxies:
     servername: s0.awsstatic.com
     client-fingerprint: edge
     reality-opts:
-      public-key: niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA
-      short-id: 22e903b47a
+      public-key: "niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA"
+      short-id: "22e903b47a"
 
 
-  - name: "🇯🇵日本"
-    type: vless
-    server: 14.137.238.157
-    port: 10000
-    uuid: d26598cf-2cdf-4219-80d0-94646dff160d
-    network: tcp
-    udp: true
-
-
-  - name: "🇸🇬新加坡"
+  - name: "SG-01"
     type: vless
     server: sg3-r.link-t7.com
     port: 10038
@@ -85,9 +81,11 @@ proxies:
     grpc-opts:
       grpc-service-name: update
     reality-opts:
-      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
-      short-id: 686c0ef0
-- name: "🇰🇷韩国"
+      public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
+      short-id: "686c0ef0"
+
+
+  - name: "KR-01"
     type: vless
     server: kr2-r.link-t7.com
     port: 10047
@@ -100,11 +98,11 @@ proxies:
     grpc-opts:
       grpc-service-name: update
     reality-opts:
-      public-key: wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE
-      short-id: 686c0ef0
+      public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
+      short-id: "686c0ef0"
 
 
-  - name: "🇩🇪德国"
+  - name: "DE-01"
     type: vless
     server: hkt-2.ddns-go.de
     port: 20135
@@ -116,11 +114,11 @@ proxies:
     servername: s0.awsstatic.com
     client-fingerprint: edge
     reality-opts:
-      public-key: ubMb6sa7Fph6USeM95m5_tmy82WApcfKs46HcgAgzzY
-      short-id: 12831ca3a3c9
+      public-key: "ubMb6sa7Fph6USeM95m5_tmy82WApcfKs46HcgAgzzY"
+      short-id: "12831ca3a3c9"
 
 
-  - name: "🇮🇩印尼"
+  - name: "ID-01"
     type: vless
     server: edge-hk.gdsxrk.com
     port: 32534
@@ -132,43 +130,24 @@ proxies:
     servername: www.cloudflare.com
     client-fingerprint: chrome
     reality-opts:
-      public-key: wuLoeqhq93bjkqWigD9X92uBEYSE2B3q_0k2V5MiTh4
-      short-id: 98c8cd5664
-
-
-  - name: "🇺🇦乌克兰"
-    type: vless
-    server: ukraine.xiaomaimai.dpdns.org
-    port: 20071
-    uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: www.lamer.com
-    client-fingerprint: edge
-    reality-opts:
-      public-key: zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08
-      short-id: a02bf9
-
-
-proxy-groups:
+      public-key: "wuLoeqhq93bjkqWigD9X92uBEYSE2B3q_0k2V5MiTh4"
+      short-id: "98c8cd5664"
+      proxy-groups:
 
   - name: "🚀 节点选择"
     type: select
     proxies:
       - "♻️ 自动选择"
       - "⚡ 故障转移"
-      - "🇭🇰香港"
-      - "🇯🇵日本"
-      - "🇸🇬新加坡"
-      - "🇹🇼台湾"
-      - "🇺🇸美国-Reality"
-      - "🇺🇸美国-01"
-      - "🇰🇷韩国"
-      - "🇩🇪德国"
-      - "🇮🇩印尼"
-      - "🇺🇦乌克兰"
+      - "HK-01"
+      - "JP-01"
+      - "SG-01"
+      - "TW-01"
+      - "US-02-Reality"
+      - "US-01"
+      - "KR-01"
+      - "DE-01"
+      - "ID-01"
 
 
   - name: "♻️ 自动选择"
@@ -177,11 +156,13 @@ proxy-groups:
     interval: 300
     tolerance: 50
     proxies:
-      - "🇭🇰香港"
-      - "🇯🇵日本"
-      - "🇸🇬新加坡"
-      - "🇹🇼台湾"
-      - "🇺🇸美国-Reality"
+      - "HK-01"
+      - "JP-01"
+      - "SG-01"
+      - "TW-01"
+      - "US-02-Reality"
+      - "KR-01"
+      - "DE-01"
 
 
   - name: "⚡ 故障转移"
@@ -189,10 +170,10 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     proxies:
-      - "🇯🇵日本"
-      - "🇭🇰香港"
-      - "🇸🇬新加坡"
-      - "🇺🇸美国-Reality"
+      - "JP-01"
+      - "HK-01"
+      - "SG-01"
+      - "US-02-Reality"
       rules:
 
   - DOMAIN-SUFFIX,google.com,🚀 节点选择
