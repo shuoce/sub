@@ -14,7 +14,6 @@ proxies:
     network: tcp
     udp: true
 
-
   - name: "🇺🇸美国_专线_中性|峰-02"
     type: vless
     server: zz.j-pan.ccwu.cc
@@ -29,7 +28,6 @@ proxies:
     reality-opts:
       public-key: "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA"
       short-id: "6d9478ae"
-
 
   - name: "🇭🇰香港_专线|峰-01"
     type: vless
@@ -47,7 +45,6 @@ proxies:
       public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
       short-id: "686c0ef0"
 
-
   - name: "🇹🇼台湾_专线|峰-01"
     type: vless
     server: hktw.xiaomaimai01.de5.net
@@ -63,7 +60,6 @@ proxies:
       public-key: "niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA"
       short-id: "22e903b47a"
 
-
   - name: "🇯🇵日本_专线|峰-01"
     type: vless
     server: 14.137.238.157
@@ -71,6 +67,7 @@ proxies:
     uuid: d26598cf-2cdf-4219-80d0-94646dff160d
     network: tcp
     udp: true
+
   - name: "🇸🇬新加坡_专线|峰-01"
     type: vless
     server: sg3-r.link-t7.com
@@ -86,7 +83,6 @@ proxies:
     reality-opts:
       public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
       short-id: "686c0ef0"
-
 
   - name: "🇰🇷韩国_专线|峰-01"
     type: vless
@@ -104,7 +100,6 @@ proxies:
       public-key: "wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE"
       short-id: "686c0ef0"
 
-
   - name: "🇩🇪德国_专线|峰-01"
     type: vless
     server: hkt-2.ddns-go.de
@@ -119,7 +114,6 @@ proxies:
     reality-opts:
       public-key: "ubMb6sa7Fph6USeM95m5_tmy82WApcfKs46HcgAgzzY"
       short-id: "12831ca3a3c9"
-
 
   - name: "🇮🇩印尼_专线|峰-01"
     type: vless
@@ -136,7 +130,6 @@ proxies:
       public-key: "wuLoeqhq93bjkqWigD9X92uBEYSE2B3q_0k2V5MiTh4"
       short-id: "98c8cd5664"
 
-
   - name: "🇺🇦乌克兰_原生|峰-01"
     type: vless
     server: ukraine.xiaomaimai.dpdns.org
@@ -151,7 +144,6 @@ proxies:
     reality-opts:
       public-key: "zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08"
       short-id: "a02bf9"
-
 
 proxy-groups:
 
@@ -171,7 +163,6 @@ proxy-groups:
       - "🇮🇩印尼_专线|峰-01"
       - "🇺🇦乌克兰_原生|峰-01"
 
-      
   - name: "♻️ 自动选择"
     type: url-test
     url: https://www.gstatic.com/generate_204
@@ -187,7 +178,6 @@ proxy-groups:
       - "🇰🇷韩国_专线|峰-01"
       - "🇩🇪德国_专线|峰-01"
 
-
   - name: "⚡ 故障转移"
     type: fallback
     url: https://www.gstatic.com/generate_204
@@ -197,7 +187,6 @@ proxy-groups:
       - "🇭🇰香港_专线|峰-01"
       - "🇸🇬新加坡_专线|峰-01"
       - "🇺🇸美国_专线_中性|峰-02"
-
 
 rules:
 
