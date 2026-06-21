@@ -1,4 +1,4 @@
-
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#tg@lllasszs
 
 
 
