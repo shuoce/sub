@@ -1,6 +1,7 @@
-ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ@127.0.0.1:1080#🌟 请在各代理客户端中手动点击「更新订阅」
-ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ@127.0.0.1:1080#⚠️ 部分节点为机场节点，如果流量用完请及时联系我补充（TG: @lllasszs）
-ss://YWVzLTI1Ni1nY206cGFzc3dvcmQ@127.0.0.1:1080#❤️ 谢谢大家的理解与支持！
+trojan://e4f9019f-5df7-45f4-ae23-88de6dbb546c@pokemon-01.yunjnet.com:55016/?type=tcp&security=tls&sni=www.lamer.com.sg&allowInsecure=1#🌟 请在各代理客户端中手动点击「更新订阅」
+trojan://e4f9019f-5df7-45f4-ae23-88de6dbb546c@pokemon-01.yunjnet.com:55016/?type=tcp&security=tls&sni=www.lamer.com.sg&allowInsecure=1#⚠️ 部分节点为机场节点，如果流量用完请及时联系我补充（TG: @lllasszs）
+trojan://e4f9019f-5df7-45f4-ae23-88de6dbb546c@pokemon-01.yunjnet.com:55016/?type=tcp&security=tls&sni=www.lamer.com.sg&allowInsecure=1#❤️ 谢谢大家的理解与支持！
+
 
 # ==================== 节点列表开始 ====================
 
