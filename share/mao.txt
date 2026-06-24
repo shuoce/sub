@@ -41,5 +41,11 @@ vless://991c4f2d-688b-4b60-b5e7-aed90984fd20@edge-hk.gdsxrk.com:32534?encryption
 
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@ukraine.xiaomaimai.dpdns.org:20071?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lamer.com&fp=edge&pbk=zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08&sid=a02bf9&spx=%2F&type=tcp&headerType=none#🇺🇦乌克兰01丨峰
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@ukraine.xiaomaimai.dpdns.org:20071?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lamer.com&fp=edge&pbk=zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08&sid=a02bf9&spx=%2F&type=tcp&headerType=none#🇺🇦乌克兰02丨峰
-#临时
+#临时 台湾原生
 hy2://H7mP2xY9kJ4nQ8wR5tF6vB3z@vpn-tw-002.fastervpn.world:443/?insecure=1&sni=vpn-tw-002.fastervpn.world#%F0%9F%87%B9%F0%9F%87%BC%E5%8F%B0%E6%B9%BE%20%E5%8E%9F%E7%94%9F%7C%E5%B3%B0
+
+#高速香港
+vmess://eyJhZGQiOiJUZks3MkZnZmgyOGJKWXVHLnYuM2Rucy52aXAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IlRmSzcyRmdmaDI4YkpZdUcudi4zZG5zLnZpcCIsImlkIjoiNDYwMjJlYzIzNDM4NGQ0OGJkMDQ1ZDhlNGJlNjIzOGIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvd3Mtdm1lc3MiLCJwb3J0IjoiNDQzIiwicHMiOiLpppnmuK/pq5jpgJ8x5Lio5bOwIiwic2N5IjoiYXV0byIsInNuaSI6IlRmSzcyRmdmaDI4YkpZdUcudi4zZG5zLnZpcCIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9
+
+vmess://eyJhZGQiOiJ6NUdtWUFwYnl1OUpjRXE0LnYuM2Rucy52aXAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6Ino1R21ZQXBieXU5SmNFcTQudi4zZG5zLnZpcCIsImlkIjoiNDYwMjJlYzIzNDM4NGQ0OGJkMDQ1ZDhlNGJlNjIzOGIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvd3Mtdm1lc3MiLCJwb3J0IjoiNDQzIiwicHMiOiLpppnmuK/pq5jpgJ8y5Lio5bOwIiwic2N5IjoiYXV0byIsInNuaSI6Ino1R21ZQXBieXU5SmNFcTQudi4zZG5zLnZpcCIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9
+
