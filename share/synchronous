@@ -1,0 +1,132 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+
+ipv6: true
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+proxy-providers:
+  峰:
+    type: http
+    url: "请替换为你的订阅链接"
+    path: ./providers/feng.yaml
+    interval: 3600
+    health-check:
+      enable: true
+      interval: 300
+      url: http://www.gstatic.com/generate_204
+
+proxy-groups:
+
+  - name: 🚀节点选择
+    type: select
+    proxies:
+      - ⚡自动优选
+      - 🎯手动选择
+      - 🇭🇰香港
+      - 🇹🇼台湾
+      - 🇯🇵日本
+      - 🇰🇷韩国
+      - 🇸🇬新加坡
+      - 🇺🇸美国
+      - 🇬🇧英国
+      - 🇨🇦加拿大
+      - 🇦🇺澳大利亚
+      - 🇩🇪德国
+      - 🇫🇷法国
+      - 🇳🇱荷兰
+      - DIRECT
+
+  - name: 🎯手动选择
+    type: select
+    use:
+      - 峰
+
+  - name: ⚡自动优选
+    type: url-test
+    use:
+      - 峰
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+
+  - name: 🇭🇰香港
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)香港|HK|🇭🇰"
+
+  - name: 🇹🇼台湾
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)台湾|TW|🇹🇼"
+
+  - name: 🇯🇵日本
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)日本|JP|🇯🇵"
+
+  - name: 🇰🇷韩国
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)韩国|KR|🇰🇷"
+
+  - name: 🇸🇬新加坡
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)新加坡|SG|🇸🇬"
+
+  - name: 🇺🇸美国
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)美国|US|🇺🇸"
+
+  - name: 🇬🇧英国
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)英国|UK|GB|🇬🇧"
+
+  - name: 🇨🇦加拿大
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)加拿大|CA|🇨🇦"
+
+  - name: 🇦🇺澳大利亚
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)澳大利亚|AU|🇦🇺"
+
+  - name: 🇩🇪德国
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)德国|DE|🇩🇪"
+
+  - name: 🇫🇷法国
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)法国|FR|🇫🇷"
+
+  - name: 🇳🇱荷兰
+    type: url-test
+    use:
+      - 峰
+    filter: "(?i)荷兰|NL|🇳🇱"
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀节点选择
