@@ -76,3 +76,10 @@ trojan://10640a12-3081-4a91-853a-3376d478935b@pokemonus-02.yunjnet.com:56017/?ty
 trojan://10640a12-3081-4a91-853a-3376d478935b@pokemonus-02.yunjnet.com:56017/?type=tcp&security=tls&sni=iosapps.itunes.apple.com&allowInsecure=1#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD08%20%7C%20%E5%B3%B0-%E4%B8%93%E7%BA%BF
 trojan://10640a12-3081-4a91-853a-3376d478935b@pokemon-02.yunjnet.com:56019/?type=tcp&security=tls&sni=iosapps.itunes.apple.com&allowInsecure=1#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD09%20%7C%20%E5%B3%B0-%E4%B8%93%E7%BA%BF
 trojan://10640a12-3081-4a91-853a-3376d478935b@pokemon-02.yunjnet.com:56019/?type=tcp&security=tls&sni=iosapps.itunes.apple.com&allowInsecure=1#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD10%20%7C%20%E5%B3%B0-%E4%B8%93%E7%BA%BF
+
+
+#高速香港
+vmess://eyJhZGQiOiJUZks3MkZnZmgyOGJKWXVHLnYuM2Rucy52aXAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6IlRmSzcyRmdmaDI4YkpZdUcudi4zZG5zLnZpcCIsImlkIjoiNDYwMjJlYzIzNDM4NGQ0OGJkMDQ1ZDhlNGJlNjIzOGIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvd3Mtdm1lc3MiLCJwb3J0IjoiNDQzIiwicHMiOiLpppnmuK/pq5jpgJ8x5Lio5bOwIiwic2N5IjoiYXV0byIsInNuaSI6IlRmSzcyRmdmaDI4YkpZdUcudi4zZG5zLnZpcCIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9
+
+vmess://eyJhZGQiOiJ6NUdtWUFwYnl1OUpjRXE0LnYuM2Rucy52aXAiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6Ino1R21ZQXBieXU5SmNFcTQudi4zZG5zLnZpcCIsImlkIjoiNDYwMjJlYzIzNDM4NGQ0OGJkMDQ1ZDhlNGJlNjIzOGIiLCJuZXQiOiJ3cyIsInBhdGgiOiIvd3Mtdm1lc3MiLCJwb3J0IjoiNDQzIiwicHMiOiLpppnmuK/pq5jpgJ8y5Lio5bOwIiwic2N5IjoiYXV0byIsInNuaSI6Ino1R21ZQXBieXU5SmNFcTQudi4zZG5zLnZpcCIsInRscyI6InRscyIsInR5cGUiOiIiLCJ2IjoiMiJ9
+
