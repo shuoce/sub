@@ -1,10 +1,8 @@
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#🌟请在各代理客户端中手动点击「更新订阅」
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#%F0%9F%8C%9F%20%E8%AF%B7%E5%9C%A8%E5%90%84%E4%BB%A3%E7%90%86%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%AD%E6%89%8B%E5%8A%A8%E7%82%B9%E5%87%BB%E3%80%8C%E6%9B%B4%E6%96%B0%E8%AE%A2%E9%98%85%E3%80%8D
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#⚠️部分节点为机场节点，如果流量用完请及时联系我补充（TG: @lllasszs）
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#%E2%9A%A0%EF%B8%8F%20%E9%83%A8%E5%88%86%E8%8A%82%E7%82%B9%E4%B8%BA%E6%9C%BA%E5%9C%BA%E8%8A%82%E7%82%B9%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%B5%81%E9%87%8F%E7%94%A8%E5%AE%8C%E8%AF%B7%E5%8F%8A%E6%97%B6%E8%81%94%E7%B3%BB%E6%88%91%E8%A1%A5%E5%85%85%EF%BC%88TG%3A%20%40lllasszs%EF%BC%89
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#❤️谢谢大家的理解与支持！
-
-
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#%E2%9D%A4%EF%B8%8F%20%E8%B0%A2%E8%B0%A2%E5%A4%A7%E5%AE%B6%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E6%94%AF%E6%8C%81%EF%BC%81
 # ==================== 节点列表开始 ====================
 
 
