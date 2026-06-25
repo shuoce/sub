@@ -1,8 +1,8 @@
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#🌟 请在各代理客户端中手动点击「更新订阅」
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#🌟请在各代理客户端中手动点击「更新订阅」
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#⚠️ 部分节点为机场节点，如果流量用完请及时联系我补充（TG: @lllasszs）
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#⚠️部分节点为机场节点，如果流量用完请及时联系我补充（TG: @lllasszs）
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#❤️ 谢谢大家的理解与支持！
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#❤️谢谢大家的理解与支持！
 
 
 # ==================== 节点列表开始 ====================
