@@ -4,29 +4,43 @@ vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&en
 
 
 
-vless://77179557-b23e-42e6-a260-6a43b450abb7@proxy.jinshu1.com:8444?encryption=none&security=reality&sni=aws.amazon.com&fp=chrome&pbk=ieRI6upNAE3WAA2mMTB3N1P0_GQARQaIuJrulslpTC0&sid=2fc2fd&spx=%2FfMpeVaDjnrfaHsd&type=tcp&headerType=none#🇺🇸美国丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@us2-r.link-t7.com:10239?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国01丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@us2-r.link-t7.com:10239?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国02丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@us2-r.link-t7.com:10239?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国03丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@us2-r.link-t7.com:10239?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国04丨峰
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae&spx=%2F&type=tcp&headerType=none#🇺🇸美国丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@hk4-r.link-t7.com:10129?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇭🇰香港01丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@hk4-r.link-t7.com:10129?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇭🇰香港02丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@hk4-r.link-t7.com:10129?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇭🇰香港03丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@hk4-r.link-t7.com:10129?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇭🇰香港04丨峰
 
-vless://418DA912-0248-4762-8D21-5CB38467CA4D@hk4-r.link-t7.com:10129?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇭🇰香港丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@tw.x-m-m.ccwu.cc:36100?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=aclGz7LqHBqXqp-0HjIZSYJA6nqfz6NpeGLKvvIjomg&sid=7c4ff34913e6ad&spx=%2F&type=tcp&headerType=none#🇹🇼台湾01丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@tw.x-m-m.ccwu.cc:36100?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=aclGz7LqHBqXqp-0HjIZSYJA6nqfz6NpeGLKvvIjomg&sid=7c4ff34913e6ad&spx=%2F&type=tcp&headerType=none#🇹🇼台湾02丨峰
+vless://d26598cf-2cdf-4219-80d0-94646dff160d@211.76.176.166:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾03丨峰
+vless://d26598cf-2cdf-4219-80d0-94646dff160d@211.76.176.166:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾04丨峰
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@hktw.xiaomaimai01.de5.net:30000?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=niqjdJTFtKLEDSySF_iNbjx2sNGPKJe-GqX5WedD-zA&sid=22e903b47a&spx=%2F&type=tcp&headerType=none#🇹🇼台湾丨峰
+vless://d26598cf-2cdf-4219-80d0-94646dff160d@14.137.238.160:10000?encryption=none&security=none&type=tcp&headerType=none#🇯🇵日本01丨峰
+vless://d26598cf-2cdf-4219-80d0-94646dff160d@14.137.238.160:10000?encryption=none&security=none&type=tcp&headerType=none#🇯🇵日本02丨峰
+vless://d26598cf-2cdf-4219-80d0-94646dff160d@14.137.238.160:10000?encryption=none&security=none&type=tcp&headerType=none#🇯🇵日本03丨峰
+vless://d26598cf-2cdf-4219-80d0-94646dff160d@14.137.238.160:10000?encryption=none&security=none&type=tcp&headerType=none#🇯🇵日本04丨峰
 
-vless://d26598cf-2cdf-4219-80d0-94646dff160d@211.76.176.128:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@sg3-r.link-t7.com:10038?encryption=none&security=reality&sni=d1.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇸🇬新加坡01丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@sg3-r.link-t7.com:10038?encryption=none&security=reality&sni=d1.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇸🇬新加坡02丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@sg3-r.link-t7.com:10038?encryption=none&security=reality&sni=d1.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇸🇬新加坡03丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@sg3-r.link-t7.com:10038?encryption=none&security=reality&sni=d1.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇸🇬新加坡04丨峰
 
-vless://d26598cf-2cdf-4219-80d0-94646dff160d@14.137.238.157:10000?encryption=none&security=none&type=tcp&headerType=none#🇯🇵日本丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@kr2-r.link-t7.com:10047?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇰🇷韩国01丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@kr2-r.link-t7.com:10047?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇰🇷韩国02丨峰
+vless://B1890918-C9F7-499A-81A9-69A1D275B536@kr2-r.link-t7.com:10047?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇰🇷韩国03丨峰
 
-vless://418DA912-0248-4762-8D21-5CB38467CA4D@sg3-r.link-t7.com:10038?encryption=none&security=reality&sni=d1.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇸🇬新加坡丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@hongkong.xmm.maimaiyun.shop:30001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=DXhNIS_BYchI7piB2tSMrntuYhPPkwXX9PZTnmw7YBo&sid=1f098dbd3d&spx=%2F&type=tcp&headerType=none#🇩🇪德国01丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@hongkong.xmm.maimaiyun.shop:30001?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=DXhNIS_BYchI7piB2tSMrntuYhPPkwXX9PZTnmw7YBo&sid=1f098dbd3d&spx=%2F&type=tcp&headerType=none#🇩🇪德国02丨峰
 
-vless://418DA912-0248-4762-8D21-5CB38467CA4D@kr2-r.link-t7.com:10047?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇰🇷韩国丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@hongkong.xmm.maimaiyun.shop:30002?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=2wMNFHLNMWhrNPn8svnzGZcVruwZYJeZ97v9KUZWIxI&sid=46f0ecab57e8fbd2&spx=%2F&type=tcp&headerType=none#🇮🇩印尼01丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@hongkong.xmm.maimaiyun.shop:30002?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=2wMNFHLNMWhrNPn8svnzGZcVruwZYJeZ97v9KUZWIxI&sid=46f0ecab57e8fbd2&spx=%2F&type=tcp&headerType=none#🇮🇩印尼02丨峰
 
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@hkt-2.ddns-go.de:20135?encryption=none&flow=xtls-rprx-vision&security=reality&sni=s0.awsstatic.com&fp=edge&pbk=ubMb6sa7Fph6USeM95m5_tmy82WApcfKs46HcgAgzzY&sid=12831ca3a3c9&spx=%2F&type=tcp&headerType=none#🇩🇪德国丨峰
-
-vless://991c4f2d-688b-4b60-b5e7-aed90984fd20@edge-hk.gdsxrk.com:32534?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.cloudflare.com&fp=chrome&pbk=wuLoeqhq93bjkqWigD9X92uBEYSE2B3q_0k2V5MiTh4&sid=98c8cd5664&spx=%2F&type=tcp&headerType=none#🇮🇩印尼丨峰
-
-vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@ukraine.xiaomaimai.dpdns.org:20071?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lamer.com&fp=edge&pbk=zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08&sid=a02bf9&spx=%2F&type=tcp&headerType=none#🇺🇦乌克兰丨峰
-
-vless://77179557-b23e-42e6-a260-6a43b450abb7@proxy.jinshu1.com:8445?encryption=none&security=reality&sni=www.intel.com&fp=chrome&pbk=vFbEorA54YWeBcDrxfCI5yC_4g3V3yJWPYuO6LGp2WQ&sid=bedceb973000fa&spx=%2FkYvj6xbcb3Vey1U&type=tcp&headerType=none#🇬🇧英国丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@ukraine.xiaomaimai.dpdns.org:20071?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lamer.com&fp=edge&pbk=zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08&sid=a02bf9&spx=%2F&type=tcp&headerType=none#🇺🇦乌克兰01丨峰
+vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@ukraine.xiaomaimai.dpdns.org:20071?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lamer.com&fp=edge&pbk=zX5dT9fA8VRXb3XSB8olbacIR1Dq69juoC7US2paR08&sid=a02bf9&spx=%2F&type=tcp&headerType=none#🇺🇦乌克兰02丨峰
 #临时 台湾原生
 hy2://H7mP2xY9kJ4nQ8wR5tF6vB3z@vpn-tw-002.fastervpn.world:443/?insecure=1&sni=vpn-tw-002.fastervpn.world#%F0%9F%87%B9%F0%9F%87%BC%E5%8F%B0%E6%B9%BE%20%E5%8E%9F%E7%94%9F%7C%E5%B3%B0
 
