@@ -14,7 +14,7 @@ profile:
 proxy-providers:
   峰:
     type: http
-    url: "https://raw.githubusercontent.com/shuoce/sub/refs/heads/main/share/a.txt"
+    url: "https://shuoce.github.io/sub/sub.txt"
     path: ./providers/feng.yaml
     interval: 3600
     health-check:
