@@ -3,6 +3,7 @@ vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&en
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@zz.j-pan.ccwu.cc:30001/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA&sid=6d9478ae#❤️ 谢谢大家的理解与支持！
 
 
+
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@us5-r.link-t7.com:10242?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国01丨峰
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@us5-r.link-t7.com:10242?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国02丨峰
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@us5-r.link-t7.com:10242?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇺🇸美国03丨峰
@@ -15,10 +16,10 @@ vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@hk4-r.link-t7.com:10129?encryption=
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@hk4-r.link-t7.com:10129?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=movie&mode=gun#🇭🇰香港04丨峰
 vless://431fe973-a43a-4fac-bf83-2a772e0d0625@207.174.133.183:10000?encryption=none&security=none&type=tcp&headerType=none#🇭🇰香港05丨峰
 vless://431fe973-a43a-4fac-bf83-2a772e0d0625@207.174.133.183:10000?encryption=none&security=none&type=tcp&headerType=none#🇭🇰香港06丨峰
-vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.175:10000/?type=tcp&encryption=none&flow=#%F0%9F%87%B9%F0%9F%87%BC%E5%8F%B0%E6%B9%BE01%E4%B8%A8%E5%B3%B0
-
-#台湾二
-vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.175:10000?encryption=none&security=none&type=tcp&headerType=none#vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.175:10000/?type=tcp&encryption=none&flow=#%F0%9F%87%B9%F0%9F%87%BC%E5%8F%B0%E6%B9%BE02%E4%B8%A8%E5%B3%B0
+vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.175:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾01丨峰
+vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.175:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾02丨峰
+vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.160:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾03丨峰
+vless://431fe973-a43a-4fac-bf83-2a772e0d0625@211.76.176.160:10000?encryption=none&security=none&type=tcp&headerType=none#🇹🇼台湾04丨峰
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@jp6-r.link-t7.com:10036?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇯🇵日本01丨峰
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@jp6-r.link-t7.com:10036?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇯🇵日本02丨峰
 vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@jp6-r.link-t7.com:10036?encryption=none&security=reality&sni=s0.awsstatic.com&fp=chrome&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0&type=grpc&authority=&serviceName=update&mode=gun#🇯🇵日本03丨峰
