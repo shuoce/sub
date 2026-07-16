@@ -34,3 +34,6 @@ vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@india.xmm.maimaiyun.shop:20178/?typ
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@india.xmm.maimaiyun.shop:20178/?type=tcp&encryption=none&flow=xtls-rprx-vision&sni=s0.awsstatic.com&fp=edge&security=reality&pbk=0Ou0-i2I8MCx338_HSxso39332OEomCq3xoo3l3DVFc&sid=6c#%F0%9F%87%AE%F0%9F%87%A9%E5%8D%B0%E5%B0%BC02%E4%B8%A8%E5%B3%B0
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@xmm.130209.xyz:443/?type=ws&encryption=none&flow=&host=canda.usic.ccwu.cc&path=%2Fapi%2Fv2%2Fcheck_update&security=tls&sni=canda.usic.ccwu.cc&fp=edge#%F0%9F%87%A8%F0%9F%87%A6%E5%8A%A0%E6%8B%BF%E5%A4%A701%E4%B8%A8%E5%B3%B0
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@xmm.130209.xyz:443/?type=ws&encryption=none&flow=&host=canda.usic.ccwu.cc&path=%2Fapi%2Fv2%2Fcheck_update&security=tls&sni=canda.usic.ccwu.cc&fp=edge#%F0%9F%87%A8%F0%9F%87%A6%E5%8A%A0%E6%8B%BF%E5%A4%A702%E4%B8%A8%E5%B3%B0
+
+
+vless://F45AEFCD-1DA7-42A6-B82B-E873E2648DCC@us5-r.link-t7.com:10242/?type=grpc&encryption=none&flow=&serviceName=movie&sni=s0.awsstatic.com&fp=chrome&security=reality&pbk=wOu-BMrXvk9KX23JZrlpUlF4SMjDcejm0vNECdhy5xE&sid=686c0ef0#%F0%9F%87%BA%F0%9F%87%B8%E7%BE%8E%E5%9B%BD03%E4%B8%A8%E5%B3%B0
