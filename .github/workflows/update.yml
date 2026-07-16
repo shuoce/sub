@@ -1,0 +1,44 @@
+name: Auto Update Sub
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "inbox.txt"
+      - "update.py"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run update.py
+        run: python update.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "🤖 Auto update subscription"
+            git push
+          fi
