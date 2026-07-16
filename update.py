@@ -11,14 +11,20 @@ from urllib.parse import quote, unquote, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parent
 
+# 手动维护的节点文件，只读取，不修改。
 SUB_FILE = ROOT / "sub.txt"
 
+# 机器人维护的节点数据库。
+MANAGED_FILE = ROOT / "managed.txt"
+
+# 机器人新收到的节点文件，处理完成后清空。
+INBOX_FILE = ROOT / "inbox.txt"
+
+# 最终生成的订阅文件。
 SHARE_FILES = [
     ROOT / "share" / "a.txt",
     ROOT / "share" / "mao.txt",
 ]
-
-INBOX_FILE = ROOT / "inbox.txt"
 
 
 SUPPORTED_SCHEMES = {
@@ -467,7 +473,9 @@ def read_lines(path: Path) -> list[str]:
 
     lines = []
 
-    for raw_line in path.read_text(encoding="utf-8-sig").splitlines():
+    for raw_line in path.read_text(
+        encoding="utf-8-sig"
+    ).splitlines():
         line = raw_line.strip()
 
         if line and not line.startswith("#"):
@@ -484,7 +492,11 @@ def write_lines(path: Path, lines: list[str]) -> None:
     if content:
         content += "\n"
 
-    path.write_text(content, encoding="utf-8", newline="\n")
+    path.write_text(
+        content,
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 def is_node(line: str) -> bool:
@@ -494,41 +506,62 @@ def is_node(line: str) -> bool:
         re.IGNORECASE,
     )
 
-    return bool(match and match.group(1).lower() in SUPPORTED_SCHEMES)
+    return bool(
+        match
+        and match.group(1).lower() in SUPPORTED_SCHEMES
+    )
 
 
 def decode_base64(value: str) -> bytes | None:
     try:
         value += "=" * (-len(value) % 4)
-        return base64.urlsafe_b64decode(value.encode("ascii"))
+
+        return base64.urlsafe_b64decode(
+            value.encode("ascii")
+        )
+
     except (ValueError, UnicodeError):
         return None
 
 
 def encode_base64(value: bytes) -> str:
-    return base64.urlsafe_b64encode(value).decode("ascii").rstrip("=")
+    return base64.urlsafe_b64encode(value).decode(
+        "ascii"
+    ).rstrip("=")
 
 
 def get_fragment(line: str) -> str:
     try:
         return unquote(urlsplit(line).fragment)
+
     except ValueError:
         return ""
 
 
-def vmess_remark(line: str) -> str:
+def vmess_data(line: str) -> dict | None:
+    if not line.lower().startswith("vmess://"):
+        return None
+
     payload = line[len("vmess://"):].split("#", 1)[0]
     decoded = decode_base64(payload)
 
-    if decoded is not None:
-        try:
-            data = json.loads(decoded.decode("utf-8"))
+    if decoded is None:
+        return None
 
-            if isinstance(data, dict):
-                return str(data.get("ps", ""))
+    try:
+        data = json.loads(decoded.decode("utf-8"))
 
-        except (UnicodeError, json.JSONDecodeError):
-            pass
+    except (UnicodeError, json.JSONDecodeError):
+        return None
+
+    return data if isinstance(data, dict) else None
+
+
+def vmess_remark(line: str) -> str:
+    data = vmess_data(line)
+
+    if data is not None:
+        return str(data.get("ps", ""))
 
     return get_fragment(line)
 
@@ -580,7 +613,51 @@ def detect_country(line: str) -> dict | None:
     return None
 
 
-def existing_number(line: str, country: dict) -> int | None:
+def node_key(line: str) -> str:
+    """
+    生成节点唯一键。
+
+    普通协议忽略 URL 备注。
+    VMess 忽略 URL fragment 和 JSON 中的 ps 字段，
+    防止同一个 VMess 节点因备注不同而重复导入。
+    """
+    try:
+        if line.lower().startswith("vmess://"):
+            data = vmess_data(line)
+
+            if data is not None:
+                data = dict(data)
+                data.pop("ps", None)
+
+                normalized = json.dumps(
+                    data,
+                    ensure_ascii=False,
+                    sort_keys=True,
+                    separators=(",", ":"),
+                )
+
+                return f"vmess://{normalized}"
+
+        parsed = urlsplit(line)
+
+        return urlunsplit(
+            (
+                parsed.scheme.lower(),
+                parsed.netloc,
+                parsed.path,
+                parsed.query,
+                "",
+            )
+        )
+
+    except (TypeError, ValueError):
+        return line.split("#", 1)[0].strip().lower()
+
+
+def existing_number(
+    line: str,
+    country: dict,
+) -> int | None:
     remark = (
         vmess_remark(line)
         if line.lower().startswith("vmess://")
@@ -593,7 +670,11 @@ def existing_number(line: str, country: dict) -> int | None:
     ]
 
     for pattern in patterns:
-        match = re.search(pattern, remark, re.IGNORECASE)
+        match = re.search(
+            pattern,
+            remark,
+            re.IGNORECASE,
+        )
 
         if match:
             return int(match.group(1))
@@ -617,46 +698,62 @@ def set_fragment(line: str, name: str) -> str:
 
 def rename_node(line: str, name: str) -> str:
     if line.lower().startswith("vmess://"):
-        payload = line[len("vmess://"):].split("#", 1)[0]
-        decoded = decode_base64(payload)
+        data = vmess_data(line)
 
-        if decoded is not None:
-            try:
-                data = json.loads(decoded.decode("utf-8"))
+        if data is not None:
+            data["ps"] = name
 
-                if isinstance(data, dict):
-                    data["ps"] = name
+            encoded = encode_base64(
+                json.dumps(
+                    data,
+                    ensure_ascii=False,
+                    separators=(",", ":"),
+                ).encode("utf-8")
+            )
 
-                    encoded = encode_base64(
-                        json.dumps(
-                            data,
-                            ensure_ascii=False,
-                            separators=(",", ":"),
-                        ).encode("utf-8")
-                    )
-
-                    return f"vmess://{encoded}"
-
-            except (UnicodeError, json.JSONDecodeError):
-                pass
+            return f"vmess://{encoded}"
 
     return set_fragment(line, name)
 
 
+def unique_nodes(
+    lines: list[str],
+    existing_keys: set[str] | None = None,
+) -> list[str]:
+    """
+    按节点连接参数去重。
+
+    existing_keys 用于传入 sub.txt 中已有的节点，
+    这样机器人不会把手动节点再次加入 managed.txt。
+    """
+    seen = set(existing_keys or ())
+    result = []
+
+    for line in lines:
+        if not is_node(line):
+            continue
+
+        key = node_key(line)
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        result.append(line)
+
+    return result
+
+
 def normalize_nodes(lines: list[str]) -> list[str]:
     """
-    处理顺序：
-    1. 只保留支持的节点协议。
-    2. 保留所有节点，包括重复节点。
-    3. 识别国家。
-    4. 保留已有编号。
-    5. 为新节点从该国家当前最大编号继续编号。
-    6. 按 COUNTRIES 配置中的顺序输出。
-    7. 无法识别国家的节点追加到输出末尾，并保留原始备注。
+    生成最终订阅内容。
 
-    重复节点和无法识别国家的节点都不会被删除。
+    这里不做去重，因为去重已经在 sub.txt 和
+    managed.txt/inbox.txt 合并时完成。
+
+    已识别国家的节点按 COUNTRIES 顺序输出并重新命名。
+    无法识别国家的节点保留原始内容，并追加到末尾。
     """
-    # 不再进行去重，所有支持的节点都会被保留。
     all_nodes = [
         line
         for line in lines
@@ -678,8 +775,8 @@ def normalize_nodes(lines: list[str]) -> list[str]:
     for line in all_nodes:
         country = detect_country(line)
 
-        # 无法识别国家的节点保留原样，最后追加到输出结果。
         if country is None:
+            # 未知国家节点保留原始备注和原始内容。
             unknown_nodes.append(line)
             continue
 
@@ -714,25 +811,65 @@ def normalize_nodes(lines: list[str]) -> list[str]:
 
             result.append(rename_node(line, remark))
 
-    # 无法识别国家的节点保留原始内容和原始备注。
+    # 无法识别国家的节点追加到所有已识别国家之后。
     result.extend(unknown_nodes)
 
     return result
 
 
 def main() -> None:
-    current_nodes = read_lines(SUB_FILE)
+    # sub.txt 是手动维护文件，只读，绝不覆盖。
+    manual_nodes = [
+        line
+        for line in read_lines(SUB_FILE)
+        if is_node(line)
+    ]
+
+    # managed.txt 保存机器人历史管理节点。
+    old_managed_nodes = read_lines(MANAGED_FILE)
+
+    # inbox.txt 保存本次新导入的节点。
     inbox_nodes = read_lines(INBOX_FILE)
 
-    # 当前文件在前，保证节点按照原始来源顺序参与处理。
-    merged_nodes = normalize_nodes(current_nodes + inbox_nodes)
+    # 手动节点优先作为去重基准。
+    manual_keys = {
+        node_key(line)
+        for line in manual_nodes
+    }
 
-    write_lines(SUB_FILE, merged_nodes)
+    # 清理 managed.txt 中的无效节点、重复节点，
+    # 同时移除已经存在于 sub.txt 的节点。
+    managed_nodes = unique_nodes(
+        old_managed_nodes,
+        existing_keys=manual_keys,
+    )
+
+    managed_keys = {
+        node_key(line)
+        for line in managed_nodes
+    }
+
+    # 只将真正的新节点加入机器人管理列表。
+    new_managed_nodes = unique_nodes(
+        inbox_nodes,
+        existing_keys=manual_keys | managed_keys,
+    )
+
+    managed_nodes.extend(new_managed_nodes)
+
+    # 保存机器人管理文件。
+    write_lines(MANAGED_FILE, managed_nodes)
+
+    # sub.txt 和 managed.txt 合并生成最终订阅文件。
+    merged_nodes = normalize_nodes(
+        manual_nodes + managed_nodes
+    )
 
     for share_file in SHARE_FILES:
         write_lines(share_file, merged_nodes)
 
-    # 处理完成后清空收件箱。
+    # 只清空收件箱。
+    # sub.txt 和 managed.txt 都不会被清空。
     write_lines(INBOX_FILE, [])
 
 
