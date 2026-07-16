@@ -1,44 +1,45 @@
-name: Auto Update Sub
+name: Update subscription nodes
 
 on:
   push:
-    branches:
-      - main
     paths:
-      - "inbox.txt"
-      - "update.py"
-
+      - inbox.txt
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-subscription
+  cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Python
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.x"
 
-      - name: Run update.py
+      - name: Update subscription files
         run: python update.py
 
-      - name: Commit changes
+      - name: Commit and push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add .
-
-          if git diff --cached --quiet; then
-            echo "No changes"
-          else
-            git commit -m "🤖 Auto update subscription"
-            git push
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
           fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sub/sub.txt sub/share/a.txt sub/share/mao.txt inbox.txt
+          git commit -m "chore: update subscription nodes"
+          git push
