@@ -1,0 +1,1 @@
+trojan://e4f9019f-5df7-45f4-ae23-88de6dbb546c@pokemon-02.yunjnet.com:59111/?type=tcp&security=tls&sni=www.apple.com.cn&allowInsecure=1#%F0%9F%87%B0%F0%9F%87%B7%E3%80%90%E4%BA%9A%E6%B4%B2%E3%80%91%E9%9F%A9%E5%9B%BD%E5%AE%B6%E5%AE%BD03%E4%B8%A8IPLC%E3%80%9010x%E3%80%91
