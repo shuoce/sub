@@ -466,18 +466,24 @@ def read_lines(path: Path) -> list[str]:
         return []
 
     lines = []
+
     for raw_line in path.read_text(encoding="utf-8-sig").splitlines():
         line = raw_line.strip()
+
         if line and not line.startswith("#"):
             lines.append(line)
+
     return lines
 
 
 def write_lines(path: Path, lines: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+
     content = "\n".join(lines)
+
     if content:
         content += "\n"
+
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
@@ -487,6 +493,7 @@ def is_node(line: str) -> bool:
         line,
         re.IGNORECASE,
     )
+
     return bool(match and match.group(1).lower() in SUPPORTED_SCHEMES)
 
 
@@ -516,8 +523,10 @@ def vmess_remark(line: str) -> str:
     if decoded is not None:
         try:
             data = json.loads(decoded.decode("utf-8"))
+
             if isinstance(data, dict):
                 return str(data.get("ps", ""))
+
         except (UnicodeError, json.JSONDecodeError):
             pass
 
@@ -532,12 +541,14 @@ def node_text_parts(line: str) -> list[str]:
 
     try:
         parsed = urlsplit(line)
+
         parts.extend(
             [
                 unquote(parsed.hostname or ""),
                 unquote(parsed.netloc),
             ]
         )
+
     except ValueError:
         pass
 
@@ -569,23 +580,6 @@ def detect_country(line: str) -> dict | None:
     return None
 
 
-def node_key(line: str) -> str:
-    """去除备注后生成唯一键，重复判断不包含备注。"""
-    try:
-        parsed = urlsplit(line)
-        return urlunsplit(
-            (
-                parsed.scheme.lower(),
-                parsed.netloc,
-                parsed.path,
-                parsed.query,
-                "",
-            )
-        )
-    except ValueError:
-        return line.split("#", 1)[0].strip().lower()
-
-
 def existing_number(line: str, country: dict) -> int | None:
     remark = (
         vmess_remark(line)
@@ -600,6 +594,7 @@ def existing_number(line: str, country: dict) -> int | None:
 
     for pattern in patterns:
         match = re.search(pattern, remark, re.IGNORECASE)
+
         if match:
             return int(match.group(1))
 
@@ -631,6 +626,7 @@ def rename_node(line: str, name: str) -> str:
 
                 if isinstance(data, dict):
                     data["ps"] = name
+
                     encoded = encode_base64(
                         json.dumps(
                             data,
@@ -638,7 +634,9 @@ def rename_node(line: str, name: str) -> str:
                             separators=(",", ":"),
                         ).encode("utf-8")
                     )
+
                     return f"vmess://{encoded}"
+
             except (UnicodeError, json.JSONDecodeError):
                 pass
 
@@ -649,41 +647,50 @@ def normalize_nodes(lines: list[str]) -> list[str]:
     """
     处理顺序：
     1. 只保留支持的节点协议。
-    2. 根据去除备注后的节点链接去重。
+    2. 保留所有节点，包括重复节点。
     3. 识别国家。
     4. 保留已有编号。
     5. 为新节点从该国家当前最大编号继续编号。
     6. 按 COUNTRIES 配置中的顺序输出。
+    7. 无法识别国家的节点追加到输出末尾，并保留原始备注。
+
+    重复节点和无法识别国家的节点都不会被删除。
     """
-    unique_nodes = []
-    seen = set()
+    # 不再进行去重，所有支持的节点都会被保留。
+    all_nodes = [
+        line
+        for line in lines
+        if is_node(line)
+    ]
 
-    for line in lines:
-        if not is_node(line):
-            continue
+    grouped = {
+        country["code"]: []
+        for country in COUNTRIES
+    }
 
-        key = node_key(line)
-        if key in seen:
-            continue
+    max_numbers = {
+        country["code"]: 0
+        for country in COUNTRIES
+    }
 
-        seen.add(key)
-        unique_nodes.append(line)
+    unknown_nodes = []
 
-    grouped = {country["code"]: [] for country in COUNTRIES}
-    max_numbers = {country["code"]: 0 for country in COUNTRIES}
-
-    for line in unique_nodes:
+    for line in all_nodes:
         country = detect_country(line)
 
-        # 无法判断国家的节点不写入整理后的订阅文件。
+        # 无法识别国家的节点保留原样，最后追加到输出结果。
         if country is None:
+            unknown_nodes.append(line)
             continue
 
         code = country["code"]
         number = existing_number(line, country)
 
         if number is not None:
-            max_numbers[code] = max(max_numbers[code], number)
+            max_numbers[code] = max(
+                max_numbers[code],
+                number,
+            )
 
         grouped[code].append((line, number))
 
@@ -707,6 +714,9 @@ def normalize_nodes(lines: list[str]) -> list[str]:
 
             result.append(rename_node(line, remark))
 
+    # 无法识别国家的节点保留原始内容和原始备注。
+    result.extend(unknown_nodes)
+
     return result
 
 
@@ -714,7 +724,7 @@ def main() -> None:
     current_nodes = read_lines(SUB_FILE)
     inbox_nodes = read_lines(INBOX_FILE)
 
-    # 当前文件在前，保证重复节点始终保留第一次出现的版本。
+    # 当前文件在前，保证节点按照原始来源顺序参与处理。
     merged_nodes = normalize_nodes(current_nodes + inbox_nodes)
 
     write_lines(SUB_FILE, merged_nodes)
