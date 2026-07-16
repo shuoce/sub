@@ -1,1 +1,0 @@
-trojan://e4f9019f-5df7-45f4-ae23-88de6dbb546c@ptxlv6-2.yunjnet.com:54273/?type=tcp&security=tls&sni=www.bing.com&allowInsecure=1#%F0%9F%87%BA%F0%9F%87%B8%E3%80%90%E5%8C%97%E7%BE%8E%E6%B4%B2%E3%80%91%E7%BE%8E%E5%9B%BD02%E4%B8%A8V6%E3%80%901x%E3%80%91
