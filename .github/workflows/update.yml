@@ -1,17 +1,13 @@
-name: Update subscription nodes
+name: Update subscriptions
 
 on:
-  push:
-    paths:
-      - inbox.txt
   workflow_dispatch:
+  schedule:
+    # 每 30 分钟运行一次。
+    - cron: "*/30 * * * *"
 
 permissions:
   contents: write
-
-concurrency:
-  group: update-subscription
-  cancel-in-progress: false
 
 jobs:
   update:
@@ -28,19 +24,24 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Update subscription files
-        run: python update.py
+      - name: Run subscription updater
+        run: python3 main.py
 
-      - name: Commit and push changes
+      - name: Commit updated subscription files
         run: |
-          if git diff --quiet; then
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            managed.txt \
+            inbox.txt \
+            share/a.txt \
+            share/mao.txt
+
+          if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add sub.txt share/a.txt share/mao.txt inbox.txt
-          git commit -m "chore: update subscription nodes"
+          git commit -m "Update subscriptions"
           git push
