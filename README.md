@@ -45,7 +45,7 @@ https://shuoce1.eu.cc/share/synchronous
 
 ```
 
-https://shuoce1.eu.cc/share/mao.txt
+https://shuoce1.eu.cc/share/mao
 ```
 
 ---
