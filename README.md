@@ -18,7 +18,7 @@
 订阅地址：
 
 ```
-https://shuoce.github.io/sub/sub.txt
+https://shuoce1.eu.cc/sub.txt
 ```
 
 ---
@@ -33,7 +33,8 @@ https://shuoce.github.io/sub/sub.txt
 订阅地址：
 
 ```
-https://shuoce.github.io/sub/share/synchronous
+
+https://shuoce1.eu.cc/share/synchronous
 ```
 
 ---
@@ -43,7 +44,8 @@ https://shuoce.github.io/sub/share/synchronous
 临时节点分享使用：
 
 ```
-https://shuoce.github.io/sub/share/mao.txt
+
+https://shuoce1.eu.cc/share/mao.txt
 ```
 
 ---
@@ -58,7 +60,8 @@ https://shuoce.github.io/sub/share/mao.txt
 4. 粘贴：
 
 ```
-https://shuoce.github.io/sub/sub.txt
+
+https://shuoce1.eu.cc/sub.txt
 ```
 
 5. 更新订阅即可
@@ -74,7 +77,8 @@ https://shuoce.github.io/sub/sub.txt
 4. 粘贴：
 
 ```
-https://shuoce.github.io/sub/share/synchronous
+
+https://shuoce1.eu.cc/share/synchronous
 ```
 
 5. 下载并启用配置
@@ -102,7 +106,8 @@ sub
 
 主页：
 
-https://shuoce.github.io/sub/
+
+https://shuoce1.eu.cc/
 
 
 ---
