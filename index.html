@@ -1,108 +1,303 @@
+
+```html
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<title>硕策订阅中心</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 硕策订阅中心</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@1.0.0/qrcode.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: 34 197 151;
+    }
+    body {
+      background: linear-gradient(135deg, #0a0f1c 0%, #1a2338 100%);
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .neon-text {
+      text-shadow: 0 0 20px rgb(52 211 153);
+    }
+    .card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.4);
+    }
+    .copy-btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .toast {
+      animation: toastIn 0.3s ease forwards;
+    }
+    @keyframes toastIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .hero-glow {
+      background: radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.25), transparent 70%);
+    }
+  </style>
 </head>
+<body class="text-gray-200 min-h-screen pb-12">
+  <!-- 顶部导航 -->
+  <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-11 h-11 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/50">🚀</div>
+        <div>
+          <h1 class="text-3xl font-bold tracking-tighter neon-text">硕策订阅中心</h1>
+          <p class="text-xs text-emerald-400 -mt-1">STABLE • FAST • PREMIUM</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-8 text-sm">
+        <a href="#subscribe" class="hover:text-emerald-400 transition">订阅</a>
+        <a href="#tutorial" class="hover:text-emerald-400 transition">教程</a>
+        <a href="https://shuoce1.eu.cc/" target="_blank" class="text-emerald-400 hover:text-white transition">主页</a>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero -->
+  <div class="pt-28 pb-16 hero-glow relative overflow-hidden">
+    <div class="max-w-5xl mx-auto text-center px-6">
+      <h2 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
+        高速节点 · 稳定订阅
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        专为 NekoBox、Clash Meta、v2rayN 优化的订阅服务<br>
+        <span class="text-emerald-400">最后更新：2026年7月18日</span>
+      </p>
+    </div>
+  </div>
 
-<body>
+  <div class="max-w-7xl mx-auto px-6 -mt-10 relative z-10" id="subscribe">
+    <!-- 订阅卡片 -->
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Card 1 -->
+      <div class="glass rounded-3xl p-8 card">
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <div class="text-5xl mb-3">📱</div>
+            <h3 class="text-2xl font-semibold">NekoBox 订阅</h3>
+            <p class="text-emerald-400 text-sm">Base64 · VLESS</p>
+          </div>
+          <div class="px-4 py-1.5 bg-emerald-500/10 text-emerald-400 text-xs rounded-2xl border border-emerald-500/30">推荐</div>
+        </div>
+        
+        <div class="bg-black/40 rounded-2xl p-5 font-mono text-sm break-all text-gray-300 mb-6 border border-white/5" id="neko-url">
+          https://shuoce1.eu.cc/sub.txt
+        </div>
+        
+        <button onclick="copyToClipboard('neko-url', this)" 
+                class="copy-btn w-full bg-emerald-500 hover:bg-emerald-600 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all">
+          <i class="fas fa-copy"></i> 复制地址
+        </button>
+        
+        <div id="qrcode1" class="mt-8 flex justify-center"></div>
+      </div>
 
+      <!-- Card 2 -->
+      <div class="glass rounded-3xl p-8 card">
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <div class="text-5xl mb-3">🌐</div>
+            <h3 class="text-2xl font-semibold">Clash 通用订阅</h3>
+            <p class="text-blue-400 text-sm">Meta · Mihomo</p>
+          </div>
+        </div>
+        
+        <div class="bg-black/40 rounded-2xl p-5 font-mono text-sm break-all text-gray-300 mb-6 border border-white/5" id="clash-url">
+          https://shuoce1.eu.cc/share/synchronous
+        </div>
+        
+        <button onclick="copyToClipboard('clash-url', this)" 
+                class="copy-btn w-full bg-blue-500 hover:bg-blue-600 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all">
+          <i class="fas fa-copy"></i> 复制地址
+        </button>
+        
+        <div id="qrcode2" class="mt-8 flex justify-center"></div>
+      </div>
 
-<div class="subscribe-box">
+      <!-- Card 3 -->
+      <div class="glass rounded-3xl p-8 card">
+        <div class="flex justify-between items-start mb-8">
+          <div>
+            <div class="text-5xl mb-3">⚡</div>
+            <h3 class="text-2xl font-semibold">临时分享订阅</h3>
+            <p class="text-amber-400 text-sm">快速测试</p>
+          </div>
+        </div>
+        
+        <div class="bg-black/40 rounded-2xl p-5 font-mono text-sm break-all text-gray-300 mb-6 border border-white/5" id="temp-url">
+          https://shuoce1.eu.cc/share/mao
+        </div>
+        
+        <button onclick="copyToClipboard('temp-url', this)" 
+                class="copy-btn w-full bg-amber-500 hover:bg-amber-600 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all">
+          <i class="fas fa-copy"></i> 复制地址
+        </button>
+        
+        <div id="qrcode3" class="mt-8 flex justify-center"></div>
+      </div>
+    </div>
 
-<h1>🚀 硕策订阅中心</h1>
+    <!-- 使用教程 -->
+    <div class="mt-20 max-w-4xl mx-auto" id="tutorial">
+      <h2 class="text-4xl font-bold text-center mb-12">使用教程</h2>
+      
+      <div class="grid md:grid-cols-2 gap-10">
+        <div class="glass rounded-3xl p-10">
+          <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3 text-emerald-400">
+            <i class="fas fa-mobile-alt"></i> NekoBox / v2rayN
+          </h3>
+          <div class="space-y-6">
+            <div class="flex gap-5">
+              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">1</div>
+              <div>打开 NekoBox 或 v2rayN，进入「订阅管理」</div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">2</div>
+              <div>点击「添加订阅」，粘贴上方第一个订阅地址</div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">3</div>
+              <div>点击更新订阅即可使用</div>
+            </div>
+          </div>
+        </div>
 
+        <div class="glass rounded-3xl p-10">
+          <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3 text-blue-400">
+            <i class="fas fa-laptop"></i> Clash Meta / Mihomo
+          </h3>
+          <div class="space-y-6">
+            <div class="flex gap-5">
+              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">1</div>
+              <div>打开 Clash 客户端，进入「配置」页面</div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">2</div>
+              <div>添加远程配置，粘贴 Clash 订阅地址</div>
+            </div>
+            <div class="flex gap-5">
+              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">3</div>
+              <div>更新配置并启用</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div class="sub-item">
+  <!-- 注意事项 -->
+  <div class="max-w-4xl mx-auto mt-20 px-6">
+    <div class="glass rounded-3xl p-10 border border-red-500/20">
+      <h3 class="text-red-400 text-xl font-semibold mb-6 flex items-center gap-3">
+        <i class="fas fa-exclamation-triangle"></i> 注意事项
+      </h3>
+      <ul class="space-y-3 text-gray-300">
+        <li>• 本订阅仅供个人学习与研究使用</li>
+        <li>• 请勿滥用或分享给他人</li>
+        <li>• 请遵守当地法律法规</li>
+        <li>• 节点有更新时请及时刷新订阅</li>
+      </ul>
+    </div>
+  </div>
 
-<div>
-<h3>📱 NekoBox订阅</h3>
+  <footer class="text-center text-gray-500 text-sm mt-16">
+    © 2026 shuoce • 仅供个人使用
+  </footer>
 
-<p id="nekobox">
-https://shuoce.github.io/sub/sub.txt
-</p>
+  <!-- Toast -->
+  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 glass text-emerald-400 px-8 py-4 rounded-2xl flex items-center gap-3 shadow-2xl toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-text" class="font-medium"></span>
+  </div>
 
-</div>
+  <script>
+    function copyToClipboard(elementId, btn) {
+      const text = document.getElementById(elementId).innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("复制成功！");
+        
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `<i class="fas fa-check"></i> 已复制`;
+        btn.style.transform = "scale(0.95)";
+        
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+          btn.style.transform = "scale(1)";
+        }, 2000);
+      });
+    }
 
-<button onclick="copyText('nekobox')">
-复制
-</button>
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').innerText = message;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('opacity-0');
+        setTimeout(() => {
+          toast.classList.add('hidden');
+          toast.classList.remove('opacity-0');
+        }, 300);
+      }, 2500);
+    }
 
-</div>
+    // 生成二维码
+    window.onload = function() {
+      new QRCode(document.getElementById("qrcode1"), {
+        text: "https://shuoce1.eu.cc/sub.txt",
+        width: 140,
+        height: 140,
+        colorDark: "#10b981",
+        colorLight: "#0a0f1c",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      
+      new QRCode(document.getElementById("qrcode2"), {
+        text: "https://shuoce1.eu.cc/share/synchronous",
+        width: 140,
+        height: 140,
+        colorDark: "#3b82f6",
+        colorLight: "#0a0f1c",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      
+      new QRCode(document.getElementById("qrcode3"), {
+        text: "https://shuoce1.eu.cc/share/mao",
+        width: 140,
+        height: 140,
+        colorDark: "#f59e0b",
+        colorLight: "#0a0f1c",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    };
 
-
-
-<div class="sub-item">
-
-<div>
-<h3>🌐 Clash通用订阅</h3>
-
-<p id="clash">
-https://shuoce.github.io/sub/share/synchronous
-</p>
-
-</div>
-
-<button onclick="copyText('clash')">
-复制
-</button>
-
-</div>
-
-
-
-
-<div class="sub-item">
-
-<div>
-<h3>📲 NekoBox临时分享订阅</h3>
-
-<p id="mao">
-https://shuoce.github.io/sub/share/mao.txt
-</p>
-
-</div>
-
-<button onclick="copyText('mao')">
-复制
-</button>
-
-</div>
-
-
-
-</div>
-
-
-
-<script>
-
-function copyText(id){
-
-let text=document.getElementById(id).innerText;
-
-
-navigator.clipboard.writeText(text)
-.then(()=>{
-
-alert("订阅地址复制成功");
-
-});
-
-
-}
-
-</script>
-
-
-
+    // Tailwind 配置
+    tailwind.config = {
+      content: [],
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
 </body>
-
 </html>
+```
