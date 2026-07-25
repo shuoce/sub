@@ -18,7 +18,7 @@
 订阅地址：
 
 ```
-https://shuoce1.eu.cc/a.txt
+https://shuoce1.eu.cc/share/a.txt
 ```
 
 ---
@@ -61,7 +61,7 @@ https://shuoce1.eu.cc/share/mao
 
 ```
 
-https://shuoce1.eu.cc/a.txt
+https://shuoce1.eu.cc/share/a.txt
 ```
 
 5. 更新订阅即可
