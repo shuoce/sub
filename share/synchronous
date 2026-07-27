@@ -15,7 +15,7 @@ proxy-providers:
   峰:
     type: http
     url: "
-https://shuoce1.eu.cc/a.txt"
+https://shuoce1.eu.cc/share/a.txt"
     path: ./providers/feng.yaml
     interval: 3600
     health-check:
