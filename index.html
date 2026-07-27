@@ -3,299 +3,906 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚀 硕策订阅中心</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@1.0.0/qrcode.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  
-  <style>
-    :root {
-      --primary: 34 197 151;
-    }
-    body {
-      background: linear-gradient(135deg, #0a0f1c 0%, #1a2338 100%);
-      font-family: 'Inter', system-ui, sans-serif;
-    }
-    .glass {
-      background: rgba(255, 255, 255, 0.06);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .neon-text {
-      text-shadow: 0 0 20px rgb(52 211 153);
-    }
-    .card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .card:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 25px 50px -12px rgb(16 185 129 / 0.4);
-    }
-    .copy-btn {
-      position: relative;
-      overflow: hidden;
-    }
-    .toast {
-      animation: toastIn 0.3s ease forwards;
-    }
-    @keyframes toastIn {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .hero-glow {
-      background: radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.25), transparent 70%);
-    }
-  </style>
-</head>
-<body class="text-gray-200 min-h-screen pb-12">
-  <!-- 顶部导航 -->
-  <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-      <div class="flex items-center gap-4">
-        <div class="w-11 h-11 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/50">🚀</div>
-        <div>
-          <h1 class="text-3xl font-bold tracking-tighter neon-text">硕策订阅中心</h1>
-          <p class="text-xs text-emerald-400 -mt-1">STABLE • FAST • PREMIUM</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-8 text-sm">
-        <a href="#subscribe" class="hover:text-emerald-400 transition">订阅</a>
-        <a href="#tutorial" class="hover:text-emerald-400 transition">教程</a>
-        <a href="https://shuoce1.eu.cc/" target="_blank" class="text-emerald-400 hover:text-white transition">主页</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <div class="pt-28 pb-16 hero-glow relative overflow-hidden">
-    <div class="max-w-5xl mx-auto text-center px-6">
-      <h2 class="text-6xl md:text-7xl font-bold mb-6 leading-tight">
-        高速节点 · 稳定订阅
-      </h2>
-      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
-        专为 NekoBox、Clash Meta、v2rayN 优化的订阅服务<br>
-        <span class="text-emerald-400">最后更新：2026年7月18日</span>
-      </p>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-6 -mt-10 relative z-10" id="subscribe">
-    <!-- 订阅卡片 -->
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Card 1 -->
-      <div class="glass rounded-3xl p-8 card">
-        <div class="flex justify-between items-start mb-8">
-          <div>
-            <div class="text-5xl mb-3">📱</div>
-            <h3 class="text-2xl font-semibold">NekoBox 订阅</h3>
-            <p class="text-emerald-400 text-sm">Base64 · VLESS</p>
-          </div>
-          <div class="px-4 py-1.5 bg-emerald-500/10 text-emerald-400 text-xs rounded-2xl border border-emerald-500/30">推荐</div>
-        </div>
-        
-        <div class="bg-black/40 rounded-2xl p-5 font-mono text-sm break-all text-gray-300 mb-6 border border-white/5" id="neko-url">
-          https://shuoce1.eu.cc/share/a.txt
-        </div>
-        
-        <button onclick="copyToClipboard('neko-url', this)" 
-                class="copy-btn w-full bg-emerald-500 hover:bg-emerald-600 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all">
-          <i class="fas fa-copy"></i> 复制地址
-        </button>
-        
-        <div id="qrcode1" class="mt-8 flex justify-center"></div>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="glass rounded-3xl p-8 card">
-        <div class="flex justify-between items-start mb-8">
-          <div>
-            <div class="text-5xl mb-3">🌐</div>
-            <h3 class="text-2xl font-semibold">Clash 通用订阅</h3>
-            <p class="text-blue-400 text-sm">Meta · Mihomo</p>
-          </div>
-        </div>
-        
-        <div class="bg-black/40 rounded-2xl p-5 font-mono text-sm break-all text-gray-300 mb-6 border border-white/5" id="clash-url">
-          https://shuoce1.eu.cc/share/synchronous
-        </div>
-        
-        <button onclick="copyToClipboard('clash-url', this)" 
-                class="copy-btn w-full bg-blue-500 hover:bg-blue-600 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all">
-          <i class="fas fa-copy"></i> 复制地址
-        </button>
-        
-        <div id="qrcode2" class="mt-8 flex justify-center"></div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="glass rounded-3xl p-8 card">
-        <div class="flex justify-between items-start mb-8">
-          <div>
-            <div class="text-5xl mb-3">⚡</div>
-            <h3 class="text-2xl font-semibold">临时分享订阅</h3>
-            <p class="text-amber-400 text-sm">快速测试</p>
-          </div>
-        </div>
-        
-        <div class="bg-black/40 rounded-2xl p-5 font-mono text-sm break-all text-gray-300 mb-6 border border-white/5" id="temp-url">
-          https://shuoce1.eu.cc/share/mao
-        </div>
-        
-        <button onclick="copyToClipboard('temp-url', this)" 
-                class="copy-btn w-full bg-amber-500 hover:bg-amber-600 py-4 rounded-2xl font-semibold flex items-center justify-center gap-2 transition-all">
-          <i class="fas fa-copy"></i> 复制地址
-        </button>
-        
-        <div id="qrcode3" class="mt-8 flex justify-center"></div>
-      </div>
-    </div>
-
-    <!-- 使用教程 -->
-    <div class="mt-20 max-w-4xl mx-auto" id="tutorial">
-      <h2 class="text-4xl font-bold text-center mb-12">使用教程</h2>
-      
-      <div class="grid md:grid-cols-2 gap-10">
-        <div class="glass rounded-3xl p-10">
-          <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3 text-emerald-400">
-            <i class="fas fa-mobile-alt"></i> NekoBox / v2rayN
-          </h3>
-          <div class="space-y-6">
-            <div class="flex gap-5">
-              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">1</div>
-              <div>打开 NekoBox 或 v2rayN，进入「订阅管理」</div>
-            </div>
-            <div class="flex gap-5">
-              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">2</div>
-              <div>点击「添加订阅」，粘贴上方第一个订阅地址</div>
-            </div>
-            <div class="flex gap-5">
-              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">3</div>
-              <div>点击更新订阅即可使用</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="glass rounded-3xl p-10">
-          <h3 class="text-2xl font-semibold mb-8 flex items-center gap-3 text-blue-400">
-            <i class="fas fa-laptop"></i> Clash Meta / Mihomo
-          </h3>
-          <div class="space-y-6">
-            <div class="flex gap-5">
-              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">1</div>
-              <div>打开 Clash 客户端，进入「配置」页面</div>
-            </div>
-            <div class="flex gap-5">
-              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">2</div>
-              <div>添加远程配置，粘贴 Clash 订阅地址</div>
-            </div>
-            <div class="flex gap-5">
-              <div class="w-8 h-8 rounded-2xl bg-white/10 flex items-center justify-center font-bold flex-shrink-0">3</div>
-              <div>更新配置并启用</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 注意事项 -->
-  <div class="max-w-4xl mx-auto mt-20 px-6">
-    <div class="glass rounded-3xl p-10 border border-red-500/20">
-      <h3 class="text-red-400 text-xl font-semibold mb-6 flex items-center gap-3">
-        <i class="fas fa-exclamation-triangle"></i> 注意事项
-      </h3>
-      <ul class="space-y-3 text-gray-300">
-        <li>• 本订阅仅供个人学习与研究使用</li>
-        <li>• 请勿滥用或分享给他人</li>
-        <li>• 请遵守当地法律法规</li>
-        <li>• 节点有更新时请及时刷新订阅</li>
-      </ul>
-    </div>
-  </div>
-
-  <footer class="text-center text-gray-500 text-sm mt-16">
-    © 2026 shuoce • 仅供个人使用
-  </footer>
-
-  <!-- Toast -->
-  <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 glass text-emerald-400 px-8 py-4 rounded-2xl flex items-center gap-3 shadow-2xl toast">
-    <i class="fas fa-check-circle"></i>
-    <span id="toast-text" class="font-medium"></span>
-  </div>
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="硕策订阅中心，提供稳定、高速、兼容多客户端的订阅服务">
+  <title>硕策订阅中心 · 高速稳定订阅</title>
 
   <script>
-    function copyToClipboard(elementId, btn) {
-      const text = document.getElementById(elementId).innerText.trim();
-      navigator.clipboard.writeText(text).then(() => {
-        showToast("复制成功！");
-        
-        const originalHTML = btn.innerHTML;
-        btn.innerHTML = `<i class="fas fa-check"></i> 已复制`;
-        btn.style.transform = "scale(0.95)";
-        
-        setTimeout(() => {
-          btn.innerHTML = originalHTML;
-          btn.style.transform = "scale(1)";
-        }, 2000);
-      });
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-text').innerText = message;
-      toast.classList.remove('hidden');
-      setTimeout(() => {
-        toast.classList.add('opacity-0');
-        setTimeout(() => {
-          toast.classList.add('hidden');
-          toast.classList.remove('opacity-0');
-        }, 300);
-      }, 2500);
-    }
-
-    // 生成二维码
-    window.onload = function() {
-      new QRCode(document.getElementById("qrcode1"), {
-        text: "https://shuoce1.eu.cc/share/a.txt",
-        width: 140,
-        height: 140,
-        colorDark: "#10b981",
-        colorLight: "#0a0f1c",
-        correctLevel: QRCode.CorrectLevel.H
-      });
-      
-      new QRCode(document.getElementById("qrcode2"), {
-        text: "https://shuoce1.eu.cc/share/synchronous",
-        width: 140,
-        height: 140,
-        colorDark: "#3b82f6",
-        colorLight: "#0a0f1c",
-        correctLevel: QRCode.CorrectLevel.H
-      });
-      
-      new QRCode(document.getElementById("qrcode3"), {
-        text: "https://shuoce1.eu.cc/share/mao",
-        width: 140,
-        height: 140,
-        colorDark: "#f59e0b",
-        colorLight: "#0a0f1c",
-        correctLevel: QRCode.CorrectLevel.H
-      });
-    };
-
-    // Tailwind 配置
-    tailwind.config = {
-      content: [],
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'sans-serif']
+    tailwind = {
+      config: {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'Noto Sans SC', 'system-ui', 'sans-serif']
+            },
+            colors: {
+              brand: {
+                400: '#5eead4',
+                500: '#2dd4bf',
+                600: '#14b8a6'
+              }
+            },
+            boxShadow: {
+              glow: '0 0 60px rgba(45, 212, 191, .18)',
+              card: '0 20px 80px rgba(0, 0, 0, .25)'
+            }
           }
         }
       }
     }
   </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@1.0.0/qrcode.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  >
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: rgba(15, 27, 45, .72);
+      --border: rgba(255, 255, 255, .11);
+      --text: #e5eef7;
+      --muted: #91a2b7;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(45, 212, 191, .12), transparent 28rem),
+        radial-gradient(circle at 90% 15%, rgba(59, 130, 246, .13), transparent 28rem),
+        linear-gradient(135deg, #07111f 0%, #0c1729 52%, #08111f 100%);
+      font-family: Inter, "Noto Sans SC", system-ui, sans-serif;
+    }
+
+    body.light-mode {
+      --bg: #f5f8fc;
+      --panel: rgba(255, 255, 255, .8);
+      --border: rgba(15, 23, 42, .1);
+      --text: #172033;
+      --muted: #64748b;
+      color-scheme: light;
+
+      background:
+        radial-gradient(circle at 10% 5%, rgba(45, 212, 191, .13), transparent 25rem),
+        radial-gradient(circle at 90% 10%, rgba(59, 130, 246, .1), transparent 25rem),
+        #f5f8fc;
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .16);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .nav-glass {
+      background: rgba(7, 17, 31, .72);
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .light-mode .nav-glass {
+      background: rgba(255, 255, 255, .78);
+      border-bottom-color: rgba(15, 23, 42, .08);
+    }
+
+    .hero-title {
+      background: linear-gradient(100deg, #fff 10%, #99f6e4 48%, #60a5fa 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .light-mode .hero-title {
+      background: linear-gradient(100deg, #0f172a 10%, #0f766e 50%, #2563eb 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    .light-mode .grid-bg {
+      background-image:
+        linear-gradient(rgba(15,23,42,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,.04) 1px, transparent 1px);
+    }
+
+    .subscription-card {
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+
+    .subscription-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(45, 212, 191, .48);
+      box-shadow: 0 25px 80px rgba(45, 212, 191, .14);
+    }
+
+    .copy-button {
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .copy-button:hover {
+      filter: brightness(1.1);
+    }
+
+    .copy-button:active {
+      transform: scale(.97);
+    }
+
+    .toast {
+      animation: toast-in .28s ease both;
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 18px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    .modal {
+      animation: modal-in .22s ease both;
+    }
+
+    @keyframes modal-in {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .status-dot {
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(52, 211, 153, .5);
+      }
+      50% {
+        box-shadow: 0 0 0 7px rgba(52, 211, 153, 0);
+      }
+    }
+
+    .url-box {
+      word-break: break-all;
+      user-select: all;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部导航 -->
+  <header class="nav-glass fixed top-0 left-0 right-0 z-50">
+    <nav class="max-w-7xl mx-auto px-5 sm:px-8 py-4" aria-label="主导航">
+      <div class="flex items-center justify-between">
+        <a href="#" class="flex items-center gap-3" aria-label="返回首页">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-teal-300 via-emerald-400 to-blue-500 flex items-center justify-center text-2xl shadow-lg shadow-teal-500/30">
+            🚀
+          </div>
+<!---->
+          <div>
+            <div class="font-bold text-lg sm:text-xl tracking-tight">
+              硕策订阅中心
+            </div>
+            <div class="text-[10px] tracking-[.22em] text-teal-400">
+              STABLE · FAST · PREMIUM
+            </div>
+          </div>
+        
+</a>
+
+
+
+        <div class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#subscriptions" class="text-slate-300 hover:text-teal-300 transition">
+            订阅服务
+          </a>
+          <a href="#tutorial" class="text-slate-300 hover:text-teal-300 transition">
+            使用教程
+          </a>
+          <a href="#faq" class="text-slate-300 hover:text-teal-300 transition">
+            常见问题
+          </a>
+<!---->
+          <button
+            id="themeButton"
+            type="button"
+            class="w-10 h-10 rounded-xl border border-white/10 hover:bg-white/10 transition"
+            aria-label="切换主题"
+            title="切换主题"
+          >
+            <i class="fa-solid fa-sun"></i>
+          </button>
+<!---->
+          <a
+            href="https://shuoce1.eu.cc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-xl bg-teal-400/10 text-teal-300 border border-teal-400/20 hover:bg-teal-400 hover:text-slate-950 transition"
+          >
+            访问主页
+            <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+          </a>
+        
+</div>
+
+
+
+        <button
+          id="menuButton"
+          type="button"
+          class="md:hidden w-10 h-10 rounded-xl border border-white/10 hover:bg-white/10"
+          aria-label="打开菜单"
+          aria-expanded="false"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- 移动端菜单 -->
+      <div id="mobileMenu" class="hidden md:hidden pt-4">
+        <div class="glass rounded-2xl p-3 space-y-1">
+          <a href="#subscriptions" class="block rounded-xl px-4 py-3 hover:bg-white/10">
+            订阅服务
+          </a>
+          <a href="#tutorial" class="block rounded-xl px-4 py-3 hover:bg-white/10">
+            使用教程
+          </a>
+          <a href="#faq" class="block rounded-xl px-4 py-3 hover:bg-white/10">
+            常见问题
+          </a>
+          <button id="mobileThemeButton" class="w-full text-left rounded-xl px-4 py-3 hover:bg-white/10">
+            <i class="fa-solid fa-circle-half-stroke mr-2"></i>
+            切换主题
+          </button>
+          <a
+            href="https://shuoce1.eu.cc/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block rounded-xl px-4 py-3 text-teal-300 hover:bg-white/10"
+          >
+            访问主页
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-36 pb-20 sm:pt-44 sm:pb-28">
+      <div class="grid-bg absolute inset-0 pointer-events-none"></div>
+<!---->
+      <div class="relative max-w-6xl mx-auto px-5 text-center">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-slate-300 mb-7">
+          <span class="status-dot w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          服务运行正常
+          <span class="text-slate-500">·</span>
+          实时订阅中心
+        </div>
+<!---->
+        <h1 class="hero-title text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05]">
+          高速节点<br class="sm:hidden">
+          · 稳定订阅
+        </h1>
+<!---->
+        <p class="max-w-2xl mx-auto mt-7 text-base sm:text-xl leading-8 text-slate-400">
+          专为 NekoBox、Clash Meta、Mihomo、v2rayN 等客户端优化，
+          简洁、快速、稳定地管理你的订阅服务。
+        </p>
+<!---->
+        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-9">
+          <a
+            href="#subscriptions"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-teal-400 text-slate-950 font-bold hover:bg-teal-300 transition shadow-lg shadow-teal-500/20"
+          >
+            查看订阅
+            <i class="fa-solid fa-arrow-down"></i>
+          </a>
+<!---->
+          <a
+            href="#tutorial"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl glass hover:bg-white/10 transition"
+          >
+            查看教程
+            <i class="fa-solid fa-book-open"></i>
+          </a>
+        
+</div>
+<!---->
+<!---->
+<!---->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-3xl mx-auto mt-14">
+          <div class="glass rounded-2xl p-4">
+            <div class="text-2xl font-bold text-teal-300">99.9%</div>
+            <div class="text-xs text-slate-500 mt-1">服务可用性</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="text-2xl font-bold text-blue-300">4+</div>
+            <div class="text-xs text-slate-500 mt-1">支持客户端</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="text-2xl font-bold text-violet-300">24/7</div>
+            <div class="text-xs text-slate-500 mt-1">自动更新</div>
+          </div>
+          <div class="glass rounded-2xl p-4">
+            <div class="text-2xl font-bold text-amber-300">HTTPS</div>
+            <div class="text-xs text-slate-500 mt-1">安全传输</div>
+          </div>
+        </div>
+      </div>
+    
+</section>
+
+
+<!---->
+    <!-- 订阅服务 -->
+    <section id="subscriptions" class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+        <div>
+          <div class="text-sm font-semibold text-teal-400 mb-2">
+            SUBSCRIPTION SERVICES
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black">选择你的订阅方式</h2>
+          <p class="text-slate-400 mt-3">
+            复制地址后粘贴至对应客户端，即可完成订阅。
+          </p>
+        </div>
+<!---->
+        <div class="text-sm text-slate-500">
+          最后更新：2026年7月18日
+        </div>
+      </div>
+<!---->
+      <div id="subscriptionList" class="grid lg:grid-cols-3 gap-6"></div>
+    </section>
+<!---->
+    <!-- 教程 -->
+    <section id="tutorial" class="max-w-7xl mx-auto px-5 sm:px-8 pb-24">
+      <div class="text-center mb-10">
+        <div class="text-sm font-semibold text-blue-400 mb-2">QUICK START</div>
+        <h2 class="text-3xl sm:text-4xl font-black">三步开始使用</h2>
+        <p class="text-slate-400 mt-3">根据你的客户端选择对应教程。</p>
+      </div>
+<!---->
+      <div class="grid lg:grid-cols-2 gap-6">
+        <article class="glass rounded-3xl p-6 sm:p-8">
+          <div class="flex items-center gap-4 mb-7">
+            <div class="w-12 h-12 rounded-2xl bg-teal-400/10 text-teal-300 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">NekoBox / v2rayN</h3>
+              <p class="text-sm text-slate-500">适用于 Android、Windows</p>
+            </div>
+          </div>
+<!---->
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <span class="step-number">1</span>
+              <p>打开客户端，进入「订阅管理」或「订阅设置」。</p>
+            </div>
+            <div class="flex gap-4">
+              <span class="step-number">2</span>
+              <p>点击「添加订阅」，粘贴 NekoBox 订阅地址。</p>
+            </div>
+            <div class="flex gap-4">
+              <span class="step-number">3</span>
+              <p>保存后点击「更新订阅」，选择节点即可使用。</p>
+            </div>
+          </div>
+        
+</article>
+<!---->
+<!---->
+<!---->
+        <article class="glass rounded-3xl p-6 sm:p-8">
+          <div class="flex items-center gap-4 mb-7">
+            <div class="w-12 h-12 rounded-2xl bg-blue-400/10 text-blue-300 flex items-center justify-center text-xl">
+              <i class="fa-solid fa-laptop"></i>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">Clash Meta / Mihomo</h3>
+              <p class="text-sm text-slate-500">适用于桌面端与移动端</p>
+            </div>
+          </div>
+<!---->
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <span class="step-number">1</span>
+              <p>打开 Clash 客户端，进入「配置」页面。</p>
+            </div>
+            <div class="flex gap-4">
+              <span class="step-number">2</span>
+              <p>添加远程配置，粘贴 Clash 通用订阅地址。</p>
+            </div>
+            <div class="flex gap-4">
+              <span class="step-number">3</span>
+              <p>更新配置文件，并将其设置为当前配置。</p>
+            </div>
+          </div>
+        
+</article>
+<!---->
+<!---->
+      </div>
+    
+</section>
+
+
+<!---->
+    <!-- FAQ -->
+    <section id="faq" class="max-w-4xl mx-auto px-5 sm:px-8 pb-24">
+      <div class="text-center mb-10">
+        <div class="text-sm font-semibold text-violet-400 mb-2">FAQ</div>
+        <h2 class="text-3xl sm:text-4xl font-black">常见问题</h2>
+      </div>
+<!---->
+      <div class="space-y-3">
+        <details class="glass rounded-2xl p-5 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-semibold">
+            订阅地址无法更新怎么办？
+            <i class="fa-solid fa-chevron-down text-slate-500 transition group-open:rotate-180"></i>
+          </summary>
+          <p class="text-slate-400 leading-7 mt-4">
+            请先检查网络连接，然后确认复制的地址完整无误。仍无法更新时，可以尝试切换网络或稍后重试。
+          </p>
+        </details>
+<!---->
+        <details class="glass rounded-2xl p-5 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-semibold">
+            NekoBox 和 Clash 地址可以混用吗？
+            <i class="fa-solid fa-chevron-down text-slate-500 transition group-open:rotate-180"></i>
+          </summary>
+          <p class="text-slate-400 leading-7 mt-4">
+            建议使用对应类型的订阅地址。NekoBox 地址通常适合 Base64/VLESS 客户端，Clash 地址适合 Clash Meta 或 Mihomo。
+          </p>
+        </details>
+<!---->
+        <details class="glass rounded-2xl p-5 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between font-semibold">
+            为什么需要定期更新订阅？
+            <i class="fa-solid fa-chevron-down text-slate-500 transition group-open:rotate-180"></i>
+          </summary>
+          <p class="text-slate-400 leading-7 mt-4">
+            定期更新可以同步最新节点、配置和可用性信息，减少节点失效造成的连接问题。
+          </p>
+        </details>
+      
+</div>
+<!---->
+<!---->
+    
+</section>
+
+
+<!---->
+    <!-- 注意事项 -->
+    <section class="max-w-4xl mx-auto px-5 sm:px-8 pb-20">
+      <div class="glass rounded-3xl p-6 sm:p-8 border border-amber-400/20">
+        <h2 class="flex items-center gap-3 text-lg font-bold text-amber-300 mb-5">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          使用须知
+        </h2>
+<!---->
+        <ul class="space-y-3 text-sm sm:text-base text-slate-400 leading-7">
+          <li>• 本服务仅供个人学习与研究使用。</li>
+          <li>• 请勿滥用、倒卖或公开传播订阅地址。</li>
+          <li>• 使用时请遵守所在地区的法律法规。</li>
+          <li>• 订阅地址属于动态资源，请定期更新。</li>
+        </ul>
+      
+</div>
+<!---->
+<!---->
+    
+</section>
+
+
+  
+</main>
+
+
+
+  <!-- 页脚 -->
+  <footer class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+        <div>
+          © 2026 shuoce · 仅供个人使用
+        </div>
+        <a
+          href="https://shuoce1.eu.cc/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-teal-300 transition"
+        >
+          shuoce1.eu.cc
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div
+    id="toast"
+    class="hidden fixed z-[80] bottom-6 left-1/2 px-5 py-3 rounded-2xl glass text-teal-300 shadow-2xl"
+    role="status"
+    aria-live="polite"
+  >
+    <i class="fa-solid fa-circle-check mr-2"></i>
+    <span id="toastText"></span>
+  </div>
+
+  <!-- 二维码弹窗 -->
+  <div
+    id="qrModal"
+    class="hidden fixed inset-0 z-[70] bg-black/70 items-center justify-center p-5"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="qrTitle"
+  >
+    <div class="modal glass rounded-3xl p-6 w-full max-w-sm text-center relative">
+      <button
+        id="closeQrButton"
+        type="button"
+        class="absolute top-4 right-4 w-9 h-9 rounded-xl hover:bg-white/10"
+        aria-label="关闭二维码"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+<!---->
+      <h2 id="qrTitle" class="text-xl font-bold mb-5">订阅二维码</h2>
+      <div id="largeQrCode" class="bg-white rounded-2xl p-4 inline-block">
+</div>
+
+
+      <p class="text-xs text-slate-500 mt-5">使用客户端扫码或长按识别</p>
+    </div>
+  </div>
+
+  <!-- 返回顶部 -->
+  <button
+    id="backTop"
+    type="button"
+    class="hidden fixed right-5 bottom-5 z-40 w-11 h-11 rounded-2xl glass hover:bg-white/10 transition"
+    aria-label="返回顶部"
+  >
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const subscriptions = [
+      {
+        id: 'neko',
+        icon: '📱',
+        title: 'NekoBox 订阅',
+        subtitle: 'Base64 · VLESS',
+        description: '适用于 NekoBox、v2rayN 等客户端',
+        url: 'https://shuoce1.eu.cc/share/a.txt',
+        color: 'teal',
+        badge: '推荐'
+      },
+      {
+        id: 'clash',
+        icon: '🌐',
+        title: 'Clash 通用订阅',
+        subtitle: 'Meta · Mihomo',
+        description: '适用于 Clash Meta、Mihomo 等客户端',
+        url: 'https://shuoce1.eu.cc/share/synchronous',
+        color: 'blue',
+        badge: '通用'
+      },
+      {
+        id: 'temp',
+        icon: '⚡',
+        title: '临时分享订阅',
+        subtitle: '快速测试',
+        description: '适合临时测试与快速导入',
+        url: 'https://shuoce1.eu.cc/share/mao',
+        color: 'amber',
+        badge: '测试'
+      }
+    ];
+
+    const colorMap = {
+      teal: {
+        text: 'text-teal-300',
+        bg: 'bg-teal-400/10',
+        border: 'border-teal-400/20',
+        button: 'bg-teal-400 hover:bg-teal-300 text-slate-950',
+        qr: '#2dd4bf'
+      },
+      blue: {
+        text: 'text-blue-300',
+        bg: 'bg-blue-400/10',
+        border: 'border-blue-400/20',
+        button: 'bg-blue-500 hover:bg-blue-400 text-white',
+        qr: '#60a5fa'
+      },
+      amber: {
+        text: 'text-amber-300',
+        bg: 'bg-amber-400/10',
+        border: 'border-amber-400/20',
+        button: 'bg-amber-400 hover:bg-amber-300 text-slate-950',
+        qr: '#fbbf24'
+      }
+    };
+
+    const subscriptionList = document.getElementById('subscriptionList');
+
+    function renderSubscriptions() {
+      subscriptionList.innerHTML = subscriptions.map(item => {
+        const color = colorMap[item.color];
+
+        return `
+          <article class="subscription-card glass rounded-3xl p-6 sm:p-7 relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-40 h-40 rounded-full ${color.bg} blur-3xl"></div>
+<!---->
+            <div class="relative">
+              <div class="flex items-start justify-between gap-4 mb-7">
+                <div class="flex items-center gap-4">
+                  <div class="text-4xl">${item.icon}</div>
+                  <div>
+                    <h3 class="text-xl font-bold">${item.title}</h3>
+                    <p class="${color.text} text-sm mt-1">${item.subtitle}</p>
+                  </div>
+                </div>
+<!---->
+                <span class="px-3 py-1 rounded-full text-xs ${color.bg} ${color.text} border ${color.border}">
+                  ${item.badge}
+                </span>
+              </div>
+<!---->
+              <p class="text-sm text-slate-400 mb-5">${item.description}</p>
+<!---->
+              <div
+                id="${item.id}-url"
+                class="url-box rounded-2xl bg-black/25 border border-white/10 px-4 py-4 text-xs sm:text-sm font-mono text-slate-300 min-h-[76px] flex items-center"
+              >
+                ${item.url}
+              </div>
+<!---->
+              <div class="grid grid-cols-[1fr_auto] gap-3 mt-4">
+                <button
+                  type="button"
+                  class="copy-button ${color.button} rounded-2xl py-3.5 font-bold"
+                  data-copy="${item.id}"
+                >
+                  <i class="fa-solid fa-copy mr-2"></i>
+                  复制地址
+                </button>
+<!---->
+                <button
+                  type="button"
+                  class="qr-button w-14 rounded-2xl ${color.bg} ${color.text} border ${color.border} hover:bg-white/10 transition"
+                  data-qr="${item.id}"
+                  aria-label="查看二维码"
+                  title="查看二维码"
+                >
+                  <i class="fa-solid fa-qrcode text-lg"></i>
+                </button>
+              </div>
+<!---->
+              <div class="flex items-center justify-between mt-5 text-xs text-slate-500">
+                <span>
+                  <i class="fa-solid fa-shield-halved mr-1"></i>
+                  HTTPS 安全传输
+                </span>
+                <span>
+                  <i class="fa-solid fa-arrows-rotate mr-1"></i>
+                  自动更新
+                </span>
+              </div>
+            </div>
+          
+</article>
+
+
+        `;
+      }).join('');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toastText');
+
+      text.textContent = message;
+      toast.classList.remove('hidden');
+
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2400);
+    }
+
+    function fallbackCopy(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      const success = document.execCommand('copy');
+      textarea.remove();
+
+      return success;
+    }
+
+    async function copyText(text, button) {
+      let success = false;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          success = true;
+        } else {
+          success = fallbackCopy(text);
+        }
+      } catch {
+        success = fallbackCopy(text);
+      }
+
+      if (!success) {
+        showToast('复制失败，请手动选择地址');
+        return;
+      }
+
+      const original = button.innerHTML;
+      button.innerHTML = '<i class="fa-solid fa-check mr-2"></i>已复制';
+      showToast('订阅地址已复制');
+
+      setTimeout(() => {
+        button.innerHTML = original;
+      }, 1800);
+    }
+
+    function openQr(item) {
+      const modal = document.getElementById('qrModal');
+      const qrContainer = document.getElementById('largeQrCode');
+      const title = document.getElementById('qrTitle');
+      const color = colorMap[item.color];
+
+      qrContainer.innerHTML = '';
+      title.textContent = `${item.title}二维码`;
+
+      new QRCode(qrContainer, {
+        text: item.url,
+        width: 220,
+        height: 220,
+        colorDark: color.qr,
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeQr() {
+      const modal = document.getElementById('qrModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+
+      const light = document.body.classList.contains('light-mode');
+      localStorage.setItem('shuoce-theme', light ? 'light' : 'dark');
+
+      document.querySelector('#themeButton i').className =
+        light ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    }
+
+    // 初始化订阅卡片
+    renderSubscriptions();
+
+    // 复制与二维码事件
+    document.addEventListener('click', event => {
+      const copyButton = event.target.closest('[data-copy]');
+      const qrButton = event.target.closest('[data-qr]');
+
+      if (copyButton) {
+        const item = subscriptions.find(x => x.id === copyButton.dataset.copy);
+        if (item) copyText(item.url, copyButton);
+      }
+
+      if (qrButton) {
+        const item = subscriptions.find(x => x.id === qrButton.dataset.qr);
+        if (item) openQr(item);
+      }
+    });
+
+    // 主题切换
+    const savedTheme = localStorage.getItem('shuoce-theme');
+
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+      document.querySelector('#themeButton i').className = 'fa-solid fa-moon';
+    }
+
+    document.getElementById('themeButton').addEventListener('click', toggleTheme);
+    document.getElementById('mobileThemeButton').addEventListener('click', toggleTheme);
+
+    // 移动端菜单
+    const menuButton = document.getElementById('menuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuButton.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      menuButton.setAttribute('aria-expanded', String(!isHidden));
+      menuButton.innerHTML = isHidden
+        ? '<i class="fa-solid fa-bars"></i>'
+        : '<i class="fa-solid fa-xmark"></i>';
+    });
+
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    // 二维码弹窗
+    document.getElementById('closeQrButton').addEventListener('click', closeQr);
+
+    document.getElementById('qrModal').addEventListener('click', event => {
+      if (event.target.id === 'qrModal') closeQr();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeQr();
+    });
+
+    // 返回顶部
+    const backTop = document.getElementById('backTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backTop.classList.remove('hidden');
+      } else {
+        backTop.classList.add('hidden');
+      }
+    });
+
+    backTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
-
