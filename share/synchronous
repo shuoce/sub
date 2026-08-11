@@ -3,19 +3,76 @@ allow-lan: true
 mode: rule
 log-level: info
 
+# IPv6 网络稳定且代理节点支持 IPv6 时保持 true；
+# 如果出现 IPv6 直连或访问异常，改为 false
 ipv6: true
+
 unified-delay: true
 tcp-concurrent: true
+keep-alive-interval: 30
+
+# Geo 数据设置
+geodata-mode: true
+geo-auto-update: true
+geo-update-interval: 24
 
 profile:
   store-selected: true
   store-fake-ip: true
 
 # =========================
+# DNS 配置
+# =========================
+dns:
+  enable: true
+  ipv6: true
+  listen: 0.0.0.0:1053
+
+  # fake-ip 可以减少 DNS 污染和泄漏
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+
+  # 默认 DNS，用于解析 DNS 服务器域名和节点域名
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+
+  # 常规 DNS
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+    - https://223.5.5.5/dns-query
+
+  # 节点域名解析使用，避免节点域名解析失败
+  proxy-server-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 1.1.1.1
+
+  # 局域网、本地域名和系统检测域名不使用 fake-ip
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.home.arpa"
+    - "+.router"
+    - "+.miwifi.com"
+    - "+.tplinkwifi.net"
+    - "+.asusrouter.com"
+    - "+.msftconnecttest.com"
+    - "+.msftncsi.com"
+    - "+.market.xiaomi.com"
+    - "+.pool.ntp.org"
+    - "+.ntp.org"
+    - "+.time.apple.com"
+    - "+.time.windows.com"
+    - "localhost.ptlogin2.qq.com"
+    - "localhost.sec.qq.com"
+
+# =========================
 # 节点订阅
 # =========================
 proxy-providers:
-
   峰:
     type: http
     url: "https://shuoce1.eu.cc/share/a.txt"
@@ -23,11 +80,11 @@ proxy-providers:
     interval: 3600
     lazy: true
 
+    # 订阅更新及节点测速
     health-check:
       enable: true
       interval: 300
-      url: "http://www.gstatic.com/generate_204"
-
+      url: "https://www.gstatic.com/generate_204"
 
 # =========================
 # 节点分组
@@ -54,24 +111,24 @@ proxy-groups:
       - 🇳🇱荷兰
       - DIRECT
 
-
   # 手动选择全部节点
   - name: 🎯手动选择
     type: select
     use:
       - 峰
+    proxies:
+      - DIRECT
 
-
-  # 自动测速选择最快节点
+  # 自动选择延迟最低节点
+  # 不加入 DIRECT，避免直连延迟最低导致自动优选失效
   - name: ⚡自动优选
     type: url-test
     use:
       - 峰
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     lazy: true
-
 
   # =========================
   # 香港
@@ -80,11 +137,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)香港|HK|🇭🇰"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(香港|Hong ?Kong|HK[ -]?\d*|🇭🇰)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 台湾
@@ -93,11 +150,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)台湾|TW|🇹🇼"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(台湾|Taiwan|TW[ -]?\d*|🇹🇼)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 日本
@@ -106,11 +163,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)日本|JP|🇯🇵"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(日本|Japan|JP[ -]?\d*|🇯🇵)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 韩国
@@ -119,11 +176,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)韩国|KR|🇰🇷"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(韩国|Korea|KR[ -]?\d*|🇰🇷)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 新加坡
@@ -132,11 +189,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)新加坡|SG|🇸🇬"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(新加坡|Singapore|SG[ -]?\d*|🇸🇬)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 美国
@@ -145,11 +202,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)美国|US|USA|🇺🇸"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(美国|United States|USA|US[ -]?\d*|🇺🇸)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 英国
@@ -158,11 +215,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)英国|UK|GB|🇬🇧"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(英国|United Kingdom|UK[ -]?\d*|GB[ -]?\d*|🇬🇧)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 加拿大
@@ -171,11 +228,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)加拿大|CA|🇨🇦"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(加拿大|Canada|CA[ -]?\d*|🇨🇦)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 澳大利亚
@@ -184,11 +241,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)澳大利亚|AU|🇦🇺"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(澳大利亚|Australia|AU[ -]?\d*|🇦🇺)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 德国
@@ -197,11 +254,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)德国|DE|🇩🇪"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(德国|Germany|DE[ -]?\d*|🇩🇪)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 法国
@@ -210,11 +267,11 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)法国|FR|🇫🇷"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(法国|France|FR[ -]?\d*|🇫🇷)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
   # =========================
   # 荷兰
@@ -223,19 +280,34 @@ proxy-groups:
     type: url-test
     use:
       - 峰
-    filter: "(?i)荷兰|NL|🇳🇱"
-    url: "http://www.gstatic.com/generate_204"
+    filter: '(?i)(荷兰|Netherlands|NL[ -]?\d*|🇳🇱)'
+    url: "https://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
-
+    lazy: true
 
 # =========================
 # 分流规则
 # =========================
 rules:
 
-  # 中国大陆 IP 直连
-  - GEOIP,CN,DIRECT
+  # 本机及局域网地址直连
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
 
-  # 其他全部走节点选择
+  # IPv6 本机、局域网及链路本地地址直连
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+
+  # 国内域名直连
+  - GEOSITE,CN,DIRECT
+
+  # 国内 IP 直连
+  - GEOIP,CN,DIRECT,no-resolve
+
+  # 其他流量走总节点选择
   - MATCH,🚀节点选择
