@@ -78,7 +78,7 @@ https://shuoce1.eu.cc/share/a.txt
 
 ```
 
-https://shuoce1.eu.cc/share/synchronous
+https://shuoce1.eu.cc/share/clash.yaml
 ```
 
 5. 下载并启用配置
