@@ -11,19 +11,30 @@ profile:
   store-selected: true
   store-fake-ip: true
 
+# =========================
+# 节点订阅
+# =========================
 proxy-providers:
+
   峰:
     type: http
     url: "https://shuoce1.eu.cc/share/a.txt"
     path: ./providers/feng.yaml
     interval: 3600
+    lazy: true
+
     health-check:
       enable: true
       interval: 300
-      url: http://www.gstatic.com/generate_204
+      url: "http://www.gstatic.com/generate_204"
 
+
+# =========================
+# 节点分组
+# =========================
 proxy-groups:
 
+  # 总节点选择
   - name: 🚀节点选择
     type: select
     proxies:
@@ -43,90 +54,188 @@ proxy-groups:
       - 🇳🇱荷兰
       - DIRECT
 
+
+  # 手动选择全部节点
   - name: 🎯手动选择
     type: select
     use:
       - 峰
 
+
+  # 自动测速选择最快节点
   - name: ⚡自动优选
     type: url-test
     use:
       - 峰
-    url: http://www.gstatic.com/generate_204
+    url: "http://www.gstatic.com/generate_204"
     interval: 300
+    tolerance: 50
+    lazy: true
 
+
+  # =========================
+  # 香港
+  # =========================
   - name: 🇭🇰香港
     type: url-test
     use:
       - 峰
     filter: "(?i)香港|HK|🇭🇰"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 台湾
+  # =========================
   - name: 🇹🇼台湾
     type: url-test
     use:
       - 峰
     filter: "(?i)台湾|TW|🇹🇼"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 日本
+  # =========================
   - name: 🇯🇵日本
     type: url-test
     use:
       - 峰
     filter: "(?i)日本|JP|🇯🇵"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 韩国
+  # =========================
   - name: 🇰🇷韩国
     type: url-test
     use:
       - 峰
     filter: "(?i)韩国|KR|🇰🇷"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 新加坡
+  # =========================
   - name: 🇸🇬新加坡
     type: url-test
     use:
       - 峰
     filter: "(?i)新加坡|SG|🇸🇬"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 美国
+  # =========================
   - name: 🇺🇸美国
     type: url-test
     use:
       - 峰
-    filter: "(?i)美国|US|🇺🇸"
+    filter: "(?i)美国|US|USA|🇺🇸"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 英国
+  # =========================
   - name: 🇬🇧英国
     type: url-test
     use:
       - 峰
     filter: "(?i)英国|UK|GB|🇬🇧"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 加拿大
+  # =========================
   - name: 🇨🇦加拿大
     type: url-test
     use:
       - 峰
     filter: "(?i)加拿大|CA|🇨🇦"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 澳大利亚
+  # =========================
   - name: 🇦🇺澳大利亚
     type: url-test
     use:
       - 峰
     filter: "(?i)澳大利亚|AU|🇦🇺"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 德国
+  # =========================
   - name: 🇩🇪德国
     type: url-test
     use:
       - 峰
     filter: "(?i)德国|DE|🇩🇪"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 法国
+  # =========================
   - name: 🇫🇷法国
     type: url-test
     use:
       - 峰
     filter: "(?i)法国|FR|🇫🇷"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+  # =========================
+  # 荷兰
+  # =========================
   - name: 🇳🇱荷兰
     type: url-test
     use:
       - 峰
     filter: "(?i)荷兰|NL|🇳🇱"
+    url: "http://www.gstatic.com/generate_204"
+    interval: 300
+    tolerance: 50
 
+
+# =========================
+# 分流规则
+# =========================
 rules:
+
+  # 中国大陆 IP 直连
   - GEOIP,CN,DIRECT
+
+  # 其他全部走节点选择
   - MATCH,🚀节点选择
