@@ -7,77 +7,69 @@ proxies:
   type: vless
   server: us5-r.link-t7.com
   port: 10242
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇺🇸 美国专线-02 专线优化丨峰
   type: vless
   server: us5-r.link-t7.com
   port: 10242
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇺🇸 美国专线-03 专线优化丨峰
   type: vless
   server: us2-r.link-t7.com
   port: 10239
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇺🇸 美国专线-04 专线优化丨峰
   type: vless
   server: us2-r.link-t7.com
   port: 10239
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇺🇸 美国中转-01 中转线路丨峰
   type: vless
-  server: xmmcu.130209.xyz
-  port: 443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: usa.811350.xyz
+  server: 180.178.60.254
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇺🇸 美国中转-02 中转线路丨峰
   type: vless
-  server: xmmcu.130209.xyz
-  port: 443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: usa.811350.xyz
+  server: 180.178.60.254
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇺🇸 美国中转-03 中转线路丨峰
   type: vless
-  server: xmmcu.130209.xyz
-  port: 443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: usa.811350.xyz
+  server: 180.178.60.254
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇺🇸 美国中转-04 中转线路丨峰
   type: vless
-  server: xmmcu.130209.xyz
-  port: 443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: usa.811350.xyz
+  server: 180.178.60.254
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇭🇰 香港专线-01 专线优化丨峰
   type: vless
-  server: hk2-r.link-t7.com
-  port: 10127
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  server: hk5-r.link-t7.com
+  port: 10130
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇭🇰 香港专线-02 专线优化丨峰
   type: vless
-  server: hk2-r.link-t7.com
-  port: 10127
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  server: hk5-r.link-t7.com
+  port: 10130
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇭🇰 香港专线-03 专线优化丨峰
   type: vless
-  server: hk5-r.link-t7.com
-  port: 10130
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  server: hk6-r.link-t7.com
+  port: 10136
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇭🇰 香港专线-04 专线优化丨峰
   type: vless
-  server: hk5-r.link-t7.com
-  port: 10130
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  server: hk6-r.link-t7.com
+  port: 10136
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇭🇰 香港中转-01 中转线路丨峰
   type: vless
@@ -95,66 +87,18 @@ proxies:
   servername: hongkong.520786.xyz
 - name: 🇭🇰 香港中转-03 中转线路丨峰
   type: vless
-  server: ct.130209.xyz
+  server: cfd.130209.xyz
   port: 443
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   tls: true
   servername: hongkong.520786.xyz
 - name: 🇭🇰 香港中转-04 中转线路丨峰
   type: vless
-  server: ct.130209.xyz
+  server: cfd.130209.xyz
   port: 443
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   tls: true
   servername: hongkong.520786.xyz
-- name: 🇯🇵 日本专线-01 专线优化丨峰
-  type: vless
-  server: jp1-r.link-t7.com
-  port: 10031
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
-  servername: s0.awsstatic.com
-- name: 🇯🇵 日本专线-02 专线优化丨峰
-  type: vless
-  server: jp1-r.link-t7.com
-  port: 10031
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
-  servername: s0.awsstatic.com
-- name: 🇯🇵 日本专线-03 专线优化丨峰
-  type: vless
-  server: jp3-r.link-t7.com
-  port: 10033
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
-  servername: s0.awsstatic.com
-- name: 🇯🇵 日本专线-04 专线优化丨峰
-  type: vless
-  server: jp3-r.link-t7.com
-  port: 10033
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
-  servername: s0.awsstatic.com
-- name: 🇯🇵 日本中转-01 中转线路丨峰
-  type: vless
-  server: www.visa.cn
-  port: 8443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本中转-02 中转线路丨峰
-  type: vless
-  server: www.visa.cn
-  port: 8443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本中转-03 中转线路丨峰
-  type: vless
-  server: 14.137.238.40
-  port: 10000
-  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
-- name: 🇯🇵 日本中转-04 中转线路丨峰
-  type: vless
-  server: 14.137.238.40
-  port: 10000
-  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇹🇼 台湾中转-01 中转线路丨峰
   type: vless
   server: 220.130.75.248
@@ -175,53 +119,97 @@ proxies:
   server: 220.130.75.248
   port: 10000
   uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
+- name: 🇯🇵 日本专线-01 专线优化丨峰
+  type: vless
+  server: jp2-r.link-t7.com
+  port: 10032
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
+  servername: s0.awsstatic.com
+- name: 🇯🇵 日本专线-02 专线优化丨峰
+  type: vless
+  server: jp2-r.link-t7.com
+  port: 10032
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
+  servername: s0.awsstatic.com
+- name: 🇯🇵 日本专线-03 专线优化丨峰
+  type: vless
+  server: jp4-r.link-t7.com
+  port: 10034
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
+  servername: s0.awsstatic.com
+- name: 🇯🇵 日本专线-04 专线优化丨峰
+  type: vless
+  server: jp4-r.link-t7.com
+  port: 10034
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
+  servername: s0.awsstatic.com
+- name: 🇯🇵 日本中转-01 中转线路丨峰
+  type: vless
+  server: 14.137.238.162
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
+- name: 🇯🇵 日本中转-02 中转线路丨峰
+  type: vless
+  server: 14.137.238.162
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
+- name: 🇯🇵 日本中转-03 中转线路丨峰
+  type: vless
+  server: 14.137.238.40
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
+- name: 🇯🇵 日本中转-04 中转线路丨峰
+  type: vless
+  server: 14.137.238.40
+  port: 10000
+  uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇰🇷 韩国专线-01 专线优化丨峰
   type: vless
   server: kr1-r.link-t7.com
   port: 10046
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇰🇷 韩国专线-02 专线优化丨峰
   type: vless
   server: kr2-r.link-t7.com
   port: 10047
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇰🇷 韩国专线-03 专线优化丨峰
   type: vless
   server: kr3-r.link-t7.com
   port: 10048
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇰🇷 韩国专线-04 专线优化丨峰
   type: vless
   server: kr4-r.link-t7.com
   port: 10049
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇰🇷 韩国专线-05 专线优化丨峰
   type: vless
   server: kr5-r.link-t7.com
   port: 10050
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇸🇬 新加坡专线-01 专线优化丨峰
   type: vless
   server: sg1-r.link-t7.com
   port: 10036
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: s0.awsstatic.com
 - name: 🇸🇬 新加坡专线-02 专线优化丨峰
   type: vless
   server: sg4-r.link-t7.com
   port: 10039
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: d1.awsstatic.com
 - name: 🇸🇬 新加坡专线-03 专线优化丨峰
   type: vless
   server: sg4-r.link-t7.com
   port: 10039
-  uuid: 88DA9CA6-5E68-4687-A748-961B612DCED5
+  uuid: 4B91086B-2E7C-4977-9952-D7A609FE1F42
   servername: d1.awsstatic.com
 - name: 🇹🇭 泰国直连-01 直连线路丨峰
   type: vless
@@ -293,6 +281,10 @@ proxy-groups:
   - 🇭🇰 香港中转-02 中转线路丨峰
   - 🇭🇰 香港中转-03 中转线路丨峰
   - 🇭🇰 香港中转-04 中转线路丨峰
+  - 🇹🇼 台湾中转-01 中转线路丨峰
+  - 🇹🇼 台湾中转-02 中转线路丨峰
+  - 🇹🇼 台湾中转-03 中转线路丨峰
+  - 🇹🇼 台湾中转-04 中转线路丨峰
   - 🇯🇵 日本专线-01 专线优化丨峰
   - 🇯🇵 日本专线-02 专线优化丨峰
   - 🇯🇵 日本专线-03 专线优化丨峰
@@ -301,10 +293,6 @@ proxy-groups:
   - 🇯🇵 日本中转-02 中转线路丨峰
   - 🇯🇵 日本中转-03 中转线路丨峰
   - 🇯🇵 日本中转-04 中转线路丨峰
-  - 🇹🇼 台湾中转-01 中转线路丨峰
-  - 🇹🇼 台湾中转-02 中转线路丨峰
-  - 🇹🇼 台湾中转-03 中转线路丨峰
-  - 🇹🇼 台湾中转-04 中转线路丨峰
   - 🇰🇷 韩国专线-01 专线优化丨峰
   - 🇰🇷 韩国专线-02 专线优化丨峰
   - 🇰🇷 韩国专线-03 专线优化丨峰
@@ -342,6 +330,10 @@ proxy-groups:
   - 🇭🇰 香港中转-02 中转线路丨峰
   - 🇭🇰 香港中转-03 中转线路丨峰
   - 🇭🇰 香港中转-04 中转线路丨峰
+  - 🇹🇼 台湾中转-01 中转线路丨峰
+  - 🇹🇼 台湾中转-02 中转线路丨峰
+  - 🇹🇼 台湾中转-03 中转线路丨峰
+  - 🇹🇼 台湾中转-04 中转线路丨峰
   - 🇯🇵 日本专线-01 专线优化丨峰
   - 🇯🇵 日本专线-02 专线优化丨峰
   - 🇯🇵 日本专线-03 专线优化丨峰
@@ -350,10 +342,6 @@ proxy-groups:
   - 🇯🇵 日本中转-02 中转线路丨峰
   - 🇯🇵 日本中转-03 中转线路丨峰
   - 🇯🇵 日本中转-04 中转线路丨峰
-  - 🇹🇼 台湾中转-01 中转线路丨峰
-  - 🇹🇼 台湾中转-02 中转线路丨峰
-  - 🇹🇼 台湾中转-03 中转线路丨峰
-  - 🇹🇼 台湾中转-04 中转线路丨峰
   - 🇰🇷 韩国专线-01 专线优化丨峰
   - 🇰🇷 韩国专线-02 专线优化丨峰
   - 🇰🇷 韩国专线-03 专线优化丨峰
