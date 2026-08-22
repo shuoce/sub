@@ -97,22 +97,22 @@ proxies:
   servername: images.apple.com
 - name: 🇹🇼 台湾中转-01 中转线路丨峰
   type: vless
-  server: 220.130.75.249
+  server: 211.76.176.195
   port: 10000
   uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇹🇼 台湾中转-02 中转线路丨峰
   type: vless
-  server: 220.130.75.249
+  server: 211.76.176.195
   port: 10000
   uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇹🇼 台湾中转-03 中转线路丨峰
   type: vless
-  server: 220.130.75.249
+  server: 211.76.176.195
   port: 10000
   uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇹🇼 台湾中转-04 中转线路丨峰
   type: vless
-  server: 220.130.75.249
+  server: 211.76.176.195
   port: 10000
   uuid: 431fe973-a43a-4fac-bf83-2a772e0d0625
 - name: 🇯🇵 日本专线-01 专线优化丨峰
@@ -139,34 +139,6 @@ proxies:
   port: 10034
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇯🇵 日本中转-01 中转线路丨峰
-  type: vless
-  server: www.visa.cn
-  port: 8443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本中转-02 中转线路丨峰
-  type: vless
-  server: www.visa.cn
-  port: 8443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本中转-03 中转线路丨峰
-  type: vless
-  server: www.visa.cn
-  port: 8443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本中转-04 中转线路丨峰
-  type: vless
-  server: www.visa.cn
-  port: 8443
-  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
-  tls: true
-  servername: jp.520785.xyz
 - name: 🇰🇷 韩国专线-01 专线优化丨峰
   type: vless
   server: kr1-r.link-t7.com
@@ -293,10 +265,6 @@ proxy-groups:
   - 🇯🇵 日本专线-02 专线优化丨峰
   - 🇯🇵 日本专线-03 专线优化丨峰
   - 🇯🇵 日本专线-04 专线优化丨峰
-  - 🇯🇵 日本中转-01 中转线路丨峰
-  - 🇯🇵 日本中转-02 中转线路丨峰
-  - 🇯🇵 日本中转-03 中转线路丨峰
-  - 🇯🇵 日本中转-04 中转线路丨峰
   - 🇰🇷 韩国专线-01 专线优化丨峰
   - 🇰🇷 韩国专线-02 专线优化丨峰
   - 🇰🇷 韩国专线-03 专线优化丨峰
@@ -342,10 +310,6 @@ proxy-groups:
   - 🇯🇵 日本专线-02 专线优化丨峰
   - 🇯🇵 日本专线-03 专线优化丨峰
   - 🇯🇵 日本专线-04 专线优化丨峰
-  - 🇯🇵 日本中转-01 中转线路丨峰
-  - 🇯🇵 日本中转-02 中转线路丨峰
-  - 🇯🇵 日本中转-03 中转线路丨峰
-  - 🇯🇵 日本中转-04 中转线路丨峰
   - 🇰🇷 韩国专线-01 专线优化丨峰
   - 🇰🇷 韩国专线-02 专线优化丨峰
   - 🇰🇷 韩国专线-03 专线优化丨峰
