@@ -3,166 +3,166 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 🇺🇸 美国专线-01 专线优化丨峰
+- name: 🇺🇸美国专线-01 专线优化丨峰
   type: vless
   server: us5-r.link-t7.com
   port: 10242
   uuid: D8ED7FFD-7AA8-4EEB-9020-18A1A38AE6CC
   servername: s0.awsstatic.com
-- name: 🇺🇸 美国专线-02 专线优化丨峰
+- name: 🇺🇸美国专线-02 专线优化丨峰
   type: vless
   server: us5-r.link-t7.com
   port: 10242
   uuid: D8ED7FFD-7AA8-4EEB-9020-18A1A38AE6CC
   servername: s0.awsstatic.com
-- name: 🇺🇸 美国中转-01 中转线路丨峰
+- name: 🇺🇸美国中转-01 中转线路丨峰
   type: vless
   server: 180.178.60.254
   port: 10000
   uuid: 6f361c37-bc54-43dd-8c8b-0f59354745a5
-- name: 🇺🇸 美国中转-02 中转线路丨峰
+- name: 🇺🇸美国中转-02 中转线路丨峰
   type: vless
   server: 180.178.60.254
   port: 10000
   uuid: 6f361c37-bc54-43dd-8c8b-0f59354745a5
-- name: 🇭🇰 香港专线-01 专线优化丨峰
+- name: 🇭🇰香港专线-01 专线优化丨峰
   type: vless
   server: hk5-r.link-t7.com
   port: 10130
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇭🇰 香港专线-02 专线优化丨峰
+- name: 🇭🇰香港专线-02 专线优化丨峰
   type: vless
   server: hk5-r.link-t7.com
   port: 10130
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇭🇰 香港中转-01 中转线路丨峰
+- name: 🇭🇰香港中转-01 中转线路丨峰
   type: vless
   server: hkt-2.ddns-go.de
   port: 20230
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   servername: images.apple.com
-- name: 🇭🇰 香港中转-02 中转线路丨峰
+- name: 🇭🇰香港中转-02 中转线路丨峰
   type: vless
   server: hkt-2.ddns-go.de
   port: 20230
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   servername: images.apple.com
-- name: 🇹🇼 台湾中转-01 中转线路丨峰
+- name: 🇨🇳台湾中转-01 中转线路丨峰
   type: vless
   server: 211.76.176.195
   port: 10000
   uuid: 6f361c37-bc54-43dd-8c8b-0f59354745a5
-- name: 🇹🇼 台湾中转-02 中转线路丨峰
+- name: 🇨🇳台湾中转-02 中转线路丨峰
   type: vless
   server: 211.76.176.195
   port: 10000
   uuid: 6f361c37-bc54-43dd-8c8b-0f59354745a5
-- name: 🇹🇼 台湾中转-03 中转线路丨峰
+- name: 🇨🇳台湾中转-03 中转线路丨峰
   type: vless
   server: 211.76.176.195
   port: 10000
   uuid: 6f361c37-bc54-43dd-8c8b-0f59354745a5
-- name: 🇹🇼 台湾中转-04 中转线路丨峰
+- name: 🇨🇳台湾中转-04 中转线路丨峰
   type: vless
   server: 211.76.176.195
   port: 10000
   uuid: 6f361c37-bc54-43dd-8c8b-0f59354745a5
-- name: 🇯🇵 日本专线-01 专线优化丨峰
-  type: vless
-  server: rbalytavhhksrbgdx.jiedddym.com
-  port: 42635
-  uuid: 8d05cda5-c9ba-43cf-846e-b9521b872c71
-  servername: www.apple.com
-- name: 🇯🇵 日本专线-02 专线优化丨峰
-  type: vless
-  server: rbalytavhhksrbgdx.jiedddym.com
-  port: 42635
-  uuid: 8d05cda5-c9ba-43cf-846e-b9521b872c71
-  servername: www.apple.com
-- name: 🇯🇵 日本专线-03 专线优化丨峰
-  type: vless
-  server: jp5-r.link-t7.com
-  port: 10035
-  uuid: D8ED7FFD-7AA8-4EEB-9020-18A1A38AE6CC
-  servername: s0.awsstatic.com
-- name: 🇯🇵 日本专线-04 专线优化丨峰
-  type: vless
-  server: jp5-r.link-t7.com
-  port: 10035
-  uuid: D8ED7FFD-7AA8-4EEB-9020-18A1A38AE6CC
-  servername: s0.awsstatic.com
-- name: 🇰🇷 韩国专线-01 专线优化丨峰
+- name: 🇰🇷韩国专线-01 专线优化丨峰
   type: vless
   server: kr1-r.link-t7.com
   port: 10046
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇰🇷 韩国专线-02 专线优化丨峰
+- name: 🇰🇷韩国专线-02 专线优化丨峰
   type: vless
   server: kr2-r.link-t7.com
   port: 10047
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇰🇷 韩国专线-03 专线优化丨峰
+- name: 🇰🇷韩国专线-03 专线优化丨峰
   type: vless
   server: kr3-r.link-t7.com
   port: 10048
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇰🇷 韩国专线-04 专线优化丨峰
+- name: 🇰🇷韩国专线-04 专线优化丨峰
   type: vless
   server: kr4-r.link-t7.com
   port: 10049
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇰🇷 韩国专线-05 专线优化丨峰
+- name: 🇰🇷韩国专线-05 专线优化丨峰
   type: vless
   server: kr5-r.link-t7.com
   port: 10050
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇸🇬 新加坡专线-01 专线优化丨峰
+- name: 🇯🇵日本专线-01 专线优化丨峰
+  type: vless
+  server: rbalytavhhksrbgdx.jiedddym.com
+  port: 42635
+  uuid: 8d05cda5-c9ba-43cf-846e-b9521b872c71
+  servername: www.apple.com
+- name: 🇯🇵日本专线-02 专线优化丨峰
+  type: vless
+  server: rbalytavhhksrbgdx.jiedddym.com
+  port: 42635
+  uuid: 8d05cda5-c9ba-43cf-846e-b9521b872c71
+  servername: www.apple.com
+- name: 🇯🇵日本专线-03 专线优化丨峰
+  type: vless
+  server: jp5-r.link-t7.com
+  port: 10035
+  uuid: D8ED7FFD-7AA8-4EEB-9020-18A1A38AE6CC
+  servername: s0.awsstatic.com
+- name: 🇯🇵日本专线-04 专线优化丨峰
+  type: vless
+  server: jp5-r.link-t7.com
+  port: 10035
+  uuid: D8ED7FFD-7AA8-4EEB-9020-18A1A38AE6CC
+  servername: s0.awsstatic.com
+- name: 🇸🇬新加坡专线-01 专线优化丨峰
   type: vless
   server: sg1-r.link-t7.com
   port: 10036
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: s0.awsstatic.com
-- name: 🇸🇬 新加坡专线-02 专线优化丨峰
+- name: 🇸🇬新加坡专线-02 专线优化丨峰
   type: vless
   server: sg4-r.link-t7.com
   port: 10039
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: d1.awsstatic.com
-- name: 🇸🇬 新加坡专线-03 专线优化丨峰
+- name: 🇸🇬新加坡专线-03 专线优化丨峰
   type: vless
   server: sg4-r.link-t7.com
   port: 10039
   uuid: A1AC6879-3FF2-41EE-B720-431A94E26659
   servername: d1.awsstatic.com
-- name: 🇹🇭 泰国直连-01 直连线路丨峰
+- name: 泰国直连-01 直连线路丨峰
   type: vless
   server: cf.kele.ge
   port: 443
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   tls: true
   servername: tl.520783.xyz
-- name: 🇹🇭 泰国直连-02 直连线路丨峰
+- name: 泰国直连-02 直连线路丨峰
   type: vless
   server: cf.kele.ge
   port: 443
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   tls: true
   servername: tl.520783.xyz
-- name: 🇹🇷 土耳其直连-01 直连线路丨峰
+- name: 土耳其直连-01 直连线路丨峰
   type: vless
   server: cfd.130209.xyz
   port: 8443
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
   tls: true
   servername: turkey.912461.xyz
-- name: 🇹🇷 土耳其直连-02 直连线路丨峰
+- name: 土耳其直连-02 直连线路丨峰
   type: vless
   server: cfd.130209.xyz
   port: 8443
@@ -195,34 +195,34 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 🇺🇸 美国专线-01 专线优化丨峰
-  - 🇺🇸 美国专线-02 专线优化丨峰
-  - 🇺🇸 美国中转-01 中转线路丨峰
-  - 🇺🇸 美国中转-02 中转线路丨峰
-  - 🇭🇰 香港专线-01 专线优化丨峰
-  - 🇭🇰 香港专线-02 专线优化丨峰
-  - 🇭🇰 香港中转-01 中转线路丨峰
-  - 🇭🇰 香港中转-02 中转线路丨峰
-  - 🇹🇼 台湾中转-01 中转线路丨峰
-  - 🇹🇼 台湾中转-02 中转线路丨峰
-  - 🇹🇼 台湾中转-03 中转线路丨峰
-  - 🇹🇼 台湾中转-04 中转线路丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本专线-03 专线优化丨峰
-  - 🇯🇵 日本专线-04 专线优化丨峰
-  - 🇰🇷 韩国专线-01 专线优化丨峰
-  - 🇰🇷 韩国专线-02 专线优化丨峰
-  - 🇰🇷 韩国专线-03 专线优化丨峰
-  - 🇰🇷 韩国专线-04 专线优化丨峰
-  - 🇰🇷 韩国专线-05 专线优化丨峰
-  - 🇸🇬 新加坡专线-01 专线优化丨峰
-  - 🇸🇬 新加坡专线-02 专线优化丨峰
-  - 🇸🇬 新加坡专线-03 专线优化丨峰
-  - 🇹🇭 泰国直连-01 直连线路丨峰
-  - 🇹🇭 泰国直连-02 直连线路丨峰
-  - 🇹🇷 土耳其直连-01 直连线路丨峰
-  - 🇹🇷 土耳其直连-02 直连线路丨峰
+  - 🇺🇸美国专线-01 专线优化丨峰
+  - 🇺🇸美国专线-02 专线优化丨峰
+  - 🇺🇸美国中转-01 中转线路丨峰
+  - 🇺🇸美国中转-02 中转线路丨峰
+  - 🇭🇰香港专线-01 专线优化丨峰
+  - 🇭🇰香港专线-02 专线优化丨峰
+  - 🇭🇰香港中转-01 中转线路丨峰
+  - 🇭🇰香港中转-02 中转线路丨峰
+  - 🇨🇳台湾中转-01 中转线路丨峰
+  - 🇨🇳台湾中转-02 中转线路丨峰
+  - 🇨🇳台湾中转-03 中转线路丨峰
+  - 🇨🇳台湾中转-04 中转线路丨峰
+  - 🇰🇷韩国专线-01 专线优化丨峰
+  - 🇰🇷韩国专线-02 专线优化丨峰
+  - 🇰🇷韩国专线-03 专线优化丨峰
+  - 🇰🇷韩国专线-04 专线优化丨峰
+  - 🇰🇷韩国专线-05 专线优化丨峰
+  - 🇯🇵日本专线-01 专线优化丨峰
+  - 🇯🇵日本专线-02 专线优化丨峰
+  - 🇯🇵日本专线-03 专线优化丨峰
+  - 🇯🇵日本专线-04 专线优化丨峰
+  - 🇸🇬新加坡专线-01 专线优化丨峰
+  - 🇸🇬新加坡专线-02 专线优化丨峰
+  - 🇸🇬新加坡专线-03 专线优化丨峰
+  - 泰国直连-01 直连线路丨峰
+  - 泰国直连-02 直连线路丨峰
+  - 土耳其直连-01 直连线路丨峰
+  - 土耳其直连-02 直连线路丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
@@ -232,34 +232,34 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 🇺🇸 美国专线-01 专线优化丨峰
-  - 🇺🇸 美国专线-02 专线优化丨峰
-  - 🇺🇸 美国中转-01 中转线路丨峰
-  - 🇺🇸 美国中转-02 中转线路丨峰
-  - 🇭🇰 香港专线-01 专线优化丨峰
-  - 🇭🇰 香港专线-02 专线优化丨峰
-  - 🇭🇰 香港中转-01 中转线路丨峰
-  - 🇭🇰 香港中转-02 中转线路丨峰
-  - 🇹🇼 台湾中转-01 中转线路丨峰
-  - 🇹🇼 台湾中转-02 中转线路丨峰
-  - 🇹🇼 台湾中转-03 中转线路丨峰
-  - 🇹🇼 台湾中转-04 中转线路丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本专线-03 专线优化丨峰
-  - 🇯🇵 日本专线-04 专线优化丨峰
-  - 🇰🇷 韩国专线-01 专线优化丨峰
-  - 🇰🇷 韩国专线-02 专线优化丨峰
-  - 🇰🇷 韩国专线-03 专线优化丨峰
-  - 🇰🇷 韩国专线-04 专线优化丨峰
-  - 🇰🇷 韩国专线-05 专线优化丨峰
-  - 🇸🇬 新加坡专线-01 专线优化丨峰
-  - 🇸🇬 新加坡专线-02 专线优化丨峰
-  - 🇸🇬 新加坡专线-03 专线优化丨峰
-  - 🇹🇭 泰国直连-01 直连线路丨峰
-  - 🇹🇭 泰国直连-02 直连线路丨峰
-  - 🇹🇷 土耳其直连-01 直连线路丨峰
-  - 🇹🇷 土耳其直连-02 直连线路丨峰
+  - 🇺🇸美国专线-01 专线优化丨峰
+  - 🇺🇸美国专线-02 专线优化丨峰
+  - 🇺🇸美国中转-01 中转线路丨峰
+  - 🇺🇸美国中转-02 中转线路丨峰
+  - 🇭🇰香港专线-01 专线优化丨峰
+  - 🇭🇰香港专线-02 专线优化丨峰
+  - 🇭🇰香港中转-01 中转线路丨峰
+  - 🇭🇰香港中转-02 中转线路丨峰
+  - 🇨🇳台湾中转-01 中转线路丨峰
+  - 🇨🇳台湾中转-02 中转线路丨峰
+  - 🇨🇳台湾中转-03 中转线路丨峰
+  - 🇨🇳台湾中转-04 中转线路丨峰
+  - 🇰🇷韩国专线-01 专线优化丨峰
+  - 🇰🇷韩国专线-02 专线优化丨峰
+  - 🇰🇷韩国专线-03 专线优化丨峰
+  - 🇰🇷韩国专线-04 专线优化丨峰
+  - 🇰🇷韩国专线-05 专线优化丨峰
+  - 🇯🇵日本专线-01 专线优化丨峰
+  - 🇯🇵日本专线-02 专线优化丨峰
+  - 🇯🇵日本专线-03 专线优化丨峰
+  - 🇯🇵日本专线-04 专线优化丨峰
+  - 🇸🇬新加坡专线-01 专线优化丨峰
+  - 🇸🇬新加坡专线-02 专线优化丨峰
+  - 🇸🇬新加坡专线-03 专线优化丨峰
+  - 泰国直连-01 直连线路丨峰
+  - 泰国直连-02 直连线路丨峰
+  - 土耳其直连-01 直连线路丨峰
+  - 土耳其直连-02 直连线路丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
