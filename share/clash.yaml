@@ -187,6 +187,26 @@ proxies:
   port: 22055
   uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
   servername: addons.mozilla.org
+- name: ⭐ 请在各代理客户端中手动点击「更新订阅」
+  type: vless
+  server: zz.j-pan.ccwu.cc
+  port: 30001
+  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+  servername: s0.awsstatic.com
+- name: ❤️ 谢谢大家的理解与支持！
+  type: vless
+  server: zz.j-pan.ccwu.cc
+  port: 30001
+  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+  servername: s0.awsstatic.com
+- name: '⚠️tg：@lllasszs
+
+    有问题请留言'
+  type: vless
+  server: zz.j-pan.ccwu.cc
+  port: 30001
+  uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+  servername: s0.awsstatic.com
 proxy-groups:
 - name: 自动选择
   type: url-test
@@ -224,6 +244,11 @@ proxy-groups:
   - 🇰🇷 韩国家宽-02 gpt可用丨峰
   - 🇯🇵 日本原生-01 gpt可用丨峰
   - 🇯🇵 日本原生-02 gpt可用丨峰
+  - ⭐ 请在各代理客户端中手动点击「更新订阅」
+  - ❤️ 谢谢大家的理解与支持！
+  - '⚠️tg：@lllasszs
+
+    有问题请留言'
 - name: 手动选择
   type: select
   proxies:
@@ -259,5 +284,10 @@ proxy-groups:
   - 🇰🇷 韩国家宽-02 gpt可用丨峰
   - 🇯🇵 日本原生-01 gpt可用丨峰
   - 🇯🇵 日本原生-02 gpt可用丨峰
+  - ⭐ 请在各代理客户端中手动点击「更新订阅」
+  - ❤️ 谢谢大家的理解与支持！
+  - '⚠️tg：@lllasszs
+
+    有问题请留言'
 rules:
 - MATCH,自动选择
