@@ -15,13 +15,13 @@ proxies:
   port: 10242
   uuid: D2436339-0F26-479A-8064-4D91C2B93652
   servername: s0.awsstatic.com
-- name: 🇺🇸 美国专线-01 下载专用丨峰
+- name: 🇺🇸 美国专线-03 下载专用丨峰
   type: vless
   server: us5-r.link-t7.com
   port: 10242
   uuid: D2436339-0F26-479A-8064-4D91C2B93652
   servername: s0.awsstatic.com
-- name: 🇺🇸 美国专线-02 下载专用丨峰
+- name: 🇺🇸 美国专线-04 下载专用丨峰
   type: vless
   server: us5-r.link-t7.com
   port: 10242
@@ -31,25 +31,25 @@ proxies:
   type: vless
   server: hihknhwxwnbqwhmscyyds.cfooov.xyz
   port: 45812
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.lamer.com.hk
 - name: 🇭🇰 香港专线-02 下载专用丨峰
   type: vless
   server: hihknhwxwnbqwhmscyyds.cfooov.xyz
   port: 45812
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.lamer.com.hk
 - name: 🇭🇰 香港专线-03 下载专用丨峰
   type: vless
   server: schkhihihktabc.jiedddym.com
   port: 37412
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇭🇰 香港专线-04 下载专用丨峰
   type: vless
   server: schkhihihktabc.jiedddym.com
   port: 37412
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇯🇵 日本专线-01 专线优化丨峰
   type: vless
@@ -65,7 +65,7 @@ proxies:
   servername: s0.awsstatic.com
 - name: 🇯🇵 日本直连-01 gpt可用丨峰
   type: vless
-  server: 14.137.238.141
+  server: 14.137.238.142
   port: 10000
   uuid: 8b92dfff-ddfd-4a37-841d-6f7bf7ab43b6
 - name: 🇯🇵 日本直连-02 gpt可用丨峰
@@ -119,73 +119,73 @@ proxies:
   type: vless
   server: sgalylmtbkydyy.cfooov.xyz
   port: 57782
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇸🇬 新加坡直连-02 gpt可用丨峰
   type: vless
   server: xinjiapoalysg.cfooov.xyz
   port: 44675
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇹🇼 台湾中转-01 gpt可用丨峰
   type: vless
   server: wwbqwqqnlyydssc.cfooov.xyz
   port: 39817
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇹🇼 台湾中转-02 gpt可用丨峰
   type: vless
   server: wwbqwqqnlyydssc.cfooov.xyz
   port: 39817
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇹🇼 台湾中转-03 gpt可用丨峰
   type: vless
   server: wwbqwqqnlyydssc.cfooov.xyz
   port: 39817
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇹🇼 台湾中转-04 gpt可用丨峰
   type: vless
   server: wwbqwqqnlyydssc.cfooov.xyz
   port: 39817
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇭🇰 香港家宽-01 gemini专用丨峰
   type: vless
   server: akahkakhknmbzqwcnpy.jiedddym.com
   port: 39879
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.lamer.com.hk
 - name: 🇭🇰 香港家宽-02 gemini专用丨峰
   type: vless
   server: akahkakhknmbzqwcnpy.jiedddym.com
   port: 39879
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.lamer.com.hk
 - name: 🇰🇷 韩国家宽-01 gpt可用丨峰
   type: vless
   server: xjpsgnnbyyds.cfooov.xyz
   port: 61512
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: addons.mozilla.org
 - name: 🇰🇷 韩国家宽-02 gpt可用丨峰
   type: vless
   server: xjpsgnnbyyds.cfooov.xyz
   port: 61512
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: addons.mozilla.org
 - name: 🇯🇵 日本原生-01 gpt可用丨峰
   type: vless
   server: jpgzalydnsyyyds.cfooov.xyz
   port: 59863
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: www.apple.com
 - name: 🇯🇵 日本原生-02 gpt可用丨峰
   type: vless
   server: rbjpyydsaws.cfooov.xyz
   port: 22055
-  uuid: 88aceb73-04fb-459d-8005-93bf8d90ad68
+  uuid: 1cba04cc-d951-4108-8b32-ba5faf4fcf3e
   servername: addons.mozilla.org
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」
   type: vless
@@ -215,8 +215,8 @@ proxy-groups:
   proxies:
   - 🇺🇸 美国专线-01 下载专用丨峰
   - 🇺🇸 美国专线-02 下载专用丨峰
-  - 🇺🇸 美国专线-01 下载专用丨峰
-  - 🇺🇸 美国专线-02 下载专用丨峰
+  - 🇺🇸 美国专线-03 下载专用丨峰
+  - 🇺🇸 美国专线-04 下载专用丨峰
   - 🇭🇰 香港专线-01 下载专用丨峰
   - 🇭🇰 香港专线-02 下载专用丨峰
   - 🇭🇰 香港专线-03 下载专用丨峰
@@ -255,8 +255,8 @@ proxy-groups:
   - 自动选择
   - 🇺🇸 美国专线-01 下载专用丨峰
   - 🇺🇸 美国专线-02 下载专用丨峰
-  - 🇺🇸 美国专线-01 下载专用丨峰
-  - 🇺🇸 美国专线-02 下载专用丨峰
+  - 🇺🇸 美国专线-03 下载专用丨峰
+  - 🇺🇸 美国专线-04 下载专用丨峰
   - 🇭🇰 香港专线-01 下载专用丨峰
   - 🇭🇰 香港专线-02 下载专用丨峰
   - 🇭🇰 香港专线-03 下载专用丨峰
