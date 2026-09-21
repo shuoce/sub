@@ -3,174 +3,144 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 🇭🇰 香港专线-01 下载专用丨峰
+- name: 🇭🇰香港专线-01 线路稳定丨峰
   type: vless
-  server: scsgxjpyydszznbqqwdnsh.jiedddym.com
-  port: 32015
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
+  server: hkozrqqnbgwkymzzhf.jiedddym.com
+  port: 49972
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
   servername: www.lamer.com.hk
-- name: 🇭🇰 香港专线-02 下载专用丨峰
+- name: 🇭🇰香港专线-02 线路稳定丨峰
   type: vless
-  server: scsgxjpyydszznbqqwdnsh.jiedddym.com
-  port: 32015
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
+  server: hkozrqqnbgwkymzzhf.jiedddym.com
+  port: 49972
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
   servername: www.lamer.com.hk
-- name: 🇭🇰 香港专线-03 下载专用丨峰
+- name: 🇭🇰香港专线-03 线路稳定丨峰
   type: vless
-  server: xgnhxwnqjcqscqqn.cfooov.xyz
-  port: 47554
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
-  servername: www.apple.com
-- name: 🇭🇰 香港专线-04 下载专用丨峰
+  server: hkozrqqnbgwkymzzhf.jiedddym.com
+  port: 49972
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
+  servername: www.lamer.com.hk
+- name: 🇭🇰香港专线-04 线路稳定丨峰
   type: vless
-  server: xgnhxwnqjcqscqqn.cfooov.xyz
-  port: 47554
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
-  servername: www.apple.com
-- name: 🇺🇸 美国专线-01 下载专用丨峰
+  server: hkozrqqnbgwkymzzhf.jiedddym.com
+  port: 49972
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
+  servername: www.lamer.com.hk
+- name: 🇺🇸美国高速-03 下载专用丨峰
   type: vless
-  server: us3-r.link-t7.com
-  port: 10240
-  uuid: 58C828CD-3EBA-46F9-B297-16003D7A6E68
-  servername: s0.awsstatic.com
-- name: 🇺🇸 美国专线-02 下载专用丨峰
-  type: vless
-  server: us3-r.link-t7.com
-  port: 10240
-  uuid: 58C828CD-3EBA-46F9-B297-16003D7A6E68
-  servername: s0.awsstatic.com
-- name: 🇺🇸 美国高速-03 下载专用丨峰
-  type: vless
-  server: us4.998998.best
+  server: us1-1.998998.best
   port: 443
   uuid: 3c6d1933-b22a-484b-ac8a-63e24f5fba75
   tls: true
-  servername: server14.9966338.xyz
-- name: 🇺🇸 美国高速-04 下载专用丨峰
+  servername: server5.9966338.xyz
+- name: 🇺🇸美国高速-04 下载专用丨峰
   type: vless
-  server: us4.998998.best
+  server: us1-1.998998.best
   port: 443
   uuid: 3c6d1933-b22a-484b-ac8a-63e24f5fba75
   tls: true
-  servername: server14.9966338.xyz
-- name: 🇺🇸 美国直连-01 gpt可用丨峰
+  servername: server5.9966338.xyz
+- name: 🇺🇸美国直连-01 gpt可用丨峰
   type: vless
-  server: us7-2.998998.best
+  server: us1-1.998998.best
   port: 443
   uuid: 3c6d1933-b22a-484b-ac8a-63e24f5fba75
   tls: true
-  servername: server9.9966338.xyz
-- name: 🇺🇸 美国直连-02 gpt可用丨峰
+  servername: server5.9966338.xyz
+- name: 🇺🇸美国直连-02 gpt可用丨峰
   type: vless
-  server: us7-2.998998.best
+  server: us1-1.998998.best
   port: 443
   uuid: 3c6d1933-b22a-484b-ac8a-63e24f5fba75
   tls: true
-  servername: server9.9966338.xyz
-- name: 🇯🇵 日本专线-01 专线优化丨峰
-  type: trojan
-  server: jp3.998998.best
-  port: 443
-  password: 3c6d1933-b22a-484b-ac8a-63e24f5fba75
-  sni: nat11.outsidemyheart.space
-  tls: true
-- name: 🇯🇵 日本专线-02 专线优化丨峰
-  type: trojan
-  server: jp3.998998.best
-  port: 443
-  password: 3c6d1933-b22a-484b-ac8a-63e24f5fba75
-  sni: nat11.outsidemyheart.space
-  tls: true
-- name: 🇯🇵 日本直连-01 gpt可用丨峰
+  servername: server5.9966338.xyz
+- name: 🇯🇵日本专线-01 专线优化丨峰
   type: vless
-  server: cn.uxuan.cfd
-  port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digjp.murphyweb.top
-- name: 🇯🇵 日本直连-02 gpt可用丨峰
+  server: clhkzzzdbgwxxndnlm.cfooov.xyz
+  port: 50500
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
+  servername: addons.mozilla.org
+- name: 🇯🇵日本专线-02 专线优化丨峰
   type: vless
-  server: cn.uxuan.cfd
-  port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digjp.murphyweb.top
-- name: 🇰🇷 韩国专线-01 下载专用丨峰
+  server: clhkzzzdbgwxxndnlm.cfooov.xyz
+  port: 50500
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
+  servername: addons.mozilla.org
+- name: 🇯🇵日本直连-01 gpt可用丨峰
   type: vless
-  server: kr2-r.link-t7.com
-  port: 10047
-  uuid: 58C828CD-3EBA-46F9-B297-16003D7A6E68
-  servername: s0.awsstatic.com
-- name: 🇰🇷 韩国专线-02 下载专用丨峰
+  server: jpzzqqnzdbgwhbhzsrgh.cfooov.xyz
+  port: 21844
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
+  servername: addons.mozilla.org
+- name: 🇯🇵日本直连-02 gpt可用丨峰
   type: vless
-  server: kr2-r.link-t7.com
-  port: 10047
-  uuid: 58C828CD-3EBA-46F9-B297-16003D7A6E68
-  servername: s0.awsstatic.com
-- name: 🇸🇬 新加坡直连-01 gpt可用丨峰
+  server: jpzzqqnzdbgwhbhzsrgh.cfooov.xyz
+  port: 21844
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
+  servername: addons.mozilla.org
+- name: 🇸🇬新加坡直连-01 gpt可用丨峰
   type: vless
   server: cn.uxuan.cfd
   port: 443
   uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
   tls: true
   servername: digsg.murphyweb.top
-- name: 🇸🇬 新加坡直连-02 gpt可用丨峰
+- name: 🇸🇬新加坡直连-02 gpt可用丨峰
   type: vless
   server: cn.uxuan.cfd
   port: 443
   uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
   tls: true
   servername: digsg.murphyweb.top
-- name: 🇹🇼 台湾中转-01 gpt可用丨峰
+- name: 🇭🇰香港家宽-01 gemini专用丨峰
   type: vless
-  server: ttnbgwkymwawdzg.cfooov.xyz
-  port: 36564
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
+  server: wtnjwjxzxhnmzgwl.cfooov.xyz
+  port: 31991
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
   servername: www.apple.com
-- name: 🇹🇼 台湾中转-02 gpt可用丨峰
+- name: 🇭🇰香港家宽-02 gemini专用丨峰
   type: vless
-  server: ttnbgwkymwawdzg.cfooov.xyz
-  port: 36564
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
+  server: wtnjwjxzxhnmzgwl.cfooov.xyz
+  port: 31991
+  uuid: 01a3a56e-ff72-4988-bfc0-fb71b83e8a51
   servername: www.apple.com
-- name: 🇭🇰 香港家宽-01 gemini专用丨峰
-  type: vless
-  server: hkyhschktyyds.cfooov.xyz
-  port: 27712
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
-  servername: www.apple.com
-- name: 🇭🇰 香港家宽-02 gemini专用丨峰
-  type: vless
-  server: hkyhschktyyds.cfooov.xyz
-  port: 27712
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
-  servername: www.apple.com
-- name: 🇰🇷 韩国家宽-01 gpt可用丨峰
+- name: 🇰🇷韩国家宽-01 gpt可用丨峰
   type: vless
   server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 28463
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
+  port: 61205
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
   servername: addons.mozilla.org
-- name: 🇰🇷 韩国家宽-02 gpt可用丨峰
+- name: 🇰🇷韩国家宽-02 gpt可用丨峰
   type: vless
   server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 28463
-  uuid: edc17c6e-bb58-4a98-a4a8-ca37aa8b56d2
+  port: 61205
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
   servername: addons.mozilla.org
-- name: 🇯🇵 日本原生-01 gpt可用丨峰
+- name: 🇯🇵日本原生-01 gpt可用丨峰
   type: vless
-  server: cn.uxuan.cfd
-  port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digjp.murphyweb.top
-- name: 🇯🇵 日本原生-02 gpt可用丨峰
+  server: jpzzqqnzdbgwhbhzsrgh.cfooov.xyz
+  port: 21844
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
+  servername: addons.mozilla.org
+- name: 🇯🇵日本原生-02 gpt可用丨峰
   type: vless
-  server: cn.uxuan.cfd
-  port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digjp.murphyweb.top
+  server: jpzzqqnzdbgwhbhzsrgh.cfooov.xyz
+  port: 21844
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
+  servername: addons.mozilla.org
+- name: 🇨🇳台湾中转-01 gpt可用丨峰
+  type: vless
+  server: ttszhrmghgdssbkqf.cfooov.xyz
+  port: 42241
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
+  servername: www.apple.com
+- name: 🇨🇳台湾中转-02 gpt可用丨峰
+  type: vless
+  server: ttszhrmghgdssbkqf.cfooov.xyz
+  port: 42241
+  uuid: 55848813-689e-4a39-82cf-00748cbc7289
+  servername: www.apple.com
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」
   type: vless
   server: zz.j-pan.ccwu.cc
@@ -197,32 +167,28 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 🇭🇰 香港专线-01 下载专用丨峰
-  - 🇭🇰 香港专线-02 下载专用丨峰
-  - 🇭🇰 香港专线-03 下载专用丨峰
-  - 🇭🇰 香港专线-04 下载专用丨峰
-  - 🇺🇸 美国专线-01 下载专用丨峰
-  - 🇺🇸 美国专线-02 下载专用丨峰
-  - 🇺🇸 美国高速-03 下载专用丨峰
-  - 🇺🇸 美国高速-04 下载专用丨峰
-  - 🇺🇸 美国直连-01 gpt可用丨峰
-  - 🇺🇸 美国直连-02 gpt可用丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本直连-01 gpt可用丨峰
-  - 🇯🇵 日本直连-02 gpt可用丨峰
-  - 🇰🇷 韩国专线-01 下载专用丨峰
-  - 🇰🇷 韩国专线-02 下载专用丨峰
-  - 🇸🇬 新加坡直连-01 gpt可用丨峰
-  - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇹🇼 台湾中转-01 gpt可用丨峰
-  - 🇹🇼 台湾中转-02 gpt可用丨峰
-  - 🇭🇰 香港家宽-01 gemini专用丨峰
-  - 🇭🇰 香港家宽-02 gemini专用丨峰
-  - 🇰🇷 韩国家宽-01 gpt可用丨峰
-  - 🇰🇷 韩国家宽-02 gpt可用丨峰
-  - 🇯🇵 日本原生-01 gpt可用丨峰
-  - 🇯🇵 日本原生-02 gpt可用丨峰
+  - 🇭🇰香港专线-01 线路稳定丨峰
+  - 🇭🇰香港专线-02 线路稳定丨峰
+  - 🇭🇰香港专线-03 线路稳定丨峰
+  - 🇭🇰香港专线-04 线路稳定丨峰
+  - 🇺🇸美国高速-03 下载专用丨峰
+  - 🇺🇸美国高速-04 下载专用丨峰
+  - 🇺🇸美国直连-01 gpt可用丨峰
+  - 🇺🇸美国直连-02 gpt可用丨峰
+  - 🇯🇵日本专线-01 专线优化丨峰
+  - 🇯🇵日本专线-02 专线优化丨峰
+  - 🇯🇵日本直连-01 gpt可用丨峰
+  - 🇯🇵日本直连-02 gpt可用丨峰
+  - 🇸🇬新加坡直连-01 gpt可用丨峰
+  - 🇸🇬新加坡直连-02 gpt可用丨峰
+  - 🇭🇰香港家宽-01 gemini专用丨峰
+  - 🇭🇰香港家宽-02 gemini专用丨峰
+  - 🇰🇷韩国家宽-01 gpt可用丨峰
+  - 🇰🇷韩国家宽-02 gpt可用丨峰
+  - 🇯🇵日本原生-01 gpt可用丨峰
+  - 🇯🇵日本原生-02 gpt可用丨峰
+  - 🇨🇳台湾中转-01 gpt可用丨峰
+  - 🇨🇳台湾中转-02 gpt可用丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
@@ -232,32 +198,28 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 🇭🇰 香港专线-01 下载专用丨峰
-  - 🇭🇰 香港专线-02 下载专用丨峰
-  - 🇭🇰 香港专线-03 下载专用丨峰
-  - 🇭🇰 香港专线-04 下载专用丨峰
-  - 🇺🇸 美国专线-01 下载专用丨峰
-  - 🇺🇸 美国专线-02 下载专用丨峰
-  - 🇺🇸 美国高速-03 下载专用丨峰
-  - 🇺🇸 美国高速-04 下载专用丨峰
-  - 🇺🇸 美国直连-01 gpt可用丨峰
-  - 🇺🇸 美国直连-02 gpt可用丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本直连-01 gpt可用丨峰
-  - 🇯🇵 日本直连-02 gpt可用丨峰
-  - 🇰🇷 韩国专线-01 下载专用丨峰
-  - 🇰🇷 韩国专线-02 下载专用丨峰
-  - 🇸🇬 新加坡直连-01 gpt可用丨峰
-  - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇹🇼 台湾中转-01 gpt可用丨峰
-  - 🇹🇼 台湾中转-02 gpt可用丨峰
-  - 🇭🇰 香港家宽-01 gemini专用丨峰
-  - 🇭🇰 香港家宽-02 gemini专用丨峰
-  - 🇰🇷 韩国家宽-01 gpt可用丨峰
-  - 🇰🇷 韩国家宽-02 gpt可用丨峰
-  - 🇯🇵 日本原生-01 gpt可用丨峰
-  - 🇯🇵 日本原生-02 gpt可用丨峰
+  - 🇭🇰香港专线-01 线路稳定丨峰
+  - 🇭🇰香港专线-02 线路稳定丨峰
+  - 🇭🇰香港专线-03 线路稳定丨峰
+  - 🇭🇰香港专线-04 线路稳定丨峰
+  - 🇺🇸美国高速-03 下载专用丨峰
+  - 🇺🇸美国高速-04 下载专用丨峰
+  - 🇺🇸美国直连-01 gpt可用丨峰
+  - 🇺🇸美国直连-02 gpt可用丨峰
+  - 🇯🇵日本专线-01 专线优化丨峰
+  - 🇯🇵日本专线-02 专线优化丨峰
+  - 🇯🇵日本直连-01 gpt可用丨峰
+  - 🇯🇵日本直连-02 gpt可用丨峰
+  - 🇸🇬新加坡直连-01 gpt可用丨峰
+  - 🇸🇬新加坡直连-02 gpt可用丨峰
+  - 🇭🇰香港家宽-01 gemini专用丨峰
+  - 🇭🇰香港家宽-02 gemini专用丨峰
+  - 🇰🇷韩国家宽-01 gpt可用丨峰
+  - 🇰🇷韩国家宽-02 gpt可用丨峰
+  - 🇯🇵日本原生-01 gpt可用丨峰
+  - 🇯🇵日本原生-02 gpt可用丨峰
+  - 🇨🇳台湾中转-01 gpt可用丨峰
+  - 🇨🇳台湾中转-02 gpt可用丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
