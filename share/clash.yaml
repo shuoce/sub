@@ -41,18 +41,16 @@ proxies:
   servername: www.amazon.com
 - name: 🇯🇵 日本专线-01 专线优化丨峰
   type: vless
-  server: cf.kele.ge
-  port: 8443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: jp.520785.xyz
+  server: 45.202.254.20
+  port: 9443
+  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  servername: www.amazon.com
 - name: 🇯🇵 日本专线-02 专线优化丨峰
   type: vless
-  server: cf.kele.ge
-  port: 8443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: jp.520785.xyz
+  server: 45.202.254.20
+  port: 9443
+  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  servername: www.amazon.com
 - name: 🇯🇵 日本直连-01 gpt可用丨峰
   type: vless
   server: www.wto.org
@@ -69,64 +67,84 @@ proxies:
   servername: jp.520785.xyz
 - name: 🇸🇬 新加坡直连-01 gpt可用丨峰
   type: vless
-  server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 45081
-  uuid: 27dd0625-3105-49e1-b6f2-4fafc59db633
-  servername: www.lamer.com.hk
+  server: cn.uxuan.cfd
+  port: 443
+  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
+  tls: true
+  servername: digsg.murphyweb.top
 - name: 🇸🇬 新加坡直连-02 gpt可用丨峰
   type: vless
-  server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 45081
-  uuid: 27dd0625-3105-49e1-b6f2-4fafc59db633
-  servername: www.lamer.com.hk
-- name: 🇭🇰 香港家宽-01 gemini专用丨峰
-  type: vless
-  server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 36575
-  uuid: 27dd0625-3105-49e1-b6f2-4fafc59db633
-  servername: www.lamer.com.hk
-- name: 🇭🇰 香港家宽-02 gemini专用丨峰
-  type: vless
-  server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 36575
-  uuid: 27dd0625-3105-49e1-b6f2-4fafc59db633
-  servername: www.lamer.com.hk
-- name: 🇰🇷 韩国家宽-01 gpt可用丨峰
-  type: vless
-  server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 61205
-  uuid: 27dd0625-3105-49e1-b6f2-4fafc59db633
-  servername: addons.mozilla.org
-- name: 🇰🇷 韩国家宽-02 gpt可用丨峰
-  type: vless
-  server: clhkzzzdbgwxxndnlm.cfooov.xyz
-  port: 61205
-  uuid: 27dd0625-3105-49e1-b6f2-4fafc59db633
-  servername: addons.mozilla.org
-- name: 🇹🇼 台湾中转-01 gpt可用丨峰
+  server: cn.uxuan.cfd
+  port: 443
+  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
+  tls: true
+  servername: digsg.murphyweb.top
+- name: 🇹🇼 台湾备用-01 gpt可用丨峰
   type: vless
   server: 45.207.158.76
   port: 9443
   uuid: 966990b5-5868-4af1-add6-011c72b4a443
   servername: www.amazon.com
-- name: 🇹🇼 台湾中转-02 gpt可用丨峰
+- name: 🇹🇼 台湾备用-02 gpt可用丨峰
   type: vless
   server: 45.207.158.76
   port: 9443
   uuid: 966990b5-5868-4af1-add6-011c72b4a443
   servername: www.amazon.com
-- name: 🇯🇵 日本备用-01 专线优化丨峰
+- name: 🇯🇵 日本备用-01 gpt可用 稳定线路丨峰
   type: vless
-  server: 45.202.254.20
-  port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
-  servername: www.amazon.com
-- name: 🇯🇵 日本备用-02 专线优化丨峰
+  server: cfd.130209.xyz
+  port: 8443
+  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  tls: true
+  servername: jp.520785.xyz
+- name: 🇯🇵 日本备用-02 gpt可用 稳定线路丨峰
   type: vless
-  server: 45.202.254.20
-  port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
-  servername: www.amazon.com
+  server: cfd.130209.xyz
+  port: 8443
+  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  tls: true
+  servername: jp.520785.xyz
+- name: 🇯🇵 日本高速备用-01 gpt可用丨峰
+  type: vless
+  server: cn.uxuan.cfd
+  port: 443
+  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
+  tls: true
+  servername: digjp.murphyweb.top
+- name: 🇯🇵 日本高速备用-02 gpt可用丨峰
+  type: vless
+  server: cn.uxuan.cfd
+  port: 443
+  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
+  tls: true
+  servername: digjp.murphyweb.top
+- name: 🇭🇰 香港备用-01 gpt可用丨峰
+  type: vless
+  server: cfd.130209.xyz
+  port: 443
+  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  tls: true
+  servername: hk.152568.xyz
+- name: 🇭🇰 香港备用-02 gpt可用丨峰
+  type: vless
+  server: cfd.130209.xyz
+  port: 443
+  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  tls: true
+  servername: hk.152568.xyz
+- name: 🇭🇰 香港高速备用-01 gpt可用丨峰
+  type: vless
+  server: 3696b38bsg.murphyweb.sbs
+  port: 32134
+  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
+  servername: buylite.music.apple.com
+- name: 🇭🇰 香港高速备用-02 gpt可用丨峰
+  type: vless
+  server: 3696b38bsg.murphyweb.sbs
+  port: 32134
+  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
+  servername: buylite.music.apple.com
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」
   type: vless
   server: zz.j-pan.ccwu.cc
@@ -165,14 +183,16 @@ proxy-groups:
   - 🇯🇵 日本直连-02 gpt可用丨峰
   - 🇸🇬 新加坡直连-01 gpt可用丨峰
   - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇭🇰 香港家宽-01 gemini专用丨峰
-  - 🇭🇰 香港家宽-02 gemini专用丨峰
-  - 🇰🇷 韩国家宽-01 gpt可用丨峰
-  - 🇰🇷 韩国家宽-02 gpt可用丨峰
-  - 🇹🇼 台湾中转-01 gpt可用丨峰
-  - 🇹🇼 台湾中转-02 gpt可用丨峰
-  - 🇯🇵 日本备用-01 专线优化丨峰
-  - 🇯🇵 日本备用-02 专线优化丨峰
+  - 🇹🇼 台湾备用-01 gpt可用丨峰
+  - 🇹🇼 台湾备用-02 gpt可用丨峰
+  - 🇯🇵 日本备用-01 gpt可用 稳定线路丨峰
+  - 🇯🇵 日本备用-02 gpt可用 稳定线路丨峰
+  - 🇯🇵 日本高速备用-01 gpt可用丨峰
+  - 🇯🇵 日本高速备用-02 gpt可用丨峰
+  - 🇭🇰 香港备用-01 gpt可用丨峰
+  - 🇭🇰 香港备用-02 gpt可用丨峰
+  - 🇭🇰 香港高速备用-01 gpt可用丨峰
+  - 🇭🇰 香港高速备用-02 gpt可用丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
@@ -194,14 +214,16 @@ proxy-groups:
   - 🇯🇵 日本直连-02 gpt可用丨峰
   - 🇸🇬 新加坡直连-01 gpt可用丨峰
   - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇭🇰 香港家宽-01 gemini专用丨峰
-  - 🇭🇰 香港家宽-02 gemini专用丨峰
-  - 🇰🇷 韩国家宽-01 gpt可用丨峰
-  - 🇰🇷 韩国家宽-02 gpt可用丨峰
-  - 🇹🇼 台湾中转-01 gpt可用丨峰
-  - 🇹🇼 台湾中转-02 gpt可用丨峰
-  - 🇯🇵 日本备用-01 专线优化丨峰
-  - 🇯🇵 日本备用-02 专线优化丨峰
+  - 🇹🇼 台湾备用-01 gpt可用丨峰
+  - 🇹🇼 台湾备用-02 gpt可用丨峰
+  - 🇯🇵 日本备用-01 gpt可用 稳定线路丨峰
+  - 🇯🇵 日本备用-02 gpt可用 稳定线路丨峰
+  - 🇯🇵 日本高速备用-01 gpt可用丨峰
+  - 🇯🇵 日本高速备用-02 gpt可用丨峰
+  - 🇭🇰 香港备用-01 gpt可用丨峰
+  - 🇭🇰 香港备用-02 gpt可用丨峰
+  - 🇭🇰 香港高速备用-01 gpt可用丨峰
+  - 🇭🇰 香港高速备用-02 gpt可用丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
