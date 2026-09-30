@@ -3,148 +3,114 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 🇭🇰 香港中转-01 线路稳定丨峰
+- name: 🇭🇰香港中转-01 线路稳定丨峰
   type: vless
   server: 45.207.157.8
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇭🇰 香港中转-02 线路稳定丨峰
+- name: 🇭🇰香港中转-02 线路稳定丨峰
   type: vless
   server: 45.207.157.8
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇭🇰 香港直连-01 线路稳定丨峰
-  type: vless
-  server: hk3.569283.xyz
-  port: 443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  servername: gateway.icloud.com
-- name: 🇭🇰 香港直连-02 线路稳定丨峰
-  type: vless
-  server: hk3.569283.xyz
-  port: 443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  servername: gateway.icloud.com
-- name: 🇺🇸 美国直连-01 gpt可用丨峰
+- name: 🇺🇸美国直连-01 gpt可用丨峰
   type: vless
   server: 143.246.61.211
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇺🇸 美国直连-02 gpt可用丨峰
+- name: 🇺🇸美国直连-02 gpt可用丨峰
   type: vless
   server: 143.246.61.211
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇯🇵 日本专线-01 专线优化丨峰
+- name: 🇺🇸美国移动-01 gpt可用丨峰
+  type: vless
+  server: 156.229.162.171
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇺🇸美国移动-02 gpt可用丨峰
+  type: vless
+  server: 156.229.162.171
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇯🇵日本专线-01 专线优化丨峰
   type: vless
   server: 45.202.254.20
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇯🇵 日本专线-02 专线优化丨峰
+- name: 🇯🇵日本专线-02 专线优化丨峰
   type: vless
   server: 45.202.254.20
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇯🇵 日本直连-01 gpt可用丨峰
+- name: 🇯🇵日本原生-01 gpt可用丨峰
   type: vless
-  server: www.wto.org
-  port: 8443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本直连-02 gpt可用丨峰
+  server: 176.97.71.18
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇯🇵日本原生-02 gpt可用丨峰
   type: vless
-  server: www.wto.org
-  port: 8443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇸🇬 新加坡直连-01 gpt可用丨峰
-  type: vless
-  server: cn.uxuan.cfd
-  port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digsg.murphyweb.top
-- name: 🇸🇬 新加坡直连-02 gpt可用丨峰
-  type: vless
-  server: cn.uxuan.cfd
-  port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digsg.murphyweb.top
-- name: 🇹🇼 台湾备用-01 gpt可用丨峰
+  server: 176.97.71.18
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇨🇳台湾备用-01 gpt可用丨峰
   type: vless
   server: 45.207.158.76
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇹🇼 台湾备用-02 gpt可用丨峰
+- name: 🇨🇳台湾备用-02 gpt可用丨峰
   type: vless
   server: 45.207.158.76
   port: 9443
-  uuid: 966990b5-5868-4af1-add6-011c72b4a443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
   servername: www.amazon.com
-- name: 🇯🇵 日本备用-01 gpt可用 稳定线路丨峰
+- name: 🇭🇰香港移动备用-01 gpt可用丨峰
   type: vless
-  server: cfd.130209.xyz
-  port: 8443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本备用-02 gpt可用 稳定线路丨峰
+  server: 38.180.188.178
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇭🇰香港移动备用-02 gpt可用丨峰
   type: vless
-  server: cfd.130209.xyz
-  port: 8443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本高速备用-01 gpt可用丨峰
+  server: 38.180.188.178
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇭🇰美国原生-01 gpt可用丨峰
   type: vless
-  server: cn.uxuan.cfd
+  server: 38.180.136.232
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 🇭🇰美国原生-02 gpt可用丨峰
+  type: vless
+  server: 38.180.136.232
+  port: 9443
+  uuid: 2751c1f3-0bb6-446e-ab26-e2384980705f
+  servername: www.amazon.com
+- name: 德国原生-01 gpt可用丨峰
+  type: vless
+  server: 31.70.111.146
   port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digjp.murphyweb.top
-- name: 🇯🇵 日本高速备用-02 gpt可用丨峰
+  uuid: 84ed0e09-6803-4ef9-a977-74b657d971e5
+  servername: www.apple.com
+- name: 德国原生-02 gpt可用丨峰
   type: vless
-  server: cn.uxuan.cfd
+  server: 31.70.111.146
   port: 443
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  tls: true
-  servername: digjp.murphyweb.top
-- name: 🇭🇰 香港备用-01 gpt可用丨峰
-  type: vless
-  server: cfd.130209.xyz
-  port: 443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: hk.152568.xyz
-- name: 🇭🇰 香港备用-02 gpt可用丨峰
-  type: vless
-  server: cfd.130209.xyz
-  port: 443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  tls: true
-  servername: hk.152568.xyz
-- name: 🇭🇰 香港高速备用-01 gpt可用丨峰
-  type: vless
-  server: 3696b38bsg.murphyweb.sbs
-  port: 32134
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  servername: buylite.music.apple.com
-- name: 🇭🇰 香港高速备用-02 gpt可用丨峰
-  type: vless
-  server: 3696b38bsg.murphyweb.sbs
-  port: 32134
-  uuid: 5b01dc2d-6892-49b8-8289-3f73a32e00e4
-  servername: buylite.music.apple.com
+  uuid: 84ed0e09-6803-4ef9-a977-74b657d971e5
+  servername: www.apple.com
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」
   type: vless
   server: zz.j-pan.ccwu.cc
@@ -171,28 +137,24 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 🇭🇰 香港中转-01 线路稳定丨峰
-  - 🇭🇰 香港中转-02 线路稳定丨峰
-  - 🇭🇰 香港直连-01 线路稳定丨峰
-  - 🇭🇰 香港直连-02 线路稳定丨峰
-  - 🇺🇸 美国直连-01 gpt可用丨峰
-  - 🇺🇸 美国直连-02 gpt可用丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本直连-01 gpt可用丨峰
-  - 🇯🇵 日本直连-02 gpt可用丨峰
-  - 🇸🇬 新加坡直连-01 gpt可用丨峰
-  - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇹🇼 台湾备用-01 gpt可用丨峰
-  - 🇹🇼 台湾备用-02 gpt可用丨峰
-  - 🇯🇵 日本备用-01 gpt可用 稳定线路丨峰
-  - 🇯🇵 日本备用-02 gpt可用 稳定线路丨峰
-  - 🇯🇵 日本高速备用-01 gpt可用丨峰
-  - 🇯🇵 日本高速备用-02 gpt可用丨峰
-  - 🇭🇰 香港备用-01 gpt可用丨峰
-  - 🇭🇰 香港备用-02 gpt可用丨峰
-  - 🇭🇰 香港高速备用-01 gpt可用丨峰
-  - 🇭🇰 香港高速备用-02 gpt可用丨峰
+  - 🇭🇰香港中转-01 线路稳定丨峰
+  - 🇭🇰香港中转-02 线路稳定丨峰
+  - 🇺🇸美国直连-01 gpt可用丨峰
+  - 🇺🇸美国直连-02 gpt可用丨峰
+  - 🇺🇸美国移动-01 gpt可用丨峰
+  - 🇺🇸美国移动-02 gpt可用丨峰
+  - 🇯🇵日本专线-01 专线优化丨峰
+  - 🇯🇵日本专线-02 专线优化丨峰
+  - 🇯🇵日本原生-01 gpt可用丨峰
+  - 🇯🇵日本原生-02 gpt可用丨峰
+  - 🇨🇳台湾备用-01 gpt可用丨峰
+  - 🇨🇳台湾备用-02 gpt可用丨峰
+  - 🇭🇰香港移动备用-01 gpt可用丨峰
+  - 🇭🇰香港移动备用-02 gpt可用丨峰
+  - 🇭🇰美国原生-01 gpt可用丨峰
+  - 🇭🇰美国原生-02 gpt可用丨峰
+  - 德国原生-01 gpt可用丨峰
+  - 德国原生-02 gpt可用丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
@@ -202,28 +164,24 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 🇭🇰 香港中转-01 线路稳定丨峰
-  - 🇭🇰 香港中转-02 线路稳定丨峰
-  - 🇭🇰 香港直连-01 线路稳定丨峰
-  - 🇭🇰 香港直连-02 线路稳定丨峰
-  - 🇺🇸 美国直连-01 gpt可用丨峰
-  - 🇺🇸 美国直连-02 gpt可用丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本直连-01 gpt可用丨峰
-  - 🇯🇵 日本直连-02 gpt可用丨峰
-  - 🇸🇬 新加坡直连-01 gpt可用丨峰
-  - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇹🇼 台湾备用-01 gpt可用丨峰
-  - 🇹🇼 台湾备用-02 gpt可用丨峰
-  - 🇯🇵 日本备用-01 gpt可用 稳定线路丨峰
-  - 🇯🇵 日本备用-02 gpt可用 稳定线路丨峰
-  - 🇯🇵 日本高速备用-01 gpt可用丨峰
-  - 🇯🇵 日本高速备用-02 gpt可用丨峰
-  - 🇭🇰 香港备用-01 gpt可用丨峰
-  - 🇭🇰 香港备用-02 gpt可用丨峰
-  - 🇭🇰 香港高速备用-01 gpt可用丨峰
-  - 🇭🇰 香港高速备用-02 gpt可用丨峰
+  - 🇭🇰香港中转-01 线路稳定丨峰
+  - 🇭🇰香港中转-02 线路稳定丨峰
+  - 🇺🇸美国直连-01 gpt可用丨峰
+  - 🇺🇸美国直连-02 gpt可用丨峰
+  - 🇺🇸美国移动-01 gpt可用丨峰
+  - 🇺🇸美国移动-02 gpt可用丨峰
+  - 🇯🇵日本专线-01 专线优化丨峰
+  - 🇯🇵日本专线-02 专线优化丨峰
+  - 🇯🇵日本原生-01 gpt可用丨峰
+  - 🇯🇵日本原生-02 gpt可用丨峰
+  - 🇨🇳台湾备用-01 gpt可用丨峰
+  - 🇨🇳台湾备用-02 gpt可用丨峰
+  - 🇭🇰香港移动备用-01 gpt可用丨峰
+  - 🇭🇰香港移动备用-02 gpt可用丨峰
+  - 🇭🇰美国原生-01 gpt可用丨峰
+  - 🇭🇰美国原生-02 gpt可用丨峰
+  - 德国原生-01 gpt可用丨峰
+  - 德国原生-02 gpt可用丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
