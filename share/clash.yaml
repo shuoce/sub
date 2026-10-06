@@ -3,206 +3,491 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 🇭🇰 香港中转-01 线路稳定丨峰
+- name: 香港专线-01丨峰
   type: vless
   server: 45.207.157.8
   port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
   servername: www.amazon.com
-- name: 🇭🇰 香港中转-02 线路稳定丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 香港专线-02丨峰
   type: vless
   server: 45.207.157.8
   port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇭🇰 香港移动-01 线路稳定丨峰
-  type: vless
-  server: cfd.130209.xyz
-  port: 443
-  uuid: 530d4b66-4a0f-46ba-afba-5ba7254f8964
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
   tls: true
-  servername: hk1.152568.xyz
-- name: 🇭🇰 香港移动-02 线路稳定丨峰
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 香港专线-03丨峰
   type: vless
-  server: cfd.130209.xyz
-  port: 443
-  uuid: 530d4b66-4a0f-46ba-afba-5ba7254f8964
+  server: 45.207.157.24
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
   tls: true
-  servername: hk1.152568.xyz
-- name: 🇺🇸 美国直连-01 gpt可用丨峰
-  type: vless
-  server: 143.246.61.211
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
   servername: www.amazon.com
-- name: 🇺🇸 美国直连-02 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 香港专线-04丨峰
   type: vless
-  server: 143.246.61.211
+  server: 45.207.157.24
   port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇺🇸 美国移动-01 gpt可用丨峰
-  type: vless
-  server: 156.229.162.171
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇺🇸 美国移动-02 gpt可用丨峰
-  type: vless
-  server: 156.229.162.171
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇯🇵 日本专线-01 专线优化丨峰
-  type: vless
-  server: 45.202.254.20
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇯🇵 日本专线-02 专线优化丨峰
-  type: vless
-  server: 45.202.254.20
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇯🇵 日本原生移动-01 gpt可用丨峰
-  type: vless
-  server: 176.97.71.18
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇯🇵 日本原生移动-02 gpt可用丨峰
-  type: vless
-  server: 176.97.71.18
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇹🇼 台湾备用-01 gpt可用丨峰
-  type: vless
-  server: 166.0.199.78
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇹🇼 台湾备用-02 gpt可用丨峰
-  type: vless
-  server: 166.0.199.78
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
-  servername: www.amazon.com
-- name: 🇯🇵 日本三网备用-01 gpt可用丨峰
-  type: vless
-  server: cf.kele.ge
-  port: 8443
-  uuid: 530d4b66-4a0f-46ba-afba-5ba7254f8964
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
   tls: true
-  servername: jp.520785.xyz
-- name: 🇯🇵 日本三网备用-02 gpt可用丨峰
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国专线-01丨峰
   type: vless
-  server: cf.kele.ge
-  port: 8443
-  uuid: 530d4b66-4a0f-46ba-afba-5ba7254f8964
+  server: 156.229.164.149
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
   tls: true
-  servername: jp.520785.xyz
-- name: 🇭🇰 香港移动备用-01 gpt可用丨峰
-  type: vless
-  server: 38.180.188.178
-  port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
   servername: www.amazon.com
-- name: 🇭🇰 香港移动备用-02 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国专线-02丨峰
   type: vless
-  server: 38.180.188.178
+  server: 156.229.164.149
   port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
   servername: www.amazon.com
-- name: 🇺🇸 美国原生-01 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国专线-03丨峰
+  type: vless
+  server: 156.229.164.149
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国三网-01丨峰
   type: vless
   server: 38.180.137.143
   port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
   servername: www.amazon.com
-- name: 🇺🇸 美国原生-02 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国三网-02丨峰
   type: vless
   server: 38.180.137.143
   port: 9443
-  uuid: 0d9042bf-ee73-4e1c-9cbd-b1e9b9deb637
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
   servername: www.amazon.com
-- name: 🇸🇬 新加坡直连-01 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国三网-03丨峰
+  type: vless
+  server: 38.180.137.143
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 台湾专线-01丨峰
+  type: vless
+  server: 166.0.199.78
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 台湾专线-02丨峰
+  type: vless
+  server: 166.0.199.78
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 台湾专线-03丨峰
+  type: vless
+  server: 166.0.199.78
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 日本专线-01丨峰
+  type: vless
+  server: 45.192.249.71
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 日本专线-02丨峰
+  type: vless
+  server: 45.192.249.71
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 日本专线-03丨峰
+  type: vless
+  server: 45.192.249.71
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 马来西亚直连-01丨峰
+  type: vless
+  server: 149.33.30.189
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 马来西亚直连-02丨峰
+  type: vless
+  server: 149.33.30.189
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 马来西亚直连-03丨峰
+  type: vless
+  server: 149.33.30.189
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 德国直连-01丨峰
+  type: vless
+  server: 149.33.47.172
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 德国直连-02丨峰
+  type: vless
+  server: 149.33.47.172
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 德国直连-03丨峰
+  type: vless
+  server: 149.33.47.172
+  port: 9443
+  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 新加坡直连-01丨峰
   type: vless
   server: 38.180.190.67
   port: 443
   uuid: de83320d-9b23-473e-93f6-d66482124c06
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: C3TC3BxZM2ehdAprVXOSsL8R_O-G2Be0XqqZhoEQLD0
+    short-id: 1fda1fb3436cf8b0
   servername: www.apple.com
-- name: 🇸🇬 新加坡直连-02 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 新加坡直连-02丨峰
   type: vless
   server: 38.180.190.67
   port: 443
   uuid: de83320d-9b23-473e-93f6-d66482124c06
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: C3TC3BxZM2ehdAprVXOSsL8R_O-G2Be0XqqZhoEQLD0
+    short-id: 1fda1fb3436cf8b0
   servername: www.apple.com
-- name: 🇲🇾 马来西亚直连-01 gpt可用丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 新加坡直连-03丨峰
   type: vless
-  server: 149.33.30.176
+  server: 38.180.190.67
   port: 443
-  uuid: 5fffad1b-10f0-41ff-abe7-e5a92696d5ef
+  uuid: de83320d-9b23-473e-93f6-d66482124c06
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: C3TC3BxZM2ehdAprVXOSsL8R_O-G2Be0XqqZhoEQLD0
+    short-id: 1fda1fb3436cf8b0
   servername: www.apple.com
-- name: 🇲🇾 马来西亚直连-02 gpt可用丨峰
-  type: vless
-  server: 149.33.30.176
-  port: 443
-  uuid: 5fffad1b-10f0-41ff-abe7-e5a92696d5ef
-  servername: www.apple.com
-- name: 🇩🇪 德国直连-01 gpt可用丨峰
-  type: vless
-  server: 91.233.121.32
-  port: 443
-  uuid: 5469c1d9-e949-4553-a146-ac3ad363a705
-  servername: www.apple.com
-- name: 🇩🇪 德国直连-02 gpt可用丨峰
-  type: vless
-  server: 91.233.121.32
-  port: 443
-  uuid: 5469c1d9-e949-4553-a146-ac3ad363a705
-  servername: www.apple.com
-- name: 🇹🇭 泰国直连-01丨峰
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 泰国直连01丨峰
   type: vless
   server: www.wto.org
   port: 443
   uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  udp: true
   tls: true
   servername: tl.520783.xyz
-- name: 🇹🇭 泰国直连-02丨峰
+  client-fingerprint: edge
+  network: ws
+  ws-opts:
+    path: /assets/dist/app-update-payload.dat
+    headers:
+      Host: tl.520783.xyz
+- name: 泰国直连02丨峰
   type: vless
   server: www.wto.org
   port: 443
   uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  udp: true
   tls: true
   servername: tl.520783.xyz
-- name: 🇮🇳 印度直连-01丨峰
+  client-fingerprint: edge
+  network: ws
+  ws-opts:
+    path: /assets/dist/app-update-payload.dat
+    headers:
+      Host: tl.520783.xyz
+- name: 印度直连01丨峰
   type: vless
   server: cf.kele.ge
   port: 443
   uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  udp: true
   tls: true
   servername: in1.520782.xyz
-- name: 🇮🇳 印度直连-02丨峰
+  client-fingerprint: edge
+  network: ws
+  ws-opts:
+    path: /cdn/packages/runtime-core.tar.gz
+    headers:
+      Host: in1.520782.xyz
+- name: 印度直连02丨峰
   type: vless
   server: cf.kele.ge
   port: 443
   uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  udp: true
   tls: true
   servername: in1.520782.xyz
+  client-fingerprint: edge
+  network: ws
+  ws-opts:
+    path: /cdn/packages/runtime-core.tar.gz
+    headers:
+      Host: in1.520782.xyz
+- name: 美国免费-01丨峰
+  type: vless
+  server: 38.180.254.125
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国免费-02丨峰
+  type: vless
+  server: 38.180.254.125
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国免费-03丨峰
+  type: vless
+  server: 38.180.254.125
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国免费-04丨峰
+  type: vless
+  server: 38.180.254.125
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国免费-05丨峰
+  type: vless
+  server: 38.180.254.125
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国免费-06丨峰
+  type: vless
+  server: 38.180.254.125
+  port: 9443
+  uuid: cbe82d99-2927-49d2-8ea9-d0d0162a60ec
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」
   type: vless
   server: zz.j-pan.ccwu.cc
   port: 30001
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
+    short-id: 6d9478ae
   servername: s0.awsstatic.com
+  flow: xtls-rprx-vision
+  client-fingerprint: edge
 - name: ❤️ 谢谢大家的理解与支持！
   type: vless
   server: zz.j-pan.ccwu.cc
   port: 30001
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA
+    short-id: 6d9478ae
   servername: s0.awsstatic.com
+  flow: xtls-rprx-vision
+  client-fingerprint: edge
 - name: '⚠️tg：@lllasszs
 
     有问题请留言'
@@ -210,43 +495,55 @@ proxies:
   server: zz.j-pan.ccwu.cc
   port: 30001
   uuid: 65c56e1f-5c41-40bc-b0b5-9346772476ca
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_iPwA
+    short-id: 6d9478ae
   servername: s0.awsstatic.com
+  flow: xtls-rprx-vision
+  client-fingerprint: edge
 proxy-groups:
 - name: 自动选择
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 🇭🇰 香港中转-01 线路稳定丨峰
-  - 🇭🇰 香港中转-02 线路稳定丨峰
-  - 🇭🇰 香港移动-01 线路稳定丨峰
-  - 🇭🇰 香港移动-02 线路稳定丨峰
-  - 🇺🇸 美国直连-01 gpt可用丨峰
-  - 🇺🇸 美国直连-02 gpt可用丨峰
-  - 🇺🇸 美国移动-01 gpt可用丨峰
-  - 🇺🇸 美国移动-02 gpt可用丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本原生移动-01 gpt可用丨峰
-  - 🇯🇵 日本原生移动-02 gpt可用丨峰
-  - 🇹🇼 台湾备用-01 gpt可用丨峰
-  - 🇹🇼 台湾备用-02 gpt可用丨峰
-  - 🇯🇵 日本三网备用-01 gpt可用丨峰
-  - 🇯🇵 日本三网备用-02 gpt可用丨峰
-  - 🇭🇰 香港移动备用-01 gpt可用丨峰
-  - 🇭🇰 香港移动备用-02 gpt可用丨峰
-  - 🇺🇸 美国原生-01 gpt可用丨峰
-  - 🇺🇸 美国原生-02 gpt可用丨峰
-  - 🇸🇬 新加坡直连-01 gpt可用丨峰
-  - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇲🇾 马来西亚直连-01 gpt可用丨峰
-  - 🇲🇾 马来西亚直连-02 gpt可用丨峰
-  - 🇩🇪 德国直连-01 gpt可用丨峰
-  - 🇩🇪 德国直连-02 gpt可用丨峰
-  - 🇹🇭 泰国直连-01丨峰
-  - 🇹🇭 泰国直连-02丨峰
-  - 🇮🇳 印度直连-01丨峰
-  - 🇮🇳 印度直连-02丨峰
+  - 香港专线-01丨峰
+  - 香港专线-02丨峰
+  - 香港专线-03丨峰
+  - 香港专线-04丨峰
+  - 美国专线-01丨峰
+  - 美国专线-02丨峰
+  - 美国专线-03丨峰
+  - 美国三网-01丨峰
+  - 美国三网-02丨峰
+  - 美国三网-03丨峰
+  - 台湾专线-01丨峰
+  - 台湾专线-02丨峰
+  - 台湾专线-03丨峰
+  - 日本专线-01丨峰
+  - 日本专线-02丨峰
+  - 日本专线-03丨峰
+  - 马来西亚直连-01丨峰
+  - 马来西亚直连-02丨峰
+  - 马来西亚直连-03丨峰
+  - 德国直连-01丨峰
+  - 德国直连-02丨峰
+  - 德国直连-03丨峰
+  - 新加坡直连-01丨峰
+  - 新加坡直连-02丨峰
+  - 新加坡直连-03丨峰
+  - 泰国直连01丨峰
+  - 泰国直连02丨峰
+  - 印度直连01丨峰
+  - 印度直连02丨峰
+  - 美国免费-01丨峰
+  - 美国免费-02丨峰
+  - 美国免费-03丨峰
+  - 美国免费-04丨峰
+  - 美国免费-05丨峰
+  - 美国免费-06丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
@@ -256,36 +553,41 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 🇭🇰 香港中转-01 线路稳定丨峰
-  - 🇭🇰 香港中转-02 线路稳定丨峰
-  - 🇭🇰 香港移动-01 线路稳定丨峰
-  - 🇭🇰 香港移动-02 线路稳定丨峰
-  - 🇺🇸 美国直连-01 gpt可用丨峰
-  - 🇺🇸 美国直连-02 gpt可用丨峰
-  - 🇺🇸 美国移动-01 gpt可用丨峰
-  - 🇺🇸 美国移动-02 gpt可用丨峰
-  - 🇯🇵 日本专线-01 专线优化丨峰
-  - 🇯🇵 日本专线-02 专线优化丨峰
-  - 🇯🇵 日本原生移动-01 gpt可用丨峰
-  - 🇯🇵 日本原生移动-02 gpt可用丨峰
-  - 🇹🇼 台湾备用-01 gpt可用丨峰
-  - 🇹🇼 台湾备用-02 gpt可用丨峰
-  - 🇯🇵 日本三网备用-01 gpt可用丨峰
-  - 🇯🇵 日本三网备用-02 gpt可用丨峰
-  - 🇭🇰 香港移动备用-01 gpt可用丨峰
-  - 🇭🇰 香港移动备用-02 gpt可用丨峰
-  - 🇺🇸 美国原生-01 gpt可用丨峰
-  - 🇺🇸 美国原生-02 gpt可用丨峰
-  - 🇸🇬 新加坡直连-01 gpt可用丨峰
-  - 🇸🇬 新加坡直连-02 gpt可用丨峰
-  - 🇲🇾 马来西亚直连-01 gpt可用丨峰
-  - 🇲🇾 马来西亚直连-02 gpt可用丨峰
-  - 🇩🇪 德国直连-01 gpt可用丨峰
-  - 🇩🇪 德国直连-02 gpt可用丨峰
-  - 🇹🇭 泰国直连-01丨峰
-  - 🇹🇭 泰国直连-02丨峰
-  - 🇮🇳 印度直连-01丨峰
-  - 🇮🇳 印度直连-02丨峰
+  - 香港专线-01丨峰
+  - 香港专线-02丨峰
+  - 香港专线-03丨峰
+  - 香港专线-04丨峰
+  - 美国专线-01丨峰
+  - 美国专线-02丨峰
+  - 美国专线-03丨峰
+  - 美国三网-01丨峰
+  - 美国三网-02丨峰
+  - 美国三网-03丨峰
+  - 台湾专线-01丨峰
+  - 台湾专线-02丨峰
+  - 台湾专线-03丨峰
+  - 日本专线-01丨峰
+  - 日本专线-02丨峰
+  - 日本专线-03丨峰
+  - 马来西亚直连-01丨峰
+  - 马来西亚直连-02丨峰
+  - 马来西亚直连-03丨峰
+  - 德国直连-01丨峰
+  - 德国直连-02丨峰
+  - 德国直连-03丨峰
+  - 新加坡直连-01丨峰
+  - 新加坡直连-02丨峰
+  - 新加坡直连-03丨峰
+  - 泰国直连01丨峰
+  - 泰国直连02丨峰
+  - 印度直连01丨峰
+  - 印度直连02丨峰
+  - 美国免费-01丨峰
+  - 美国免费-02丨峰
+  - 美国免费-03丨峰
+  - 美国免费-04丨峰
+  - 美国免费-05丨峰
+  - 美国免费-06丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」
   - ❤️ 谢谢大家的理解与支持！
   - '⚠️tg：@lllasszs
