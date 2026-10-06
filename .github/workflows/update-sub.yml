@@ -2,8 +2,9 @@ name: Update Nodes
 
 on:
   schedule:
-    - cron: '0 */3 * * *'   # UTC 时间，每 3 小时执行一次
-  workflow_dispatch:         # 允许手动触发
+    - cron: '0 */3 * * *'
+      timezone: 'Asia/Shanghai'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -11,6 +12,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -32,9 +34,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+
           if git diff --cached --quiet; then
             echo "节点无变化，跳过提交"
           else
-            git commit -m "自动更新节点 $(date -u '+%Y-%m-%d %H:%M UTC')"
+            git commit -m "自动更新节点 $(date '+%Y-%m-%d %H:%M')"
             git push
           fi
