@@ -83,6 +83,11 @@ def fetch_nodes():
     nodes = []
 
     for grp in data.get("data") or []:
+        # 跳过免费节点分组（status==1 或组名含"免费"）
+        if grp.get("status") == 1:
+            continue
+        if "免费" in (grp.get("name") or ""):
+            continue
         for n in grp.get("node") or []:
             if n.strip():
                 nodes.append(n.strip())
