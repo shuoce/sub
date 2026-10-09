@@ -1,38 +1,46 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-节点全流程脚本（GitHub Actions 版）
+节点全流程脚本（GitHub Actions 优化版）
 
-API拉取
-→ 名称加"丨峰"后缀
-→ 合并 share/fixed.txt
-→ nodes_new.txt
-→ Base64订阅 sub.txt
-→ 同步到 share/a.txt
-→ clash.yaml
-→ 同步到 share/clash.yaml
+1. API拉取节点
+2. 高并发 TCP 测活（GitHub Actions 环境优化版，带熔断保底）
+3. 名称自动追加"丨峰"后缀
+4. 合并 fixed.txt（固定节点跳过测活，强制保留）
+5. 生成 nodes_new.txt 与 Base64 订阅 sub.txt
+6. 生成 clash.yaml（包含节点重名自动编号）
+7. 同步文件到 share/ 目录
 
-凭证从环境变量读取（GitHub Secrets），不硬编码
+凭证从 GitHub Secrets 读取：
+  - SUB_TOKEN
+  - SUB_AUTHTOKEN
 """
 
 import base64
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
 import shutil
-import urllib.request
+import socket
 import urllib.parse
+import urllib.request
 import yaml
-
 
 # =========================
 # API 配置（凭证来自 GitHub Secrets）
 # =========================
 
-API = "http://8.210.52.158:8020/app/subscribe"
-
+API = os.environ.get("SUB_API_URL", "http://8.210.52.158:8020/app/subscribe")
 TOKEN = os.environ["SUB_TOKEN"]
 AUTHTOKEN = os.environ["SUB_AUTHTOKEN"]
 
+# =========================
+# 测活配置（GitHub Actions 适用）
+# =========================
+
+# GitHub 服务器网络好，3.0s 足以判断 TCP 是否响应
+TCP_TIMEOUT = 3.0    # 单节点超时时间（秒）
+MAX_WORKERS = 30     # 并发线程数
 
 # =========================
 # GitHub 固定节点
@@ -40,9 +48,8 @@ AUTHTOKEN = os.environ["SUB_AUTHTOKEN"]
 
 FIXED_URL = "https://raw.githubusercontent.com/shuoce/sub/main/share/fixed.txt"
 
-
 # =========================
-# 输出文件
+# 输出文件路径
 # =========================
 
 nodes_file = "nodes.txt"
@@ -50,15 +57,20 @@ nodes_new_file = "nodes_new.txt"
 sub_file = "sub.txt"
 clash_file = "clash.yaml"
 
-
-# =========================
-# share 订阅文件
-# =========================
-
 share_dir = "share"
-
 share_sub_file = os.path.join(share_dir, "a.txt")
 share_clash_file = os.path.join(share_dir, "clash.yaml")
+
+
+# =========================
+# 辅助函数：安全 Base64 解码
+# =========================
+
+def safe_b64decode(s: str) -> str:
+    """自动补全 padding 并兼容 URL safe base64"""
+    s = s.strip().replace("-", "+").replace("_", "/")
+    s += "=" * (-len(s) % 4)
+    return base64.b64decode(s).decode("utf-8", errors="ignore")
 
 
 # =========================
@@ -67,7 +79,6 @@ share_clash_file = os.path.join(share_dir, "clash.yaml")
 
 def fetch_nodes():
     req = urllib.request.Request(API)
-
     req.add_header("token", TOKEN)
     req.add_header("authtoken", AUTHTOKEN)
     req.add_header("User-Agent", "okhttp/4.9.0")
@@ -81,371 +92,260 @@ def fetch_nodes():
         )
 
     nodes = []
-
     for grp in data.get("data") or []:
         # 跳过免费节点分组（status==1 或组名含"免费"）
-        if grp.get("status") == 1:
-            continue
-        if "免费" in (grp.get("name") or ""):
+        if grp.get("status") == 1 or "免费" in (grp.get("name") or ""):
             continue
         for n in grp.get("node") or []:
-            if n.strip():
-                nodes.append(n.strip())
+            n = n.strip()
+            if n:
+                nodes.append(n)
 
-    # 去重
-    seen = set()
-    unique_nodes = []
-
-    for n in nodes:
-        if n not in seen:
-            seen.add(n)
-            unique_nodes.append(n)
-
-    return unique_nodes
+    # 保持顺序去重
+    return list(dict.fromkeys(nodes))
 
 
 # =========================
-# 2. VMess 名称处理
+# 2. TCP 测活与超时剔除
 # =========================
 
-def process_vmess(line):
+def extract_host_port(line: str):
+    """解析节点的目标主机与端口"""
+    line = line.strip()
     try:
-        data = line[8:]
+        if line.startswith("vmess://"):
+            data = line[8:]
+            obj = json.loads(safe_b64decode(data))
+            return obj.get("add"), int(obj.get("port"))
 
-        data += "=" * (-len(data) % 4)
+        if line.startswith(("vless://", "trojan://", "ss://")):
+            u = urllib.parse.urlparse(line)
+            if u.hostname and u.port:
+                return u.hostname, int(u.port)
+    except Exception:
+        pass
+    return None, None
 
-        obj = json.loads(
-            base64.b64decode(data).decode("utf-8")
-        )
+
+def check_node_alive(line: str, timeout: float = TCP_TIMEOUT) -> bool:
+    """对单节点进行 TCP 握手检测"""
+    host, port = extract_host_port(line)
+    if not host or not port:
+        # 解析不出 host/port 时默认保留，防止误杀特殊格式节点
+        return True
+
+    try:
+        with socket.create_connection((host, port), timeout=timeout):
+            return True
+    except (socket.timeout, ConnectionRefusedError, OSError):
+        return False
+
+
+def filter_alive_nodes(nodes: list) -> list:
+    """并发检测并剔除超时节点（带 Actions 熔断保护）"""
+    if not nodes:
+        return []
+
+    print(f"[测活] 开始探测 {len(nodes)} 个 API 节点 (并发: {MAX_WORKERS}, 超时: {TCP_TIMEOUT}s)...")
+    alive_nodes = []
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        future_map = {executor.submit(check_node_alive, node): node for node in nodes}
+        for future in as_completed(future_map):
+            node = future_map[future]
+            try:
+                if future.result():
+                    alive_nodes.append(node)
+            except Exception:
+                pass
+
+    # 熔断安全机制：
+    # 如果检测出来存活节点为 0（大概率是 GitHub Actions 容器的网络策略或 IP 被封锁）
+    # 此时不剔除任何节点，全量保留，避免推送一个空配置
+    if len(alive_nodes) == 0 and len(nodes) > 0:
+        print("[警告] 存活节点检测为 0，触发熔断保护：跳过剔除，保留所有原始节点！")
+        return nodes
+
+    print(f"[测活] 完成：可用 {len(alive_nodes)} / {len(nodes)}，已剔除 {len(nodes) - len(alive_nodes)} 个超时节点")
+    return alive_nodes
+
+
+# =========================
+# 3. 节点重命名处理
+# =========================
+
+def process_vmess(line: str) -> str:
+    try:
+        raw_b64 = line[8:]
+        obj = json.loads(safe_b64decode(raw_b64))
 
         name = obj.get("ps", "")
-
         if not name.endswith("丨峰"):
-            obj["ps"] = name + "丨峰"
+            obj["ps"] = f"{name}丨峰"
 
-        new = base64.b64encode(
-            json.dumps(
-                obj,
-                ensure_ascii=False,
-                separators=(",", ":")
-            ).encode("utf-8")
+        new_b64 = base64.b64encode(
+            json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
         ).decode("utf-8")
 
-        return "vmess://" + new
-
+        return f"vmess://{new_b64}"
     except Exception:
         return line
 
 
-# =========================
-# 3. 普通节点名称处理
-# =========================
-
-def process_line(line):
+def process_line(line: str) -> str:
+    line = line.strip()
+    if not line:
+        return ""
 
     if line.startswith("vmess://"):
         return process_vmess(line)
 
     if "#" in line:
         url, name = line.rsplit("#", 1)
-
         name = urllib.parse.unquote(name)
-
         if not name.endswith("丨峰"):
             name += "丨峰"
-
-        return url + "#" + urllib.parse.quote(name)
+        return f"{url}#{urllib.parse.quote(name)}"
 
     return line
 
 
 # =========================
-# 4. 生成 nodes_new.txt
-#    生成 Base64 sub.txt
+# 4. 生成 nodes_new.txt / sub.txt
 # =========================
 
-def gen_sub(nodes):
+def gen_sub(api_alive_nodes: list) -> int:
+    # 1. API 存活节点加后缀
+    result = [process_line(n) for n in api_alive_nodes if n.strip()]
 
-    result = [
-        process_line(n)
-        for n in nodes
-    ]
-
-    # -------------------------
-    # 合并固定节点
-    # -------------------------
-
-    fixed = ""
-
+    # 2. 合并固定节点（fixed.txt 跳过测活，无论是否超时均强制保留）
+    fixed_count = 0
     try:
-        with urllib.request.urlopen(
-            FIXED_URL,
-            timeout=15
-        ) as r:
-
-            fixed = r.read().decode("utf-8").strip()
-
-        if fixed:
-            result.append(fixed)
-
+        req = urllib.request.Request(FIXED_URL, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            lines = r.read().decode("utf-8").splitlines()
+            for line in lines:
+                line = line.strip()
+                if line and not line.startswith("#"):
+                    result.append(process_line(line))
+                    fixed_count += 1
+        print(f"[固定节点] 成功读取并合并 fixed.txt: {fixed_count} 个")
     except Exception as e:
-        print(f"读取 fixed.txt 失败: {e}")
-
-
-    # -------------------------
-    # 生成最终节点文本
-    # -------------------------
+        print(f"[警告] 读取 fixed.txt 失败: {e}")
 
     final_text = "\n".join(result)
 
+    # 写入 nodes_new.txt
+    with open(nodes_new_file, "w", encoding="utf-8") as f:
+        f.write(final_text + "\n")
 
-    # -------------------------
-    # nodes_new.txt
-    # -------------------------
-
-    with open(
-        nodes_new_file,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
-        f.write(final_text)
-
-
-    # -------------------------
-    # sub.txt
-    # Base64 编码
-    # -------------------------
-
-    encoded = base64.b64encode(
-        final_text.encode("utf-8")
-    ).decode("utf-8")
-
-
-    with open(
-        sub_file,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
+    # 写入 Base64 sub.txt
+    encoded = base64.b64encode(final_text.encode("utf-8")).decode("utf-8")
+    with open(sub_file, "w", encoding="utf-8") as f:
         f.write(encoded)
-
 
     return len(result)
 
 
 # =========================
-# 5. Clash 参数读取
+# 5. Clash 配置解析转换
 # =========================
 
-def get(params, key, default=None):
+def get_param(params, key, default=None):
+    return params.get(key, [default])[0] if key in params else default
 
-    return (
-        params.get(key, [default])[0]
-        if key in params
-        else default
-    )
-
-
-# =========================
-# 6. VLESS 解析
-# =========================
 
 def decode_vless(line):
-
     try:
-
         u = urllib.parse.urlparse(line)
-
         p = urllib.parse.parse_qs(u.query)
 
         proxy = {
-            "name": (
-                urllib.parse.unquote(u.fragment)
-                if u.fragment
-                else "VLESS节点"
-            ),
+            "name": urllib.parse.unquote(u.fragment) if u.fragment else "VLESS节点",
             "type": "vless",
             "server": u.hostname,
-            "port": u.port,
+            "port": int(u.port),
             "uuid": u.username,
             "udp": True,
         }
 
-
-        security = get(p, "security")
-
-
-        if security == "tls":
+        security = get_param(p, "security")
+        if security in ("tls", "reality"):
             proxy["tls"] = True
+            if security == "reality":
+                proxy["reality-opts"] = {
+                    "public-key": get_param(p, "pbk", ""),
+                    "short-id": get_param(p, "sid", ""),
+                }
 
-
-        if security == "reality":
-
-            proxy["tls"] = True
-
-            proxy["reality-opts"] = {
-                "public-key": get(p, "pbk", ""),
-                "short-id": get(p, "sid", ""),
-            }
-
-
-        sni = get(p, "sni")
-
+        sni = get_param(p, "sni")
         if sni:
             proxy["servername"] = sni
 
-
-        flow = get(p, "flow")
-
+        flow = get_param(p, "flow")
         if flow:
             proxy["flow"] = flow
 
-
-        fp = get(p, "fp")
-
+        fp = get_param(p, "fp")
         if fp:
             proxy["client-fingerprint"] = fp
 
-
-        net = (
-            get(p, "type")
-            or get(p, "net")
-        )
-
-
+        net = get_param(p, "type") or get_param(p, "net")
         if net == "ws":
-
             proxy["network"] = "ws"
-
             proxy["ws-opts"] = {
-                "path": get(p, "path", "/"),
-                "headers": {
-                    "Host": get(
-                        p,
-                        "host",
-                        u.hostname
-                    )
-                },
+                "path": get_param(p, "path", "/"),
+                "headers": {"Host": get_param(p, "host", u.hostname)},
             }
-
-
         elif net == "grpc":
-
             proxy["network"] = "grpc"
-
             proxy["grpc-opts"] = {
-                "grpc-service-name":
-                    get(p, "serviceName", "")
+                "grpc-service-name": get_param(p, "serviceName", "")
             }
-
 
         return proxy
-
-
     except Exception as e:
-
-        print(f"VLESS解析失败: {e}")
-
         return None
 
 
-# =========================
-# 7. VMess 解析
-# =========================
-
 def decode_vmess(line):
-
     try:
-
-        data = line.replace(
-            "vmess://",
-            ""
-        )
-
-        data += "=" * (-len(data) % 4)
-
-
-        obj = json.loads(
-            base64.b64decode(data).decode("utf-8")
-        )
-
+        data = line.replace("vmess://", "")
+        obj = json.loads(safe_b64decode(data))
 
         proxy = {
-            "name": obj.get(
-                "ps",
-                "VMess节点"
-            ),
+            "name": obj.get("ps", "VMess节点"),
             "type": "vmess",
             "server": obj["add"],
             "port": int(obj["port"]),
             "uuid": obj["id"],
-            "alterId": int(
-                obj.get("aid", 0)
-            ),
-            "cipher": obj.get(
-                "scy",
-                "auto"
-            ),
+            "alterId": int(obj.get("aid", 0)),
+            "cipher": obj.get("scy", "auto"),
             "udp": True,
         }
-
 
         if obj.get("tls") == "tls":
             proxy["tls"] = True
 
-
         if obj.get("net") == "ws":
-
             proxy["network"] = "ws"
-
             proxy["ws-opts"] = {
-                "path": obj.get(
-                    "path",
-                    "/"
-                ),
-                "headers": {
-                    "Host": obj.get(
-                        "host",
-                        obj["add"]
-                    )
-                },
+                "path": obj.get("path", "/"),
+                "headers": {"Host": obj.get("host", obj["add"])},
             }
 
-
         return proxy
-
-
     except Exception as e:
-
-        print(f"VMess解析失败: {e}")
-
         return None
 
 
-# =========================
-# 8. Trojan 解析
-# =========================
-
 def decode_trojan(line):
-
     try:
-
         u = urllib.parse.urlparse(line)
-
-        p = urllib.parse.parse_qs(
-            u.query
-        )
-
+        p = urllib.parse.parse_qs(u.query)
 
         proxy = {
-            "name": (
-                urllib.parse.unquote(
-                    u.fragment
-                )
-                if u.fragment
-                else "Trojan节点"
-            ),
+            "name": urllib.parse.unquote(u.fragment) if u.fragment else "Trojan节点",
             "type": "trojan",
             "server": u.hostname,
             "port": u.port,
@@ -453,234 +353,112 @@ def decode_trojan(line):
             "udp": True,
             "tls": True,
         }
-
-
-        sni = get(
-            p,
-            "sni"
-        )
-
+        sni = get_param(p, "sni")
         if sni:
             proxy["sni"] = sni
 
-
         return proxy
-
-
     except Exception as e:
-
-        print(f"Trojan解析失败: {e}")
-
         return None
 
 
-# =========================
-# 9. 生成 Clash 配置
-# =========================
-
 def gen_clash():
-
     proxies = []
 
-
-    with open(
-        nodes_new_file,
-        "r",
-        encoding="utf-8"
-    ) as f:
-
+    with open(nodes_new_file, "r", encoding="utf-8") as f:
         for line in f:
-
             line = line.strip()
-
-            if not line:
+            if not line or line.startswith("#"):
                 continue
 
-            if line.startswith("#"):
-                continue
-
-
+            pr = None
             if line.startswith("vmess://"):
-
                 pr = decode_vmess(line)
-
-
             elif line.startswith("vless://"):
-
                 pr = decode_vless(line)
-
-
             elif line.startswith("trojan://"):
-
                 pr = decode_trojan(line)
-
-
-            else:
-
-                pr = None
-
 
             if pr:
                 proxies.append(pr)
 
+    # 节点防重名处理（Clash 规定 name 必须唯一，否则客户端报错）
+    used_names = {}
+    for p in proxies:
+        base_name = p["name"]
+        if base_name in used_names:
+            used_names[base_name] += 1
+            p["name"] = f"{base_name} {used_names[base_name]}"
+        else:
+            used_names[base_name] = 1
 
-    names = [
-        p["name"]
-        for p in proxies
-    ]
-
+    names = [p["name"] for p in proxies]
+    default_proxy = names if names else ["DIRECT"]
 
     config = {
-
         "mixed-port": 7890,
-
         "allow-lan": True,
-
         "mode": "rule",
-
         "log-level": "info",
-
         "proxies": proxies,
-
         "proxy-groups": [
-
             {
                 "name": "自动选择",
-
                 "type": "url-test",
-
-                "url":
-                    "https://www.gstatic.com/generate_204",
-
+                "url": "https://www.gstatic.com/generate_204",
                 "interval": 300,
-
-                "proxies":
-                    list(names),
+                "proxies": list(default_proxy),
             },
-
             {
                 "name": "手动选择",
-
                 "type": "select",
-
-                "proxies":
-                    ["自动选择"] + list(names),
+                "proxies": ["自动选择"] + list(default_proxy),
             },
         ],
-
         "rules": [
             "MATCH,自动选择"
         ],
     }
 
-
-    with open(
-        clash_file,
-        "w",
-        encoding="utf-8"
-    ) as f:
-
-        yaml.dump(
-            config,
-            f,
-            allow_unicode=True,
-            sort_keys=False
-        )
-
+    with open(clash_file, "w", encoding="utf-8") as f:
+        yaml.dump(config, f, allow_unicode=True, sort_keys=False)
 
     return len(proxies)
 
 
 # =========================
-# 10. 同步订阅到 share/
+# 6. 同步与主程序入口
 # =========================
 
 def sync_share():
+    os.makedirs(share_dir, exist_ok=True)
+    shutil.copyfile(sub_file, share_sub_file)
+    shutil.copyfile(clash_file, share_clash_file)
+    print(f"已同步: {sub_file} → {share_sub_file}")
+    print(f"已同步: {clash_file} → {share_clash_file}")
 
-    # 确保 share 目录存在
-    os.makedirs(
-        share_dir,
-        exist_ok=True
-    )
-
-
-    # -------------------------
-    # sub.txt → share/a.txt
-    # -------------------------
-
-    shutil.copyfile(
-        sub_file,
-        share_sub_file
-    )
-
-
-    # -------------------------
-    # clash.yaml → share/clash.yaml
-    # -------------------------
-
-    shutil.copyfile(
-        clash_file,
-        share_clash_file
-    )
-
-
-    print(
-        f"已同步: {sub_file} → {share_sub_file}"
-    )
-
-    print(
-        f"已同步: {clash_file} → {share_clash_file}"
-    )
-
-
-# =========================
-# 主程序
-# =========================
 
 if __name__ == "__main__":
-
     # 1. API 拉取
     nodes = fetch_nodes()
+    print(f"API 获取原始节点: {len(nodes)} 个")
 
-    print(
-        f"API拉取: {len(nodes)} 个节点"
-    )
+    # 2. 保存原始拉取记录
+    with open(nodes_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(nodes) + "\n")
 
+    # 3. 仅对 API 节点进行测活并剔除超时（并发探测）
+    alive_nodes = filter_alive_nodes(nodes)
 
-    # 2. 保存原始节点
-    with open(
-        nodes_file,
-        "w",
-        encoding="utf-8"
-    ) as f:
+    # 4. 生成 sub 文本（在此处合并 fixed.txt，固定节点免检直通）
+    total = gen_sub(alive_nodes)
 
-        f.write(
-            "\n".join(nodes) + "\n"
-        )
-
-
-    # 3. 生成 sub.txt
-    total = gen_sub(nodes)
-
-
-    # 4. 生成 clash.yaml
+    # 5. 生成 Clash 配置
     n_clash = gen_clash()
 
-
-    # 5. 同步到 share/
+    # 6. 同步到 share 目录
     sync_share()
 
-
-    # 6. 输出结果
-    print(
-        f"nodes_new.txt: {total} 行"
-    )
-
-    print(
-        f"sub.txt / share/a.txt 已生成"
-    )
-
-    print(
-        f"clash.yaml / share/clash.yaml "
-        f"已生成, clash 代理数: {n_clash}"
-        )
+    print("========================================")
+    print(f"执行完毕！最终有效节点总计（含固定节点）: {total}")
+    print(f"Clash 代理列表数: {n_clash}")
