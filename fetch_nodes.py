@@ -4,7 +4,7 @@
 节点全流程脚本（GitHub Actions 优化版）
 
 1. API拉取节点
-2. 白名单过滤（share/alive.txt，本机网络实测可用才保留）
+2. 白名单过滤（share/alive.txt，本机网络实测可用才保留；白名单不可用时退回 TCP 测活）
 3. 名称自动追加"丨峰"后缀
 4. 合并 fixed.txt（固定节点跳过测活，强制保留）
 5. 生成 nodes_new.txt 与 Base64 订阅 sub.txt
@@ -132,11 +132,12 @@ def _node_key(line: str):
     return None
 
 
-def filter_alive_whitelist(nodes: list) -> list:
-    """只保留 share/alive.txt 白名单内（本机网络实测可用）的节点"""
+def filter_alive_whitelist(nodes: list):
+    """只保留 share/alive.txt 白名单内（本机网络实测可用）的节点
+    返回 None 表示白名单不可用，退回 TCP 测活"""
     if not os.path.exists(alive_file):
-        print("[白名单] share/alive.txt 不存在，跳过白名单过滤")
-        return nodes
+        print("[白名单] share/alive.txt 不存在，退回 TCP 测活")
+        return None
 
     keys = set()
     with open(alive_file, encoding="utf-8") as f:
@@ -147,13 +148,13 @@ def filter_alive_whitelist(nodes: list) -> list:
                 if k:
                     keys.add(k)
     if not keys:
-        print("[白名单] 白名单为空，跳过白名单过滤")
-        return nodes
+        print("[白名单] 白名单为空，退回 TCP 测活")
+        return None
 
     kept = [n for n in nodes if _node_key(n) in keys]
     if not kept:
-        print("[警告] 白名单匹配为 0，跳过白名单过滤保留全部（白名单可能已过期）")
-        return nodes
+        print("[警告] 白名单匹配为 0（可能已过期），退回 TCP 测活")
+        return None
     print(f"[白名单] 本机实测可用：保留 {len(kept)} / {len(nodes)}")
     return kept
 
@@ -267,251 +268,4 @@ def process_line(line: str) -> str:
 # 4. 生成 nodes_new.txt / sub.txt
 # =========================
 
-def gen_sub(api_alive_nodes: list) -> int:
-    # 1. API 存活节点加后缀
-    result = [process_line(n) for n in api_alive_nodes if n.strip()]
-
-    # 2. 合并固定节点（fixed.txt 跳过测活，无论是否超时均强制保留）
-    fixed_count = 0
-    try:
-        req = urllib.request.Request(FIXED_URL, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            lines = r.read().decode("utf-8").splitlines()
-            for line in lines:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    result.append(process_line(line))
-                    fixed_count += 1
-        print(f"[固定节点] 成功读取并合并 fixed.txt: {fixed_count} 个")
-    except Exception as e:
-        print(f"[警告] 读取 fixed.txt 失败: {e}")
-
-    final_text = "\n".join(result)
-
-    # 写入 nodes_new.txt
-    with open(nodes_new_file, "w", encoding="utf-8") as f:
-        f.write(final_text + "\n")
-
-    # 写入 Base64 sub.txt
-    encoded = base64.b64encode(final_text.encode("utf-8")).decode("utf-8")
-    with open(sub_file, "w", encoding="utf-8") as f:
-        f.write(encoded)
-
-    return len(result)
-
-
-# =========================
-# 5. Clash 配置解析转换
-# =========================
-
-def get_param(params, key, default=None):
-    return params.get(key, [default])[0] if key in params else default
-
-
-def decode_vless(line):
-    try:
-        u = urllib.parse.urlparse(line)
-        p = urllib.parse.parse_qs(u.query)
-
-        proxy = {
-            "name": urllib.parse.unquote(u.fragment) if u.fragment else "VLESS节点",
-            "type": "vless",
-            "server": u.hostname,
-            "port": int(u.port),
-            "uuid": u.username,
-            "udp": True,
-        }
-
-        security = get_param(p, "security")
-        if security in ("tls", "reality"):
-            proxy["tls"] = True
-            if security == "reality":
-                proxy["reality-opts"] = {
-                    "public-key": get_param(p, "pbk", ""),
-                    "short-id": get_param(p, "sid", ""),
-                }
-
-        sni = get_param(p, "sni")
-        if sni:
-            proxy["servername"] = sni
-
-        flow = get_param(p, "flow")
-        if flow:
-            proxy["flow"] = flow
-
-        fp = get_param(p, "fp")
-        if fp:
-            proxy["client-fingerprint"] = fp
-
-        net = get_param(p, "type") or get_param(p, "net")
-        if net == "ws":
-            proxy["network"] = "ws"
-            proxy["ws-opts"] = {
-                "path": get_param(p, "path", "/"),
-                "headers": {"Host": get_param(p, "host", u.hostname)},
-            }
-        elif net == "grpc":
-            proxy["network"] = "grpc"
-            proxy["grpc-opts"] = {
-                "grpc-service-name": get_param(p, "serviceName", "")
-            }
-
-        return proxy
-    except Exception as e:
-        return None
-
-
-def decode_vmess(line):
-    try:
-        data = line.replace("vmess://", "")
-        obj = json.loads(safe_b64decode(data))
-
-        proxy = {
-            "name": obj.get("ps", "VMess节点"),
-            "type": "vmess",
-            "server": obj["add"],
-            "port": int(obj["port"]),
-            "uuid": obj["id"],
-            "alterId": int(obj.get("aid", 0)),
-            "cipher": obj.get("scy", "auto"),
-            "udp": True,
-        }
-
-        if obj.get("tls") == "tls":
-            proxy["tls"] = True
-
-        if obj.get("net") == "ws":
-            proxy["network"] = "ws"
-            proxy["ws-opts"] = {
-                "path": obj.get("path", "/"),
-                "headers": {"Host": obj.get("host", obj["add"])},
-            }
-
-        return proxy
-    except Exception as e:
-        return None
-
-
-def decode_trojan(line):
-    try:
-        u = urllib.parse.urlparse(line)
-        p = urllib.parse.parse_qs(u.query)
-
-        proxy = {
-            "name": urllib.parse.unquote(u.fragment) if u.fragment else "Trojan节点",
-            "type": "trojan",
-            "server": u.hostname,
-            "port": u.port,
-            "password": u.username,
-            "udp": True,
-            "tls": True,
-        }
-        sni = get_param(p, "sni")
-        if sni:
-            proxy["sni"] = sni
-
-        return proxy
-    except Exception as e:
-        return None
-
-
-def gen_clash():
-    proxies = []
-
-    with open(nodes_new_file, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-
-            pr = None
-            if line.startswith("vmess://"):
-                pr = decode_vmess(line)
-            elif line.startswith("vless://"):
-                pr = decode_vless(line)
-            elif line.startswith("trojan://"):
-                pr = decode_trojan(line)
-
-            if pr:
-                proxies.append(pr)
-
-    # 节点防重名处理（Clash 规定 name 必须唯一，否则客户端报错）
-    used_names = {}
-    for p in proxies:
-        base_name = p["name"]
-        if base_name in used_names:
-            used_names[base_name] += 1
-            p["name"] = f"{base_name} {used_names[base_name]}"
-        else:
-            used_names[base_name] = 1
-
-    names = [p["name"] for p in proxies]
-    default_proxy = names if names else ["DIRECT"]
-
-    config = {
-        "mixed-port": 7890,
-        "allow-lan": True,
-        "mode": "rule",
-        "log-level": "info",
-        "proxies": proxies,
-        "proxy-groups": [
-            {
-                "name": "自动选择",
-                "type": "url-test",
-                "url": "https://www.gstatic.com/generate_204",
-                "interval": 300,
-                "proxies": list(default_proxy),
-            },
-            {
-                "name": "手动选择",
-                "type": "select",
-                "proxies": ["自动选择"] + list(default_proxy),
-            },
-        ],
-        "rules": [
-            "MATCH,自动选择"
-        ],
-    }
-
-    with open(clash_file, "w", encoding="utf-8") as f:
-        yaml.dump(config, f, allow_unicode=True, sort_keys=False)
-
-    return len(proxies)
-
-
-# =========================
-# 6. 同步与主程序入口
-# =========================
-
-def sync_share():
-    os.makedirs(share_dir, exist_ok=True)
-    shutil.copyfile(sub_file, share_sub_file)
-    shutil.copyfile(clash_file, share_clash_file)
-    print(f"已同步: {sub_file} → {share_sub_file}")
-    print(f"已同步: {clash_file} → {share_clash_file}")
-
-
-if __name__ == "__main__":
-    # 1. API 拉取
-    nodes = fetch_nodes()
-    print(f"API 获取原始节点: {len(nodes)} 个")
-
-    # 2. 保存原始拉取记录
-    with open(nodes_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(nodes) + "\n")
-
-    # 3. 仅对 API 节点进行测活并剔除超时（并发探测）
-    alive_nodes = filter_alive_nodes(nodes)
-
-    # 4. 生成 sub 文本（在此处合并 fixed.txt，固定节点免检直通）
-    total = gen_sub(alive_nodes)
-
-    # 5. 生成 Clash 配置
-    n_clash = gen_clash()
-
-    # 6. 同步到 share 目录
-    sync_share()
-
-    print("========================================")
-    print(f"执行完毕！最终有效节点总计（含固定节点）: {total}")
-    print(f"Clash 代理列表数: {n_clash}")
+def gen_sub(api_alive_nodes: list
