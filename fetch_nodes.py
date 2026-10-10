@@ -4,7 +4,7 @@
 节点全流程脚本（GitHub Actions 优化版）
 
 1. API拉取节点
-2. 高并发 TCP 测活（GitHub Actions 环境优化版，带熔断保底）
+2. 白名单过滤（share/alive.txt，本机网络实测可用才保留）
 3. 名称自动追加"丨峰"后缀
 4. 合并 fixed.txt（固定节点跳过测活，强制保留）
 5. 生成 nodes_new.txt 与 Base64 订阅 sub.txt
@@ -103,6 +103,59 @@ def fetch_nodes():
 
     # 保持顺序去重
     return list(dict.fromkeys(nodes))
+
+
+# =========================
+# 白名单过滤（本机网络代理级实测存活）
+# =========================
+
+alive_file = os.path.join(share_dir, "alive.txt")
+
+
+def _strip_tag_suffix(name: str) -> str:
+    return name[:-2] if name.endswith("丨峰") else name
+
+
+def _node_key(line: str):
+    """归一化键 (host, port, 名称)：忽略 uuid 等会轮换的字段"""
+    line = line.strip()
+    try:
+        if line.startswith("vmess://"):
+            obj = json.loads(safe_b64decode(line[8:]))
+            return (obj.get("add"), int(obj.get("port")), _strip_tag_suffix(obj.get("ps", "")))
+        u = urllib.parse.urlparse(line)
+        if u.hostname and u.port:
+            tag = urllib.parse.unquote(u.fragment) if u.fragment else ""
+            return (u.hostname, int(u.port), _strip_tag_suffix(tag))
+    except Exception:
+        return None
+    return None
+
+
+def filter_alive_whitelist(nodes: list) -> list:
+    """只保留 share/alive.txt 白名单内（本机网络实测可用）的节点"""
+    if not os.path.exists(alive_file):
+        print("[白名单] share/alive.txt 不存在，跳过白名单过滤")
+        return nodes
+
+    keys = set()
+    with open(alive_file, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                k = _node_key(line)
+                if k:
+                    keys.add(k)
+    if not keys:
+        print("[白名单] 白名单为空，跳过白名单过滤")
+        return nodes
+
+    kept = [n for n in nodes if _node_key(n) in keys]
+    if not kept:
+        print("[警告] 白名单匹配为 0，跳过白名单过滤保留全部（白名单可能已过期）")
+        return nodes
+    print(f"[白名单] 本机实测可用：保留 {len(kept)} / {len(nodes)}")
+    return kept
 
 
 # =========================
