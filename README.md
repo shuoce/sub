@@ -90,14 +90,20 @@ https://shuoce1.eu.cc/share/clash.yaml
 
 ```
 sub
-│
-├── index.html
-├── README.md
-├── sub.txt
+├── .github/workflows/update-sub.yml   # CI：每 3 小时拉取 → 测活 → 发布
+├── fetch_nodes.py                     # 流水线主程序（CI 执行）
+├── local_probe.py                     # 白名单探测（本机执行，见白名单刷新手册.md）
+├── nodes.txt                          # 上游原始节点快照（CI 生成）
+├── nodes_new.txt                      # 过滤后节点（CI 生成）
+├── sub.txt / clash.yaml               # 订阅产物（CI 生成）
+├── index.html / CNAME / style.css     # Pages 站点
 │
 └── share
-    ├── synchronous
-    └── mao.txt
+    ├── a.txt                          # NekoBox 订阅（= sub.txt，Base64）
+    ├── clash.yaml                     # Clash 订阅
+    ├── alive.txt                      # 存活白名单（本机探测生成，CI 不覆盖）
+    ├── fixed.txt                       # 免检固定节点    ├── mao                            # 临时分享
+    └── synchronous                    # 基础配置模板
 ```
 
 ---
@@ -114,11 +120,8 @@ https://shuoce1.eu.cc/
 
 # 🔄 更新说明
 
-节点更新后：
-
-1. 更新订阅文件
-2. 提交 GitHub
-3. 客户端重新刷新订阅
+- 订阅由 GitHub Actions 每 3 小时自动更新并发布，客户端刷新订阅即可获取最新节点
+- `share/alive.txt` 白名单由本机手动刷新（换网络或节点异常时），见 [白名单刷新手册](白名单刷新手册.md)
 
 
 ---
