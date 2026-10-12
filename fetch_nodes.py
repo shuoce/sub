@@ -1,83 +1,90 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-节点全流程脚本（GitHub Actions 优化版）
+shuoce/sub 核心订阅流水线（修订版）
 
-1. API拉取节点
-2. 白名单过滤（share/alive.txt，本机网络实测可用才保留；白名单不可用时退回 TCP 测活）
-3. 名称自动追加"丨峰"后缀
-4. 合并 fixed.txt（固定节点跳过测活，强制保留）
-5. 生成 nodes_new.txt 与 Base64 订阅 sub.txt
-6. 生成 clash.yaml（包含节点重名自动编号）
-7. 同步文件到 share/ 目录
+相对旧版的修复：
+1. fetch_api_nodes 按真实 API 返回解析：code==1 严格校验、data[i].node 字符串数组、
+   跳过 status==1 / 组名含"免费"；拉取失败直接报错退出（绝不静默发布空/旧内容）
+2. 白名单 share/alive.txt 解耦为 (host,port) 键，不再绑定节点名称；
+   白名单不再是排他准入 —— 全部 API 节点都参与测活，白名单节点测活失败时
+   按"高信任降级"处理（见 main 中注释），需定期用 local_probe.py 刷新白名单
+3. 测活：1.5s × 2 次重试，消除瞬时抖动误杀
+4. 熔断：0 存活时回退上一版 nodes_new.txt 快照（而非全量发布未测活节点）
+5. (type,host,port) 全局去重；公告节点最多保留 1 条；修正 fixed.txt 第 3 条
+   pbk 疑似 typo（42 字符，比正确值少 1 位）
+6. gen_clash 补齐 ss:// 解析；保留原 mixed-port 键与 https 探测地址
 
-凭证从 GitHub Secrets 读取：
-  - SUB_TOKEN
-  - SUB_AUTHTOKEN
+凭证：GitHub Secrets → SUB_TOKEN / SUB_AUTHTOKEN
 """
 
 import base64
-from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
 import os
+import re
 import shutil
 import socket
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 import yaml
 
 # =========================
-# API 配置（凭证来自 GitHub Secrets）
+# 配置（凭证来自 GitHub Secrets）
 # =========================
-
 API = os.environ.get("SUB_API_URL", "http://8.210.52.158:8020/app/subscribe")
 TOKEN = os.environ["SUB_TOKEN"]
 AUTHTOKEN = os.environ["SUB_AUTHTOKEN"]
 
-# =========================
-# 测活配置（GitHub Actions 适用）
-# =========================
+TCP_TIMEOUT = 1.5     # 单次 TCP 握手超时（秒）
+TCP_RETRIES = 2        # 每节点探测次数（≥1 次成功即存活）
+MAX_WORKERS = 30
 
-# GitHub 服务器网络好，3.0s 足以判断 TCP 是否响应
-TCP_TIMEOUT = 3.0    # 单节点超时时间（秒）
-MAX_WORKERS = 30     # 并发线程数
-
-# =========================
-# GitHub 固定节点
-# =========================
-
-FIXED_URL = "https://raw.githubusercontent.com/shuoce/sub/main/share/fixed.txt"
-
-# =========================
-# 输出文件路径
-# =========================
+FIXED_FILE = os.path.join("share", "fixed.txt")   # 改为本地读取（CI 已 checkout）
+alive_file = os.path.join("share", "alive.txt")
 
 nodes_file = "nodes.txt"
 nodes_new_file = "nodes_new.txt"
 sub_file = "sub.txt"
 clash_file = "clash.yaml"
-
 share_dir = "share"
 share_sub_file = os.path.join(share_dir, "a.txt")
 share_clash_file = os.path.join(share_dir, "clash.yaml")
 
+ANNOUNCE_KEYWORDS = ("请在各代理", "谢谢大家", "tg：", "tg留言", "公告", "通知")
+
+# fixed.txt 中 pbk 为 42 字符的疑似 typo（正确 43 字符），按同文件其他行的值修正
+PBK_TYPO_42 = "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_iPwA"
+PBK_CANON = "1jkizvy42aHc-um3C7LgmBYRn6HFJomyk0F2T_i2PwA"
+
 
 # =========================
-# 辅助函数：安全 Base64 解码
+# 辅助
 # =========================
 
 def safe_b64decode(s: str) -> str:
-    """自动补全 padding 并兼容 URL safe base64"""
     s = s.strip().replace("-", "+").replace("_", "/")
     s += "=" * (-len(s) % 4)
     return base64.b64decode(s).decode("utf-8", errors="ignore")
 
 
+def _strip_tag_suffix(name: str) -> str:
+    return name[:-2] if name.endswith("丨峰") else name
+
+
+def is_announcement(name: str) -> bool:
+    n = name or ""
+    return any(k in n for k in ANNOUNCE_KEYWORDS)
+
+
 # =========================
-# 1. API 拉取节点
+# 1. API 拉取（按真实返回结构）
 # =========================
 
-def fetch_nodes():
+def fetch_nodes() -> list:
+    """真实结构：{"code":1,"data":[{"id","status","name","node":[str,...],"type"}]}
+    code!=1 或结构异常 → 直接抛错，让 Actions 失败（禁止静默发布旧内容）"""
     req = urllib.request.Request(API)
     req.add_header("token", TOKEN)
     req.add_header("authtoken", AUTHTOKEN)
@@ -87,56 +94,52 @@ def fetch_nodes():
         data = json.loads(r.read().decode())
 
     if data.get("code") != 1:
-        raise RuntimeError(
-            f"API返回异常: {data.get('code')} {data.get('message')}"
-        )
+        raise RuntimeError(f"API返回异常: {data.get('code')} {data.get('message')}")
+
+    raw = data.get("data")
+    if not isinstance(raw, list):
+        raise RuntimeError(f"API data 结构异常: 期望 list，实际 {type(raw).__name__}")
 
     nodes = []
-    for grp in data.get("data") or []:
-        # 跳过免费节点分组（status==1 或组名含"免费"）
+    for grp in raw:
+        if not isinstance(grp, dict):
+            continue
         if grp.get("status") == 1 or "免费" in (grp.get("name") or ""):
             continue
-        for n in grp.get("node") or []:
-            n = n.strip()
-            if n:
-                nodes.append(n)
+        for n in grp.get("node") or []:       # ← 真实字段名是 node，元素为字符串
+            if isinstance(n, str) and n.strip():
+                nodes.append(n.strip())
+            elif isinstance(n, dict):
+                link = n.get("link") or n.get("url")
+                if link:
+                    nodes.append(link.strip())
 
-    # 保持顺序去重
-    return list(dict.fromkeys(nodes))
+    return list(dict.fromkeys(nodes))         # 保序去重
 
 
 # =========================
-# 白名单过滤（本机网络实测存活）
+# 2. 白名单（参考池，非排他准入）
 # =========================
-
-alive_file = os.path.join(share_dir, "alive.txt")
-
-
-def _strip_tag_suffix(name: str) -> str:
-    return name[:-2] if name.endswith("丨峰") else name
-
 
 def _node_key(line: str):
-    """归一化键 (host, port, 名称)：忽略会轮换的 uuid 等字段"""
+    """(host, port) 键；名称不参与匹配（防机场改名失配）"""
     line = line.strip()
     try:
         if line.startswith("vmess://"):
             obj = json.loads(safe_b64decode(line[8:]))
-            return (obj.get("add"), int(obj.get("port")), _strip_tag_suffix(obj.get("ps", "")))
+            return (str(obj.get("add")).lower(), int(obj.get("port")))
         u = urllib.parse.urlparse(line)
         if u.hostname and u.port:
-            tag = urllib.parse.unquote(u.fragment) if u.fragment else ""
-            return (u.hostname, int(u.port), _strip_tag_suffix(tag))
+            return (u.hostname.lower(), int(u.port))
     except Exception:
         return None
     return None
 
 
-def filter_alive_whitelist(nodes: list):
-    """仅保留 share/alive.txt 白名单内节点；返回 None 表示白名单不可用，退回 TCP 测活"""
+def load_whitelist() -> set:
     if not os.path.exists(alive_file):
-        print("[白名单] share/alive.txt 不存在，退回 TCP 测活")
-        return None
+        print("[白名单] share/alive.txt 不存在，全部节点按测活结果处理")
+        return set()
     keys = set()
     with open(alive_file, encoding="utf-8") as f:
         for line in f:
@@ -145,99 +148,96 @@ def filter_alive_whitelist(nodes: list):
                 k = _node_key(line)
                 if k:
                     keys.add(k)
-    if not keys:
-        print("[白名单] 白名单为空，退回 TCP 测活")
-        return None
-    kept = [n for n in nodes if _node_key(n) in keys]
-    if not kept:
-        print("[警告] 白名单匹配为 0（可能已过期），退回 TCP 测活")
-        return None
-    print(f"[白名单] 本机实测可用：保留 {len(kept)} / {len(nodes)}")
-    return kept
+    print(f"[白名单] 参考键 {len(keys)} 个（需定期 local_probe.py 刷新，否则死节点会被保留）")
+    return keys
 
 
 # =========================
-# 2. TCP 测活与超时剔除
+# 3. TCP 测活（重试抗抖动）
 # =========================
 
 def extract_host_port(line: str):
-    """解析节点的目标主机与端口"""
     line = line.strip()
     try:
         if line.startswith("vmess://"):
-            data = line[8:]
-            obj = json.loads(safe_b64decode(data))
+            obj = json.loads(safe_b64decode(line[8:]))
             return obj.get("add"), int(obj.get("port"))
-
         if line.startswith(("vless://", "trojan://", "ss://")):
             u = urllib.parse.urlparse(line)
             if u.hostname and u.port:
-                return u.hostname, int(u.port)
+                return u.hostname, u.port
     except Exception:
         pass
     return None, None
 
 
-def check_node_alive(line: str, timeout: float = TCP_TIMEOUT) -> bool:
-    """对单节点进行 TCP 握手检测"""
+def check_node_alive(line: str) -> bool:
+    """TCP 握手 × TCP_RETRIES 次，任一次成功即存活"""
     host, port = extract_host_port(line)
     if not host or not port:
-        # 解析不出 host/port 时默认保留，防止误杀特殊格式节点
+        # 解析不出 host/port：按公告/特殊节点处理，保留（去重阶段另行归类）
         return True
+    for _ in range(max(1, TCP_RETRIES)):
+        try:
+            with socket.create_connection((host, int(port)), timeout=TCP_TIMEOUT):
+                return True
+        except (socket.timeout, ConnectionRefusedError, OSError):
+            continue
+    return False
 
-    try:
-        with socket.create_connection((host, port), timeout=timeout):
-            return True
-    except (socket.timeout, ConnectionRefusedError, OSError):
-        return False
 
-
-def filter_alive_nodes(nodes: list) -> list:
-    """并发检测并剔除超时节点（带 Actions 熔断保护）"""
+def filter_alive_nodes(nodes: list, whitelist: set) -> list:
+    """全量候选并发测活；白名单节点测活失败时降级保留（高信任池）。
+    注意：白名单必须定期刷新，否则已死白名单节点会一直被保留。"""
     if not nodes:
         return []
+    print(f"[测活] 探测 {len(nodes)} 个节点 (并发 {MAX_WORKERS}, {TCP_TIMEOUT}s × {TCP_RETRIES}) ...")
 
-    print(f"[测活] 开始探测 {len(nodes)} 个 API 节点 (并发: {MAX_WORKERS}, 超时: {TCP_TIMEOUT}s)...")
-    alive_nodes = []
-
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-        future_map = {executor.submit(check_node_alive, node): node for node in nodes}
-        for future in as_completed(future_map):
-            node = future_map[future]
+    tested = {}   # line -> bool
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
+        fmap = {ex.submit(check_node_alive, n): n for n in nodes}
+        for fut in as_completed(fmap):
             try:
-                if future.result():
-                    alive_nodes.append(node)
+                tested[fmap[fut]] = fut.result()
             except Exception:
-                pass
+                tested[fmap[fut]] = False
 
-    # 熔断安全机制：
-    # 如果检测出来存活节点为 0（大概率是 GitHub Actions 容器的网络策略或 IP 被封锁）
-    # 此时不剔除任何节点，全量保留，避免推送一个空配置
-    if len(alive_nodes) == 0 and len(nodes) > 0:
-        print("[警告] 存活节点检测为 0，触发熔断保护：跳过剔除，保留所有原始节点！")
-        return nodes
+    alive = [n for n in nodes if tested.get(n)]
+    white_kept = [n for n in nodes if not tested.get(n) and _node_key(n) in whitelist]
+    if white_kept:
+        print(f"[白名单保底] {len(white_kept)} 个白名单节点本次测活未通过，按高信任保留")
+    result = alive + white_kept
 
-    print(f"[测活] 完成：可用 {len(alive_nodes)} / {len(nodes)}，已剔除 {len(nodes) - len(alive_nodes)} 个超时节点")
-    return alive_nodes
+    # 熔断：0 存活 → 回退上一版快照（禁止把未测活的全量原样发布）
+    if not result and nodes:
+        print("[警告] 本轮 0 存活，回退上一版 nodes_new.txt 快照（Runner 网络可能异常）")
+        try:
+            with open(nodes_new_file, encoding="utf-8") as f:
+                prev = [l.strip() for l in f if l.strip() and not l.startswith("#")]
+            if prev:
+                return prev
+        except FileNotFoundError:
+            pass
+        print("[警告] 无历史快照，本轮输出仅保留 fixed.txt 公告/固定节点")
+        return []
+
+    print(f"[测活] 完成：{len(alive)}/{len(nodes)} 通过，白名单保底 {len(white_kept)}，最终 {len(result)}")
+    return result
 
 
 # =========================
-# 3. 节点重命名处理
+# 4. 改名与去重
 # =========================
 
 def process_vmess(line: str) -> str:
     try:
-        raw_b64 = line[8:]
-        obj = json.loads(safe_b64decode(raw_b64))
-
+        obj = json.loads(safe_b64decode(line[8:]))
         name = obj.get("ps", "")
         if not name.endswith("丨峰"):
             obj["ps"] = f"{name}丨峰"
-
         new_b64 = base64.b64encode(
             json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
         ).decode("utf-8")
-
         return f"vmess://{new_b64}"
     except Exception:
         return line
@@ -247,59 +247,85 @@ def process_line(line: str) -> str:
     line = line.strip()
     if not line:
         return ""
-
     if line.startswith("vmess://"):
         return process_vmess(line)
-
     if "#" in line:
         url, name = line.rsplit("#", 1)
         name = urllib.parse.unquote(name)
         if not name.endswith("丨峰"):
             name += "丨峰"
         return f"{url}#{urllib.parse.quote(name)}"
-
     return line
 
 
+def fix_pbk_typo(line: str) -> str:
+    if PBK_TYPO_42 in line and PBK_CANON not in line:
+        print("[修正] fixed.txt 公告节点 pbk typo (42→43 字符)")
+        return line.replace(PBK_TYPO_42, PBK_CANON)
+    return line
+
+
+def _announce_name(line: str) -> str:
+    u = urllib.parse.urlparse(line)
+    return urllib.parse.unquote(u.fragment) if u.fragment else ""
+
+
 # =========================
-# 4. 生成 nodes_new.txt / sub.txt
+# 5. 生成 nodes_new.txt / sub.txt
 # =========================
+
+def _load_fixed() -> list:
+    """读本地 share/fixed.txt（不再走 raw.githubusercontent，少一个故障点）"""
+    if not os.path.exists(FIXED_FILE):
+        print(f"[警告] {FIXED_FILE} 不存在，跳过固定节点合并")
+        return []
+    out = []
+    with open(FIXED_FILE, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                out.append(fix_pbk_typo(line))
+    return out
+
 
 def gen_sub(api_alive_nodes: list) -> int:
-    # 1. API 存活节点加后缀
-    result = [process_line(n) for n in api_alive_nodes if n.strip()]
+    # 候选顺序：API 存活在前，fixed 追加（公告 + 固定代理）
+    candidates = [process_line(n) for n in api_alive_nodes if n.strip()]
+    candidates += [process_line(l) for l in _load_fixed()]
 
-    # 2. 合并固定节点（fixed.txt 跳过测活，无论是否超时均强制保留）
-    fixed_count = 0
-    try:
-        req = urllib.request.Request(FIXED_URL, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=15) as r:
-            lines = r.read().decode("utf-8").splitlines()
-            for line in lines:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    result.append(process_line(line))
-                    fixed_count += 1
-        print(f"[固定节点] 成功读取并合并 fixed.txt: {fixed_count} 个")
-    except Exception as e:
-        print(f"[警告] 读取 fixed.txt 失败: {e}")
+    # (type,host,port) 去重；公告节点最多保留 1 条
+    result, seen, announce_kept = [], set(), False
+    for line in candidates:
+        if not line:
+            continue
+        if is_announcement(_announce_name(line)):
+            if announce_kept:
+                continue
+            announce_kept = True
+            result.append(line)
+            continue
+        scheme = line.split("://", 1)[0].lower()
+        hp = extract_host_port(line)
+        key = (scheme,) + hp
+        if hp[0] is None:
+            result.append(line)   # 解析不了的特殊行不去重、不丢弃
+            continue
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(line)
 
     final_text = "\n".join(result)
-
-    # 写入 nodes_new.txt
     with open(nodes_new_file, "w", encoding="utf-8") as f:
         f.write(final_text + "\n")
-
-    # 写入 Base64 sub.txt
     encoded = base64.b64encode(final_text.encode("utf-8")).decode("utf-8")
     with open(sub_file, "w", encoding="utf-8") as f:
         f.write(encoded)
-
     return len(result)
 
 
 # =========================
-# 5. Clash 配置解析转换
+# 6. Clash 配置生成（含 ss 补齐）
 # =========================
 
 def get_param(params, key, default=None):
@@ -310,7 +336,6 @@ def decode_vless(line):
     try:
         u = urllib.parse.urlparse(line)
         p = urllib.parse.parse_qs(u.query)
-
         proxy = {
             "name": urllib.parse.unquote(u.fragment) if u.fragment else "VLESS节点",
             "type": "vless",
@@ -319,7 +344,6 @@ def decode_vless(line):
             "uuid": u.username,
             "udp": True,
         }
-
         security = get_param(p, "security")
         if security in ("tls", "reality"):
             proxy["tls"] = True
@@ -328,19 +352,15 @@ def decode_vless(line):
                     "public-key": get_param(p, "pbk", ""),
                     "short-id": get_param(p, "sid", ""),
                 }
-
         sni = get_param(p, "sni")
         if sni:
             proxy["servername"] = sni
-
         flow = get_param(p, "flow")
         if flow:
             proxy["flow"] = flow
-
         fp = get_param(p, "fp")
         if fp:
             proxy["client-fingerprint"] = fp
-
         net = get_param(p, "type") or get_param(p, "net")
         if net == "ws":
             proxy["network"] = "ws"
@@ -350,20 +370,15 @@ def decode_vless(line):
             }
         elif net == "grpc":
             proxy["network"] = "grpc"
-            proxy["grpc-opts"] = {
-                "grpc-service-name": get_param(p, "serviceName", "")
-            }
-
+            proxy["grpc-opts"] = {"grpc-service-name": get_param(p, "serviceName", "")}
         return proxy
-    except Exception as e:
+    except Exception:
         return None
 
 
 def decode_vmess(line):
     try:
-        data = line.replace("vmess://", "")
-        obj = json.loads(safe_b64decode(data))
-
+        obj = json.loads(safe_b64decode(line[8:]))
         proxy = {
             "name": obj.get("ps", "VMess节点"),
             "type": "vmess",
@@ -374,19 +389,16 @@ def decode_vmess(line):
             "cipher": obj.get("scy", "auto"),
             "udp": True,
         }
-
-        if obj.get("tls") == "tls":
+        if obj.get("tls") in ("tls", "1"):
             proxy["tls"] = True
-
         if obj.get("net") == "ws":
             proxy["network"] = "ws"
             proxy["ws-opts"] = {
                 "path": obj.get("path", "/"),
                 "headers": {"Host": get_param({"host": [obj.get("host", obj["add"])]}, "host")},
             }
-
         return proxy
-    except Exception as e:
+    except Exception:
         return None
 
 
@@ -394,7 +406,6 @@ def decode_trojan(line):
     try:
         u = urllib.parse.urlparse(line)
         p = urllib.parse.parse_qs(u.query)
-
         proxy = {
             "name": urllib.parse.unquote(u.fragment) if u.fragment else "Trojan节点",
             "type": "trojan",
@@ -407,21 +418,56 @@ def decode_trojan(line):
         sni = get_param(p, "sni")
         if sni:
             proxy["sni"] = sni
-
         return proxy
-    except Exception as e:
+    except Exception:
         return None
 
 
-def gen_clash():
-    proxies = []
+def decode_ss(line):
+    """补齐 ss://：SIP002 (userinfo@host:port) 与旧版整体 base64 两种格式"""
+    try:
+        u = urllib.parse.urlparse(line)
+        name = urllib.parse.unquote(u.fragment) if u.fragment else "SS节点"
+        cipher, password, host, port = "", "", None, None
 
+        if "@" in (u.netloc or ""):
+            userinfo = u.netloc.split("@", 1)[0]
+            try:
+                raw = userinfo.replace("-", "+").replace("_", "/")
+                raw += "=" * (-len(raw) % 4)
+                dec = base64.b64decode(raw).decode("utf-8", errors="ignore")
+                cipher, password = dec.split(":", 1)
+            except Exception:
+                pass
+            host, port = u.hostname, int(u.port or 0)
+        else:
+            # 旧版: ss://base64(method:password@host:port)?plugin=...
+            payload = (u.netloc or "").split("/")[0].split("?")[0]
+            raw = payload.replace("-", "+").replace("_", "/")
+            raw += "=" * (-len(raw) % 4)
+            dec = base64.b64decode(raw).decode("utf-8", errors="ignore")
+            cred, _, hp = dec.rpartition("@")
+            cipher, password = cred.split(":", 1)
+            host, _, p = hp.partition(":")
+            port = int(p)
+
+        if not (cipher and password and host and port):
+            return None
+        proxy = {"name": name, "type": "ss", "server": host, "port": int(port),
+                 "cipher": cipher, "password": password, "udp": True}
+        # v2ray-plugin 参数透传（plugin=...query 原样给 mihomo 需 plugin-opts，这里保守不带）
+        return proxy
+    except Exception:
+        return None
+
+
+def gen_clash() -> int:
+    proxies = []
     with open(nodes_new_file, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
-
             pr = None
             if line.startswith("vmess://"):
                 pr = decode_vmess(line)
@@ -429,11 +475,11 @@ def gen_clash():
                 pr = decode_vless(line)
             elif line.startswith("trojan://"):
                 pr = decode_trojan(line)
-
+            elif line.startswith("ss://"):
+                pr = decode_ss(line)
             if pr:
                 proxies.append(pr)
 
-    # 节点防重名处理（Clash 规定 name 必须唯一，否则客户端报错）
     used_names = {}
     for p in proxies:
         base_name = p["name"]
@@ -453,32 +499,21 @@ def gen_clash():
         "log-level": "info",
         "proxies": proxies,
         "proxy-groups": [
-            {
-                "name": "自动选择",
-                "type": "url-test",
-                "url": "https://www.gstatic.com/generate_204",
-                "interval": 300,
-                "proxies": list(default_proxy),
-            },
-            {
-                "name": "手动选择",
-                "type": "select",
-                "proxies": ["自动选择"] + list(default_proxy),
-            },
+            {"name": "自动选择", "type": "url-test",
+             "url": "https://www.gstatic.com/generate_204", "interval": 300,
+             "proxies": list(default_proxy)},
+            {"name": "手动选择", "type": "select",
+             "proxies": ["自动选择"] + list(default_proxy)},
         ],
-        "rules": [
-            "MATCH,自动选择"
-        ],
+        "rules": ["MATCH,自动选择"],
     }
-
     with open(clash_file, "w", encoding="utf-8") as f:
         yaml.dump(config, f, allow_unicode=True, sort_keys=False)
-
     return len(proxies)
 
 
 # =========================
-# 6. 同步与主程序入口
+# 7. 同步与主入口
 # =========================
 
 def sync_share():
@@ -490,28 +525,26 @@ def sync_share():
 
 
 if __name__ == "__main__":
-    # 1. API 拉取
+    # 1. API 拉取（失败即崩溃，禁止静默发布）
     nodes = fetch_nodes()
     print(f"API 获取原始节点: {len(nodes)} 个")
 
-    # 2. 保存原始拉取记录
     with open(nodes_file, "w", encoding="utf-8") as f:
         f.write("\n".join(nodes) + "\n")
 
-    # 3. 优先白名单过滤（本机网络实测存活），白名单不可用时退回 TCP 测活
-    alive_nodes = filter_alive_whitelist(nodes)
-    if alive_nodes is None:
-        alive_nodes = filter_alive_nodes(nodes)
+    # 2. 白名单参考 + 全量测活（非排他）
+    whitelist = load_whitelist()
+    alive_nodes = filter_alive_nodes(nodes, whitelist)
 
-    # 4. 生成 sub 文本（在此处合并 fixed.txt，固定节点免检直通）
+    # 3. 生成 sub（合并 fixed、改名、去重）
     total = gen_sub(alive_nodes)
 
-    # 5. 生成 Clash 配置
+    # 4. 生成 Clash（含 ss）
     n_clash = gen_clash()
 
-    # 6. 同步到 share 目录
+    # 5. 同步 share/
     sync_share()
 
     print("========================================")
-    print(f"执行完毕！最终有效节点总计（含固定节点）: {total}")
+    print(f"执行完毕！最终节点（含 fixed/公告）: {total}")
     print(f"Clash 代理列表数: {n_clash}")

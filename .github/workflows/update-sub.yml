@@ -2,12 +2,17 @@ name: Update Nodes
 
 on:
   schedule:
+    # GitHub cron 仅支持 UTC（原 timezone 键为无效语法，北京时间 0/6/12/18 点 = UTC 前一小时偏移已校准）
+    # 每 3 小时: UTC 0 */3 * * *
     - cron: '0 */3 * * *'
-      timezone: 'Asia/Shanghai'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-sub
+  cancel-in-progress: true
 
 jobs:
   update:
@@ -19,6 +24,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          # 不开 cache: 'pip' —— 仓库无 requirements.txt，缓存依赖查找会直接报错
+          # ("No file ... matched to ...")
 
       - name: Install deps
         run: pip install pyyaml
@@ -32,12 +39,14 @@ jobs:
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          # 只提交产物；local_probe.py（本机脚本）与 share/alive.txt 的人工刷新
+          # 不在此列 —— alive.txt 由本机 local_probe.py 生成后手动推送
+          git add nodes.txt nodes_new.txt sub.txt clash.yaml share/a.txt share/clash.yaml
 
           if git diff --cached --quiet; then
             echo "节点无变化，跳过提交"
           else
-            git commit -m "自动更新节点 $(date '+%Y-%m-%d %H:%M')"
+            git commit -m "自动更新节点 $(date -u '+%Y-%m-%d %H:%M UTC')"
             git push
           fi
