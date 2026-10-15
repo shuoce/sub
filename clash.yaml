@@ -94,7 +94,7 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 日本三网-01丨峰
+- name: 日本三网-02丨峰
   type: vless
   server: 38.180.201.12
   port: 9443
@@ -241,7 +241,7 @@ proxy-groups:
   - 美国三网-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
-  - 日本三网-01丨峰
+  - 日本三网-02丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
@@ -264,7 +264,7 @@ proxy-groups:
   - 美国三网-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
-  - 日本三网-01丨峰
+  - 日本三网-02丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
