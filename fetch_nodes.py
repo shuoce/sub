@@ -301,17 +301,6 @@ def _load_fixed() -> list:
     return out
 
 
-def strip_ss_plugin(line):
-    """去掉 ss:// 的 plugin 参数，节点回落为可直接用的直连 shadowsocks"""
-    u = urllib.parse.urlparse(line)
-    if not u.query:
-        return line
-    q = urllib.parse.parse_qs(u.query, keep_blank_values=True)
-    q.pop("plugin", None)
-    query = urllib.parse.urlencode({k: v[0] for k, v in q.items()})
-    return urllib.parse.urlunparse((u.scheme, u.netloc, u.path, "", query, u.fragment))
-
-
 def gen_sub(api_alive_nodes: list) -> int:
     # 候选顺序：API 存活在前，fixed 追加（公告 + 固定代理）
     candidates = [process_line(n) for n in api_alive_nodes if n.strip()]
@@ -451,6 +440,7 @@ def decode_ss(line):
     """补齐 ss://：SIP002 (userinfo@host:port) 与旧版整体 base64 两种格式"""
     try:
         u = urllib.parse.urlparse(line)
+        p = urllib.parse.parse_qs(u.query)
         name = urllib.parse.unquote(u.fragment) if u.fragment else "SS节点"
         cipher, password, host, port = "", "", None, None
 
@@ -472,14 +462,23 @@ def decode_ss(line):
             dec = base64.b64decode(raw).decode("utf-8", errors="ignore")
             cred, _, hp = dec.rpartition("@")
             cipher, password = cred.split(":", 1)
-            host, _, p = hp.partition(":")
-            port = int(p)
+            host, _, pstr = hp.partition(":")
+            port = int(pstr)
 
         if not (cipher and password and host and port):
             return None
         proxy = {"name": name, "type": "ss", "server": host, "port": int(port),
                  "cipher": cipher, "password": password, "udp": True}
-        # v2ray-plugin 参数透传（plugin=...query 原样给 mihomo 需 plugin-opts，这里保守不带）
+        plug = get_param(p, "plugin")
+        if plug and "v2ray" in plug:
+            opts = {}
+            for kv in plug.split(";")[1:]:
+                if "=" in kv:
+                    k, v = kv.split("=", 1)
+                    opts[k] = v
+            if opts:
+                proxy["plugin"] = "v2ray-plugin"
+                proxy["plugin-opts"] = opts
         return proxy
     except Exception:
         return None
@@ -541,8 +540,8 @@ def gen_clash() -> int:
 # =========================
 
 def refill_refresh_nodes():
-    """读取 refresh_nodes_uris.txt 并入订阅；先 strip v2ray-plugin（无插件环境不可用，
-    直连 SS 可用），同 (host,port) 去重"""
+    """读取 refresh_nodes_uris.txt 并入订阅；保留 plugin（服务端强制 ws 传输，剥离即不通），
+    同 (host,port) 去重"""
     if not os.path.exists(refresh_uris_file):
         print(f"[试用] {refresh_uris_file} 不存在，跳过")
         return []
@@ -551,7 +550,7 @@ def refill_refresh_nodes():
         for line in f:
             line = line.strip()
             if line.startswith("ss://"):
-                lines.append(strip_ss_plugin(line))
+                lines.append(line)
     if not lines:
         print("[试用] 无有效节点")
         return []
