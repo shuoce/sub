@@ -207,6 +207,11 @@ proxies:
   cipher: aes-256-gcm
   password: '114514'
   udp: true
+  plugin: v2ray-plugin
+  plugin-opts:
+    mode: websocket
+    path: /admin
+    host: microsoft.com
 - name: 美国
   type: ss
   server: 202.189.10.146
@@ -214,6 +219,11 @@ proxies:
   cipher: aes-256-gcm
   password: '114514'
   udp: true
+  plugin: v2ray-plugin
+  plugin-opts:
+    mode: websocket
+    path: /admin
+    host: microsoft.com
 - name: 韩国极速
   type: ss
   server: 202.189.10.146
@@ -221,6 +231,11 @@ proxies:
   cipher: aes-256-gcm
   password: '114514'
   udp: true
+  plugin: v2ray-plugin
+  plugin-opts:
+    mode: websocket
+    path: /admin
+    host: microsoft.com
 - name: 日本极速
   type: ss
   server: 202.189.10.146
@@ -228,6 +243,11 @@ proxies:
   cipher: aes-256-gcm
   password: '114514'
   udp: true
+  plugin: v2ray-plugin
+  plugin-opts:
+    mode: websocket
+    path: /admin
+    host: microsoft.com
 proxy-groups:
 - name: 自动选择
   type: url-test
