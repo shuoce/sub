@@ -200,31 +200,31 @@ proxies:
   servername: s0.awsstatic.com
   flow: xtls-rprx-vision
   client-fingerprint: edge
-- name: 香港精品-直连丨峰
+- name: 香港精品
   type: ss
-  server: 82.29.52.76
-  port: 80
+  server: 202.189.10.146
+  port: 601
   cipher: aes-256-gcm
   password: '114514'
   udp: true
-- name: 美国-直连丨峰
+- name: 美国
   type: ss
-  server: 142.4.122.173
-  port: 80
+  server: 202.189.10.146
+  port: 602
   cipher: aes-256-gcm
   password: '114514'
   udp: true
-- name: 韩国极速-直连丨峰
+- name: 韩国极速
   type: ss
-  server: 61.111.129.97
-  port: 80
+  server: 202.189.10.146
+  port: 603
   cipher: aes-256-gcm
   password: '114514'
   udp: true
-- name: 日本极速-直连丨峰
+- name: 日本极速
   type: ss
-  server: 137.220.191.11
-  port: 80
+  server: 202.189.10.146
+  port: 604
   cipher: aes-256-gcm
   password: '114514'
   udp: true
@@ -249,10 +249,10 @@ proxy-groups:
   - 泰国直连01丨峰
   - 印度直连01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
-  - 香港精品-直连丨峰
-  - 美国-直连丨峰
-  - 韩国极速-直连丨峰
-  - 日本极速-直连丨峰
+  - 香港精品
+  - 美国
+  - 韩国极速
+  - 日本极速
 - name: 手动选择
   type: select
   proxies:
@@ -272,9 +272,9 @@ proxy-groups:
   - 泰国直连01丨峰
   - 印度直连01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
-  - 香港精品-直连丨峰
-  - 美国-直连丨峰
-  - 韩国极速-直连丨峰
-  - 日本极速-直连丨峰
+  - 香港精品
+  - 美国
+  - 韩国极速
+  - 日本极速
 rules:
 - MATCH,自动选择
