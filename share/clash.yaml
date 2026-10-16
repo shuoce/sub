@@ -7,7 +7,7 @@ proxies:
   type: vless
   server: 45.207.157.8
   port: 9443
-  uuid: fe0721ac-c577-4938-b7ca-8ab5f43bb8da
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -20,7 +20,7 @@ proxies:
   type: vless
   server: 154.83.86.85
   port: 9443
-  uuid: fe0721ac-c577-4938-b7ca-8ab5f43bb8da
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -33,7 +33,7 @@ proxies:
   type: vless
   server: 45.202.248.173
   port: 9443
-  uuid: fe0721ac-c577-4938-b7ca-8ab5f43bb8da
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -59,7 +59,7 @@ proxies:
   type: vless
   server: 46.21.159.243
   port: 9443
-  uuid: fe0721ac-c577-4938-b7ca-8ab5f43bb8da
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -94,22 +94,9 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 日本三网-01丨峰
-  type: vless
-  server: 38.180.201.12
-  port: 9443
-  uuid: fe0721ac-c577-4938-b7ca-8ab5f43bb8da
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
 - name: 韩国直连-01丨峰
   type: vless
-  server: 141.164.43.178
+  server: 158.247.199.164
   port: 443
   uuid: 583cc910-b57c-4dd0-a4a7-cea51a30b032
   udp: true
@@ -187,6 +174,19 @@ proxies:
     path: /cdn/packages/runtime-core.tar.gz
     headers:
       Host: in1.520782.xyz
+- name: 日本三网-01丨峰
+  type: vless
+  server: 38.180.201.12
+  port: 9443
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   type: vless
   server: zz.j-pan.ccwu.cc
@@ -261,13 +261,13 @@ proxy-groups:
   - 美国三网-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
-  - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
   - 泰国直连01丨峰
   - 印度直连01丨峰
+  - 日本三网-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 香港精品
   - 美国
@@ -284,13 +284,13 @@ proxy-groups:
   - 美国三网-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
-  - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
   - 泰国直连01丨峰
   - 印度直连01丨峰
+  - 日本三网-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 香港精品
   - 美国
