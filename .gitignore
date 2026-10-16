@@ -1,0 +1,5 @@
+# 本地运行产物
+.device_id
+__pycache__/
+*.pyc
+v2ray-plugin

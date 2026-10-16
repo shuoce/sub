@@ -30,6 +30,18 @@ jobs:
       - name: Install deps
         run: pip install pyyaml
 
+      - name: Install probe tools
+        run: |
+          curl -sL -o /tmp/ss.tar.xz https://github.com/shadowsocks/shadowsocks-rust/releases/download/v1.25.0/shadowsocks-v1.25.0.x86_64-unknown-linux-gnu.tar.xz
+          tar -xJf /tmp/ss.tar.xz -C /usr/local/bin sslocal
+          curl -sL -o /tmp/v2.tgz https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+          tar -xzf /tmp/v2.tgz -C /tmp
+          mv /tmp/v2ray-plugin_linux_amd64 /usr/local/bin/v2ray-plugin
+          chmod +x /usr/local/bin/sslocal /usr/local/bin/v2ray-plugin
+
+      - name: Verify trial nodes
+        run: python verify_nodes.py
+
       - name: Fetch nodes
         env:
           SUB_TOKEN: ${{ secrets.SUB_TOKEN }}
@@ -42,7 +54,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           # 只提交产物；local_probe.py（本机脚本）与 share/alive.txt 的人工刷新
           # 不在此列 —— alive.txt 由本机 local_probe.py 生成后手动推送
-          git add nodes.txt nodes_new.txt sub.txt clash.yaml share/a.txt share/clash.yaml
+          git add nodes.txt nodes_new.txt sub.txt clash.yaml share/a.txt share/clash.yaml share/refresh.txt refresh_nodes_uris.txt
 
           if git diff --cached --quiet; then
             echo "节点无变化，跳过提交"
