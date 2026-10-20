@@ -46,7 +46,7 @@ proxies:
   type: vless
   server: 156.229.164.149
   port: 9443
-  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -57,22 +57,9 @@ proxies:
   client-fingerprint: chrome
 - name: 美国三网-01丨峰
   type: vless
-  server: 46.21.159.243
+  server: 38.180.243.134
   port: 9443
   uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
-- name: 台湾专线-01丨峰
-  type: vless
-  server: 166.0.199.78
-  port: 9443
-  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
   udp: true
   tls: true
   reality-opts:
@@ -85,7 +72,7 @@ proxies:
   type: vless
   server: 45.192.249.71
   port: 9443
-  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -96,7 +83,7 @@ proxies:
   client-fingerprint: chrome
 - name: 日本三网-01丨峰
   type: vless
-  server: 176.97.71.215
+  server: 176.97.73.198
   port: 9443
   uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
@@ -124,7 +111,7 @@ proxies:
   type: vless
   server: 149.33.30.189
   port: 9443
-  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -137,7 +124,7 @@ proxies:
   type: vless
   server: 149.33.47.172
   port: 9443
-  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -150,7 +137,7 @@ proxies:
   type: vless
   server: 176.97.64.118
   port: 9443
-  uuid: 0ef29db1-65c4-4bf3-b1a7-7b9224f1591f
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
   reality-opts:
@@ -159,34 +146,19 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 泰国直连01丨峰
+- name: 台湾专线-01丨峰
   type: vless
-  server: www.wto.org
-  port: 443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
+  server: 166.0.199.78
+  port: 9443
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
   tls: true
-  servername: tl.520783.xyz
-  client-fingerprint: edge
-  network: ws
-  ws-opts:
-    path: /assets/dist/app-update-payload.dat
-    headers:
-      Host: tl.520783.xyz
-- name: 印度直连01丨峰
-  type: vless
-  server: cf.kele.ge
-  port: 443
-  uuid: 0250424c-ae75-4b6b-890f-3fe26fae36c3
-  udp: true
-  tls: true
-  servername: in1.520782.xyz
-  client-fingerprint: edge
-  network: ws
-  ws-opts:
-    path: /cdn/packages/runtime-core.tar.gz
-    headers:
-      Host: in1.520782.xyz
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   type: vless
   server: zz.j-pan.ccwu.cc
@@ -259,15 +231,13 @@ proxy-groups:
   - 香港直连-01丨峰
   - 美国专线-01丨峰
   - 美国三网-01丨峰
-  - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
-  - 泰国直连01丨峰
-  - 印度直连01丨峰
+  - 台湾专线-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 香港精品
   - 美国
@@ -282,15 +252,13 @@ proxy-groups:
   - 香港直连-01丨峰
   - 美国专线-01丨峰
   - 美国三网-01丨峰
-  - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
-  - 泰国直连01丨峰
-  - 印度直连01丨峰
+  - 台湾专线-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 香港精品
   - 美国
