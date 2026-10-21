@@ -68,19 +68,6 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 台湾专线-01丨峰
-  type: vless
-  server: 166.0.199.78
-  port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
 - name: 日本专线-01丨峰
   type: vless
   server: 45.192.249.71
@@ -149,6 +136,19 @@ proxies:
 - name: 新加坡直连-01丨峰
   type: vless
   server: 176.97.64.118
+  port: 9443
+  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 台湾专线-01丨峰
+  type: vless
+  server: 166.0.199.78
   port: 9443
   uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
@@ -231,13 +231,13 @@ proxy-groups:
   - 香港直连-01丨峰
   - 美国专线-01丨峰
   - 美国三网-01丨峰
-  - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
+  - 台湾专线-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 香港精品
   - 美国
@@ -252,13 +252,13 @@ proxy-groups:
   - 香港直连-01丨峰
   - 美国专线-01丨峰
   - 美国三网-01丨峰
-  - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
+  - 台湾专线-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 香港精品
   - 美国
