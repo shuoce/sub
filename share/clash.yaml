@@ -172,18 +172,6 @@ proxies:
   servername: s0.awsstatic.com
   flow: xtls-rprx-vision
   client-fingerprint: edge
-- name: 香港精品
-  type: ss
-  server: 202.189.10.146
-  port: 601
-  cipher: aes-256-gcm
-  password: '114514'
-  udp: true
-  plugin: v2ray-plugin
-  plugin-opts:
-    mode: websocket
-    path: /admin
-    host: microsoft.com
 - name: 美国
   type: ss
   server: 202.189.10.146
@@ -239,7 +227,6 @@ proxy-groups:
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
-  - 香港精品
   - 美国
   - 韩国极速
   - 日本极速
@@ -260,7 +247,6 @@ proxy-groups:
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
-  - 香港精品
   - 美国
   - 韩国极速
   - 日本极速

@@ -1,4 +1,3 @@
-ss://YWVzLTI1Ni1nY206MTE0NTE0@202.189.10.146:601?plugin=v2ray-plugin%3Bmode%3Dwebsocket%3Bpath%3D%2Fadmin%3Bhost%3Dmicrosoft.com#%E9%A6%99%E6%B8%AF%E7%B2%BE%E5%93%81
 ss://YWVzLTI1Ni1nY206MTE0NTE0@202.189.10.146:602?plugin=v2ray-plugin%3Bmode%3Dwebsocket%3Bpath%3D%2Fadmin%3Bhost%3Dmicrosoft.com#%E7%BE%8E%E5%9B%BD
 ss://YWVzLTI1Ni1nY206MTE0NTE0@202.189.10.146:603?plugin=v2ray-plugin%3Bmode%3Dwebsocket%3Bpath%3D%2Fadmin%3Bhost%3Dmicrosoft.com#%E9%9F%A9%E5%9B%BD%E6%9E%81%E9%80%9F
 ss://YWVzLTI1Ni1nY206MTE0NTE0@202.189.10.146:604?plugin=v2ray-plugin%3Bmode%3Dwebsocket%3Bpath%3D%2Fadmin%3Bhost%3Dmicrosoft.com#%E6%97%A5%E6%9C%AC%E6%9E%81%E9%80%9F
