@@ -31,7 +31,7 @@ proxies:
   client-fingerprint: chrome
 - name: 香港直连-01丨峰
   type: vless
-  server: 45.202.248.173
+  server: 45.202.248.189
   port: 9443
   uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
   udp: true
