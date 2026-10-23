@@ -7,7 +7,7 @@ proxies:
   type: vless
   server: 45.207.157.8
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -20,7 +20,7 @@ proxies:
   type: vless
   server: 154.83.86.85
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -33,33 +33,7 @@ proxies:
   type: vless
   server: 45.202.248.189
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
-- name: 美国专线-01丨峰
-  type: vless
-  server: 156.229.164.149
-  port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
-- name: 美国三网-01丨峰
-  type: vless
-  server: 38.180.243.134
-  port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -72,7 +46,7 @@ proxies:
   type: vless
   server: 166.0.199.78
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -85,7 +59,7 @@ proxies:
   type: vless
   server: 45.192.249.71
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -98,7 +72,7 @@ proxies:
   type: vless
   server: 176.97.73.198
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -124,7 +98,7 @@ proxies:
   type: vless
   server: 149.33.30.189
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -137,7 +111,7 @@ proxies:
   type: vless
   server: 149.33.47.172
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -150,7 +124,33 @@ proxies:
   type: vless
   server: 176.97.64.118
   port: 9443
-  uuid: 82eb8419-59f4-4d3e-9106-d05d22af615c
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国专线-01丨峰
+  type: vless
+  server: 156.229.164.149
+  port: 9443
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 美国三网-01丨峰
+  type: vless
+  server: 38.180.243.134
+  port: 9443
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
   reality-opts:
@@ -217,8 +217,6 @@ proxy-groups:
   - 香港专线-01丨峰
   - 香港专线-03丨峰
   - 香港直连-01丨峰
-  - 美国专线-01丨峰
-  - 美国三网-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
@@ -226,6 +224,8 @@ proxy-groups:
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
+  - 美国专线-01丨峰
+  - 美国三网-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 美国
   - 韩国极速
@@ -237,8 +237,6 @@ proxy-groups:
   - 香港专线-01丨峰
   - 香港专线-03丨峰
   - 香港直连-01丨峰
-  - 美国专线-01丨峰
-  - 美国三网-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
@@ -246,6 +244,8 @@ proxy-groups:
   - 马来西亚直连-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
+  - 美国专线-01丨峰
+  - 美国三网-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 美国
   - 韩国极速
