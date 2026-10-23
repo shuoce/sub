@@ -107,32 +107,6 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 德国直连-01丨峰
-  type: vless
-  server: 149.33.47.172
-  port: 9443
-  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
-- name: 新加坡直连-01丨峰
-  type: vless
-  server: 176.97.64.118
-  port: 9443
-  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
 - name: 美国专线-01丨峰
   type: vless
   server: 156.229.164.149
@@ -149,6 +123,32 @@ proxies:
 - name: 美国三网-01丨峰
   type: vless
   server: 38.180.243.134
+  port: 9443
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 德国直连-01丨峰
+  type: vless
+  server: 149.33.47.172
+  port: 9443
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 新加坡直连-01丨峰
+  type: vless
+  server: 176.97.64.118
   port: 9443
   uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
@@ -222,10 +222,10 @@ proxy-groups:
   - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
-  - 德国直连-01丨峰
-  - 新加坡直连-01丨峰
   - 美国专线-01丨峰
   - 美国三网-01丨峰
+  - 德国直连-01丨峰
+  - 新加坡直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 美国
   - 韩国极速
@@ -242,10 +242,10 @@ proxy-groups:
   - 日本三网-01丨峰
   - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
-  - 德国直连-01丨峰
-  - 新加坡直连-01丨峰
   - 美国专线-01丨峰
   - 美国三网-01丨峰
+  - 德国直连-01丨峰
+  - 新加坡直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 美国
   - 韩国极速
