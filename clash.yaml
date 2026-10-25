@@ -55,19 +55,6 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 台湾专线-01丨峰
-  type: vless
-  server: 166.0.199.78
-  port: 9443
-  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
 - name: 日本专线-01丨峰
   type: vless
   server: 45.192.249.71
@@ -94,19 +81,6 @@ proxies:
   servername: www.amazon.com
   flow: xtls-rprx-vision
   client-fingerprint: chrome
-- name: 韩国直连-01丨峰
-  type: vless
-  server: 158.247.241.102
-  port: 443
-  uuid: 583cc910-b57c-4dd0-a4a7-cea51a30b032
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: GR_zPAgxF9PZ70Z9UpSmMlcd2STyoAC0fZTSHkTTCGE
-    short-id: ca193e889d958f81
-  servername: www.apple.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
 - name: 马来西亚直连-01丨峰
   type: vless
   server: 149.33.30.189
@@ -123,6 +97,19 @@ proxies:
 - name: 美国专线-01丨峰
   type: vless
   server: 156.229.164.149
+  port: 9443
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 台湾专线-01丨峰
+  type: vless
+  server: 166.0.199.78
   port: 9443
   uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
@@ -218,12 +205,11 @@ proxy-groups:
   - 香港专线-03丨峰
   - 香港直连-01丨峰
   - 美国三网-01丨峰
-  - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
-  - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 美国专线-01丨峰
+  - 台湾专线-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
@@ -238,12 +224,11 @@ proxy-groups:
   - 香港专线-03丨峰
   - 香港直连-01丨峰
   - 美国三网-01丨峰
-  - 台湾专线-01丨峰
   - 日本专线-01丨峰
   - 日本三网-01丨峰
-  - 韩国直连-01丨峰
   - 马来西亚直连-01丨峰
   - 美国专线-01丨峰
+  - 台湾专线-01丨峰
   - 德国直连-01丨峰
   - 新加坡直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
