@@ -19,8 +19,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 SOURCE = "nodes.txt"          # 以 API 原始快照为探测源
 TARGET = "share/alive.txt"    # 写回白名单
-TIMEOUT = 1.5
-RETRIES = 2
+TIMEOUT = 2.5
+RETRIES = 3
 WORKERS = 15
 
 
