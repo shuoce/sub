@@ -3,10 +3,10 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 香港直连-01丨峰
+- name: 香港专线-01丨峰
   type: vless
-  server: 156.224.79.61
-  port: 9443
+  server: 141.11.91.35
+  port: 443
   uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
@@ -19,8 +19,8 @@ proxies:
 - name: 美国专线-01丨峰
   type: vless
   server: 156.229.166.66
-  port: 9443
-  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  port: 443
+  uuid: a8945d73-e450-47ea-90cb-10062c8632b7
   udp: true
   tls: true
   reality-opts:
@@ -32,7 +32,7 @@ proxies:
 - name: 台湾专线-01丨峰
   type: vless
   server: 141.11.87.77
-  port: 9443
+  port: 443
   uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
@@ -45,7 +45,20 @@ proxies:
 - name: 日本专线-01丨峰
   type: vless
   server: 45.202.255.92
-  port: 9443
+  port: 443
+  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
+  udp: true
+  tls: true
+  reality-opts:
+    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
+    short-id: b390142456517acc
+  servername: www.amazon.com
+  flow: xtls-rprx-vision
+  client-fingerprint: chrome
+- name: 日本三网-01丨峰
+  type: vless
+  server: 176.97.71.90
+  port: 443
   uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
@@ -58,20 +71,7 @@ proxies:
 - name: 新加坡直连-01丨峰
   type: vless
   server: 176.97.65.223
-  port: 9443
-  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
-- name: 马来西亚直连-01丨峰
-  type: vless
-  server: 149.33.30.40
-  port: 9443
+  port: 443
   uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
   udp: true
   tls: true
@@ -136,12 +136,12 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 香港直连-01丨峰
+  - 香港专线-01丨峰
   - 美国专线-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
+  - 日本三网-01丨峰
   - 新加坡直连-01丨峰
-  - 马来西亚直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 美国
   - 韩国极速
@@ -150,12 +150,12 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 香港直连-01丨峰
+  - 香港专线-01丨峰
   - 美国专线-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
+  - 日本三网-01丨峰
   - 新加坡直连-01丨峰
-  - 马来西亚直连-01丨峰
   - ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   - 美国
   - 韩国极速
