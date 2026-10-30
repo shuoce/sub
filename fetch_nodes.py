@@ -51,19 +51,7 @@ clash_file = "clash.yaml"
 share_dir = "share"
 share_sub_file = os.path.join(share_dir, "a.txt")
 share_clash_file = os.path.join(share_dir, "clash.yaml")
-refresh_uris_file = "refresh_nodes_uris.txt"
-share_refresh_file = os.path.join(share_dir, "refresh.txt")
 
-# v2ray-plugin 可执行文件（本地/CI 自动查找）
-def _find_tool(name):
-    for d in (os.path.dirname(os.path.abspath(__file__)), "/usr/local/bin", "/usr/bin"):
-        p = os.path.join(d, name)
-        if os.path.exists(p):
-            return p
-    return shutil.which(name)
-
-SSLOCAL_BIN = _find_tool("sslocal")
-V2RAY_BIN = _find_tool("v2ray-plugin")
 
 ANNOUNCE_KEYWORDS = ("请在各代理", "谢谢大家", "tg：", "tg留言", "公告", "通知")
 
@@ -539,57 +527,10 @@ def gen_clash() -> int:
 # 7. 同步与主入口
 # =========================
 
-def refill_refresh_nodes():
-    """读取 refresh_nodes_uris.txt 并入订阅；保留 plugin（服务端强制 ws 传输，剥离即不通），
-    同 (host,port) 去重"""
-    if not os.path.exists(refresh_uris_file):
-        print(f"[试用] {refresh_uris_file} 不存在，跳过")
-        return []
-    lines = []
-    with open(refresh_uris_file, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line.startswith("ss://"):
-                lines.append(line)
-    if not lines:
-        print("[试用] 无有效节点")
-        return []
-    cur = []
-    if os.path.exists(nodes_new_file):
-        with open(nodes_new_file, encoding="utf-8") as f:
-            cur = [l.strip() for l in f if l.strip() and not l.startswith("#")]
-    seen, added = set(), []
-    for line in cur:
-        hp = extract_host_port(line)
-        if hp and hp[0]:
-            seen.add(("ss", hp[0].lower(), int(hp[1])))
-    for line in lines:
-        hp = extract_host_port(line)
-        key = ("ss", hp[0].lower(), int(hp[1])) if hp and hp[0] else None
-        if key and key in seen:
-            continue
-        if key:
-            seen.add(key)
-        added.append(line)
-    if not added:
-        print("[试用] 无新增（已在订阅中）")
-        return []
-    merged = cur + added
-    with open(nodes_new_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(merged) + "\n")
-    with open(sub_file, "w", encoding="utf-8") as f:
-        f.write(base64.b64encode("\n".join(merged).encode("utf-8")).decode("utf-8"))
-    print(f"[试用] 并入 {len(added)} 条")
-    return added
-
-
 def sync_share():
     os.makedirs(share_dir, exist_ok=True)
     shutil.copyfile(sub_file, share_sub_file)
     shutil.copyfile(clash_file, share_clash_file)
-    if os.path.exists(refresh_uris_file):
-        shutil.copyfile(refresh_uris_file, share_refresh_file)
-        print(f"已同步: {refresh_uris_file} → {share_refresh_file}")
     print(f"已同步: {sub_file} → {share_sub_file}")
     print(f"已同步: {clash_file} → {share_clash_file}")
 
@@ -609,8 +550,6 @@ if __name__ == "__main__":
     # 3. 生成 sub（合并 fixed、改名、去重）
     total = gen_sub(alive_nodes)
 
-    # 3.5 并入试用节点（refresh_nodes_uris.txt，由 verify_nodes 生成）
-    refill_refresh_nodes()
 
     # 4. 生成 Clash（含 ss）
     n_clash = gen_clash()

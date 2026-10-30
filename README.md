@@ -83,18 +83,6 @@ https://shuoce1.eu.cc/share/clash.yaml
 https://shuoce1.eu.cc/share/mao
 ```
 
-### 04 · 试用节点（单列）
-
-宇速试用入口节点的独立列表，已在通用订阅与 Clash 订阅中自动包含，此入口供单独导入使用。
-
-**访问地址：**
-
-```text
-https://shuoce1.eu.cc/share/refresh.txt
-```
-
-> ⚠️ 此组节点为 Shadowsocks + v2ray-plugin（WebSocket）传输，客户端需支持 ss 插件，例如 NekoBox、SagerNet。不支持插件的客户端导入后无法连接。
-
 ---
 
 ## 📖 使用教程
@@ -125,11 +113,9 @@ https://shuoce1.eu.cc/share/refresh.txt
 
 每次运行依次执行：
 
-1. **安装探测工具** —— 获取 sslocal 与 v2ray-plugin（用于协议层验证）；
-2. **试用节点验证** —— 重新拉取试用节点并走全链路 204 验证，存活的写入刷新列表；API 持续异常或 0 存活时重试并回退上一轮结果，不会发布空内容；
-3. **机场节点处理** —— 获取数据并执行 TCP 测活与过滤；
-4. **合并生成** —— 试用节点并入订阅（保留 v2ray-plugin 参数），生成通用订阅与 Clash 配置；
-5. **提交产物** —— 有变更才提交推送，客户端刷新订阅即可获取。
+1. **机场节点处理** —— 获取数据并执行 TCP 测活与过滤；
+2. **合并生成** —— 生成通用订阅与 Clash 配置；
+3. **提交产物** —— 有变更才提交推送，客户端刷新订阅即可获取。
 
 部分白名单文件由本机手动维护，具体规则请参阅 [白名单刷新手册](./白名单刷新手册.md)。
 
@@ -143,9 +129,6 @@ sub/
 │   └── workflows/
 │       └── update-sub.yml
 ├── fetch_nodes.py          # 机场节点拉取/测活/合并/生成订阅与 Clash
-├── refresh_nodes.py        # 试用节点拉取与测活（可独立使用）
-├── verify_nodes.py         # CI 试用节点验证入口（204 全链路 + 重试/熔断）
-├── refresh_nodes_uris.txt  # 试用节点验证产物
 ├── local_probe.py
 ├── nodes.txt
 ├── nodes_new.txt
@@ -158,7 +141,6 @@ sub/
 └── share/
     ├── a.txt               # 通用订阅（base64）
     ├── clash.yaml          # Clash / Mihomo 配置
-    ├── refresh.txt         # 试用节点（ss + v2ray-plugin）
     ├── alive.txt
     ├── fixed.txt
     ├── mao
@@ -192,8 +174,7 @@ sub/
 | 特点 | 说明 |
 |---|---|
 | 🚀 自动化 | GitHub Actions 每 3 小时自动更新 |
-| 📡 多格式 | 提供通用订阅、Clash 配置与试用节点单列 |
-| 🔬 真实验证 | 试用节点每轮走 204 全链路验证，坏节点不进订阅 |
+| 📡 多格式 | 提供通用订阅与 Clash 配置 |
 | 🧩 模块化 | 区分数据处理、订阅产物与站点文件 |
 | 🛠️ 易维护 | 支持节点检测与白名单管理 |
 | 🔄 持续更新 | 根据实际运行情况持续优化 |
