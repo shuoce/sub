@@ -294,15 +294,16 @@ def gen_sub(api_alive_nodes: list) -> int:
     candidates = [process_line(n) for n in api_alive_nodes if n.strip()]
     candidates += [process_line(l) for l in _load_fixed()]
 
-    # (type,host,port) 去重；公告节点最多保留 1 条
-    result, seen, announce_kept = [], set(), False
+    # (type,host,port) 去重；公告节点按标签去重（同名公告只留一条，不同标签全保留）
+    result, seen, announce_seen = [], set(), set()
     for line in candidates:
         if not line:
             continue
         if is_announcement(_announce_name(line)):
-            if announce_kept:
+            tag = _announce_name(line)
+            if tag in announce_seen:
                 continue
-            announce_kept = True
+            announce_seen.add(tag)
             result.append(line)
             continue
         scheme = line.split("://", 1)[0].lower()
