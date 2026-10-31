@@ -3,19 +3,6 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 香港专线-01丨峰
-  type: vless
-  server: 141.11.91.35
-  port: 443
-  uuid: 4a270d3e-27b4-497d-8c8c-28f1f54958d9
-  udp: true
-  tls: true
-  reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
-  client-fingerprint: chrome
 - name: 美国专线-01丨峰
   type: vless
   server: 156.229.166.66
@@ -128,7 +115,6 @@ proxy-groups:
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 香港专线-01丨峰
   - 美国专线-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
@@ -143,7 +129,6 @@ proxy-groups:
   type: select
   proxies:
   - 自动选择
-  - 香港专线-01丨峰
   - 美国专线-01丨峰
   - 台湾专线-01丨峰
   - 日本专线-01丨峰
