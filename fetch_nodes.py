@@ -105,9 +105,15 @@ def fetch_nodes() -> list:
     for grp in raw:
         if not isinstance(grp, dict):
             continue
-        if grp.get("status") == 1 or "免费" in (grp.get("name") or ""):
+        g_name = grp.get("name") or ""
+        g_status = grp.get("status")
+        g_nodes = grp.get("node") or []
+        # 与客户端一致：status == 1 才是可用订阅组；其余（下架/停用/过期）跳过
+        if g_status != 1:
+            print(f"[跳过组] name={g_name!r} status={g_status} nodes={len(g_nodes)}")
             continue
-        for n in grp.get("node") or []:       # ← 真实字段名是 node，元素为字符串
+        print(f"[采集组] name={g_name!r} status={g_status} nodes={len(g_nodes)}")
+        for n in g_nodes:                     # 真实字段名是 node，元素为字符串
             if isinstance(n, str) and n.strip():
                 nodes.append(n.strip())
             elif isinstance(n, dict):
@@ -540,6 +546,9 @@ if __name__ == "__main__":
     # 1. API 拉取（失败即崩溃，禁止静默发布）
     nodes = fetch_nodes()
     print(f"API 获取原始节点: {len(nodes)} 个")
+    if not nodes:
+        # 空节点直接失败：绝不覆盖已有产物，避免把订阅冲成只剩公告
+        raise SystemExit("[FATAL] API 返回 0 个可用节点，中止本次发布（保留上一轮产物）")
 
     with open(nodes_file, "w", encoding="utf-8") as f:
         f.write("\n".join(nodes) + "\n")
