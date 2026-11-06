@@ -5,16 +5,15 @@ log-level: info
 proxies:
 - name: 美国免费-01丨峰
   type: vless
-  server: 156.229.167.193
-  port: 443
-  uuid: a8945d73-e450-47ea-90cb-10062c8632b7
+  server: 156.229.167.172
+  port: 8443
+  uuid: 0168da04-2c9a-4a53-8278-7a456912ad9e
   udp: true
   tls: true
   reality-opts:
-    public-key: 0hIFPaEn4RdFib8_eP8HYxMywR5izEwM3JA2W1Zo8U4
-    short-id: b390142456517acc
-  servername: www.amazon.com
-  flow: xtls-rprx-vision
+    public-key: jMJaBJ_HZ9GR-jQp59WtofHgIfR1bFIKHF05cWo1Nyo
+    short-id: 0b58d9e3aa4663c2
+  servername: github.githubassets.com
   client-fingerprint: chrome
 - name: ⭐ 请在各代理客户端中手动点击「更新订阅」丨峰
   type: vless
