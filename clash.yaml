@@ -7,7 +7,7 @@ proxies:
   type: vless
   server: 156.229.167.172
   port: 8443
-  uuid: 04834128-8bc5-4eee-aa7f-0dc6733e5eff
+  uuid: 0574e3dc-3076-496d-9efc-a2ae993e2c33
   udp: true
   tls: true
   reality-opts:
