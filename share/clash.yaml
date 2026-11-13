@@ -5,7 +5,7 @@ log-level: info
 proxies:
 - name: 美国免费-01丨峰
   type: vless
-  server: 156.229.167.172
+  server: 156.229.166.63
   port: 8443
   uuid: dbb4994b-a17d-4f1e-b50a-25399b6703ee
   udp: true
